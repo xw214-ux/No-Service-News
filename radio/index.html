@@ -84,11 +84,10 @@ body { padding-bottom: 96px; }
 </nav>
 <h1>No Service Radio</h1>
 <p class="count">Personal curations in show format — mixes, selections, pressure. New episodes file into <code>episodes/</code>.</p>
-<div class="post-card">
-<div class="meta"><span class="scout">EP000</span> · 2026-06-11</div>
-<h2><a href="ep000.html">EP000 — Test Transmission</a></h2>
-<div class="count">6 tracks · mix attached</div>
-</div>
+<h2>On rotation now</h2>
+<p class="src">No mix episode this week — the desk cycles the crate: top tracks first, then everything the scouts filed.</p>
+<p class="count">Click any track — it plays in the radio bar at the bottom and keeps playing while you move around the site. Top tracks lead, then the full crate.</p><ol style="padding-left:20px;line-height:2"><li><a href="#" data-ns-idx="0" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(0);return false">Garrett Fields — Steady Now (LOCUS041) <span class="src">(Top 5 ★ featured)</span></a></li><li><a href="#" data-ns-idx="1" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(1);return false">WZ — Speakers Died [INFERNAL SOUNDS PREMIERE] <span class="src">(Top 5 · top 5)</span></a></li><li><a href="#" data-ns-idx="2" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(2);return false">Cessman — Murderers <span class="src">(Top 5 · top 5)</span></a></li><li><a href="#" data-ns-idx="3" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(3);return false">Pharma — Dem Move VIP <span class="src">(Top 5 · top 5)</span></a></li><li><a href="#" data-ns-idx="4" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(4);return false">togeki — Gargoyle <span class="src">(Top 5 · top 5)</span></a></li><li><a href="#" data-ns-idx="5" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(5);return false">Garrett Fields — Steady Now (LOCUS041) <span class="src">(Coda)</span></a></li><li><a href="#" data-ns-idx="6" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(6);return false">WZ — Speakers Died [INFERNAL SOUNDS PREMIERE] <span class="src">(Coda)</span></a></li><li><a href="#" data-ns-idx="7" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(7);return false">Ternion Sound — Airlock <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="8" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(8);return false">Pharma — Dem Move VIP <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="9" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(9);return false">ColtCuts &amp; CØNTRA — Lockup <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="10" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(10);return false">togeki — Gargoyle EP (Terrible/Gargoyle/Impaled/Dystopia/Excruciate/Doomed) <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="11" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(11);return false">Cessman — Murderers <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="12" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(12);return false">Kyber — Still <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="13" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(13);return false">Hebbe — Small Town Dub <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="14" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(14);return false">Teffa — Three Stacks <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="15" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(15);return false">Cimm — Cold Starter <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="16" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(16);return false">STVSH — FRICTION / GOOD TIME / LOSE CONTROL / TAKE CARE <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="17" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(17);return false">Vyhara — Telling You <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="18" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(18);return false">Godlands — Dozer <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="19" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(19);return false">Obskure — War Wid Us <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="20" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(20);return false">L-Wiz — Konsum <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="21" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(21);return false">Somebodyyyy x Rational Soul — Mo Pi (Joe Nice Remix) <span class="src">(Clu)</span></a></li><li><a href="#" data-ns-idx="22" style="text-decoration:none;color:var(--ink)" onclick="nsPlayAt(22);return false">Amor Satyr &amp; Yunk — Oxi Doki <span class="src">(Clu)</span></a></li></ol><script>if (typeof nsUpdate === 'function') nsUpdate();</script>
+<p>No mix episodes yet. Copy <code>agents/EPISODE_TEMPLATE.md</code> into <code>episodes/ep001_YYYY-MM-DD/</code>, drop a tracklist CSV next to it, rebuild.</p>
 <footer>NO SERVICE — built 2026-06-11 ·
 weekly heaters Mondays · deep cuts Fridays</footer>
 </div>
@@ -109,9 +108,14 @@ var nsW = null;
 function nsSave() { try { localStorage.setItem('ns_radio', JSON.stringify(ns)); } catch (e) {} }
 function nsUpdate() {
   var t = NS_QUEUE[ns.i] || {};
-  document.getElementById('ns-now').textContent = (ns.i + 1) + '/' + NS_QUEUE.length + ' · ' + (t.artist || '') + ' — ' + (t.title || '');
+  document.getElementById('ns-now').textContent = ns.mix
+    ? 'MIX · ' + (ns.mixLabel || '')
+    : (ns.i + 1) + '/' + NS_QUEUE.length + ' · ' + (t.artist || '') + ' — ' + (t.title || '');
   document.getElementById('ns-play').textContent = ns.on ? '⏸' : '▶ Radio';
   document.getElementById('ns-frame').style.display = nsW ? 'block' : 'none';
+  document.querySelectorAll('a[data-ns-idx]').forEach(function(a) {
+    a.style.color = (!ns.mix && +a.dataset.nsIdx === ns.i) ? 'var(--accent)' : 'var(--ink)';
+  });
 }
 function nsBoot(auto) {
   if (!NS_QUEUE.length) return;
@@ -122,7 +126,10 @@ function nsBoot(auto) {
   f.onload = function() {
     if (nsW) return;
     nsW = SC.Widget(f);
-    nsW.bind(SC.Widget.Events.FINISH, function() { ns.i = (ns.i + 1) % NS_QUEUE.length; ns.pos = 0; nsGo(true); });
+    nsW.bind(SC.Widget.Events.FINISH, function() {
+      if (ns.mix) { ns.mix = null; } else { ns.i = (ns.i + 1) % NS_QUEUE.length; }
+      ns.pos = 0; nsGo(true);
+    });
     nsW.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) { ns.pos = e.currentPosition; ns.on = true; nsSave(); });
     nsW.bind(SC.Widget.Events.PAUSE, function() { ns.on = false; nsSave(); nsUpdate(); });
     nsW.bind(SC.Widget.Events.PLAY, function() { ns.on = true; nsUpdate(); });
@@ -139,7 +146,14 @@ function nsGo(auto) {
     callback: function() { if (ns.pos > 3000) nsW.seekTo(ns.pos); nsSave(); nsUpdate(); } });
 }
 function nsToggle() { if (!nsW) { nsBoot(true); } else { nsW.toggle(); } }
-function nsStep(d) { ns.i = (ns.i + d + NS_QUEUE.length) % NS_QUEUE.length; ns.pos = 0; nsGo(true); nsSave(); }
+function nsStep(d) { ns.mix = null; ns.i = (ns.i + d + NS_QUEUE.length) % NS_QUEUE.length; ns.pos = 0; nsGo(true); nsSave(); }
+function nsPlayAt(n) { ns.mix = null; ns.i = n; ns.pos = 0; nsGo(true); nsSave(); }
+function nsPlayUrl(url, label) {
+  ns.mix = url; ns.mixLabel = label || 'Mix'; ns.pos = 0;
+  if (!nsW) { nsBoot(false); var w8 = setInterval(function() { if (nsW) { clearInterval(w8); nsW.load(url, { auto_play: true, callback: nsUpdate }); } }, 300); }
+  else { nsW.load(url, { auto_play: true, hide_related: true, show_comments: false, visual: false, callback: nsUpdate }); }
+  nsUpdate();
+}
 nsUpdate();
 // --- SPA navigation: swap page content in place so the radio never stops ---
 document.addEventListener('click', function(e) {
