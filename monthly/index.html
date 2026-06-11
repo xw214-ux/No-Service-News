@@ -106,9 +106,14 @@ var nsW = null;
 function nsSave() { try { localStorage.setItem('ns_radio', JSON.stringify(ns)); } catch (e) {} }
 function nsUpdate() {
   var t = NS_QUEUE[ns.i] || {};
-  document.getElementById('ns-now').textContent = (ns.i + 1) + '/' + NS_QUEUE.length + ' · ' + (t.artist || '') + ' — ' + (t.title || '');
+  document.getElementById('ns-now').textContent = ns.mix
+    ? 'MIX · ' + (ns.mixLabel || '')
+    : (ns.i + 1) + '/' + NS_QUEUE.length + ' · ' + (t.artist || '') + ' — ' + (t.title || '');
   document.getElementById('ns-play').textContent = ns.on ? '⏸' : '▶ Radio';
   document.getElementById('ns-frame').style.display = nsW ? 'block' : 'none';
+  document.querySelectorAll('a[data-ns-idx]').forEach(function(a) {
+    a.style.color = (!ns.mix && +a.dataset.nsIdx === ns.i) ? 'var(--accent)' : 'var(--ink)';
+  });
 }
 function nsBoot(auto) {
   if (!NS_QUEUE.length) return;
@@ -119,7 +124,10 @@ function nsBoot(auto) {
   f.onload = function() {
     if (nsW) return;
     nsW = SC.Widget(f);
-    nsW.bind(SC.Widget.Events.FINISH, function() { ns.i = (ns.i + 1) % NS_QUEUE.length; ns.pos = 0; nsGo(true); });
+    nsW.bind(SC.Widget.Events.FINISH, function() {
+      if (ns.mix) { ns.mix = null; } else { ns.i = (ns.i + 1) % NS_QUEUE.length; }
+      ns.pos = 0; nsGo(true);
+    });
     nsW.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) { ns.pos = e.currentPosition; ns.on = true; nsSave(); });
     nsW.bind(SC.Widget.Events.PAUSE, function() { ns.on = false; nsSave(); nsUpdate(); });
     nsW.bind(SC.Widget.Events.PLAY, function() { ns.on = true; nsUpdate(); });
@@ -136,7 +144,14 @@ function nsGo(auto) {
     callback: function() { if (ns.pos > 3000) nsW.seekTo(ns.pos); nsSave(); nsUpdate(); } });
 }
 function nsToggle() { if (!nsW) { nsBoot(true); } else { nsW.toggle(); } }
-function nsStep(d) { ns.i = (ns.i + d + NS_QUEUE.length) % NS_QUEUE.length; ns.pos = 0; nsGo(true); nsSave(); }
+function nsStep(d) { ns.mix = null; ns.i = (ns.i + d + NS_QUEUE.length) % NS_QUEUE.length; ns.pos = 0; nsGo(true); nsSave(); }
+function nsPlayAt(n) { ns.mix = null; ns.i = n; ns.pos = 0; nsGo(true); nsSave(); }
+function nsPlayUrl(url, label) {
+  ns.mix = url; ns.mixLabel = label || 'Mix'; ns.pos = 0;
+  if (!nsW) { nsBoot(false); var w8 = setInterval(function() { if (nsW) { clearInterval(w8); nsW.load(url, { auto_play: true, callback: nsUpdate }); } }, 300); }
+  else { nsW.load(url, { auto_play: true, hide_related: true, show_comments: false, visual: false, callback: nsUpdate }); }
+  nsUpdate();
+}
 nsUpdate();
 // --- SPA navigation: swap page content in place so the radio never stops ---
 document.addEventListener('click', function(e) {
