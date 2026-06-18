@@ -139,6 +139,73 @@ p { color: #d6d3cc; max-width: 72ch; }
   text-transform: uppercase;
   margin-top: 4px;
 }
+.broadcast-strip {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 1fr;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+.catalog-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 118px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(22,22,26,.94), rgba(11,11,13,.98));
+  padding: 14px;
+}
+.catalog-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+}
+.catalog-no {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.catalog-card strong {
+  display: block;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.2;
+  margin-top: 8px;
+}
+.catalog-card span {
+  display: block;
+  color: var(--dim);
+  font-size: 12px;
+  line-height: 1.35;
+  margin-top: 8px;
+}
+.index-lines {
+  counter-reset: tape;
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.index-lines li {
+  counter-increment: tape;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+  color: var(--soft);
+  font-size: 12.5px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+.index-lines li::before {
+  content: counter(tape, decimal-leading-zero);
+  color: var(--accent);
+  letter-spacing: .08em;
+}
 .post-card {
   background: linear-gradient(180deg, rgba(22,22,26,.96), rgba(17,17,20,.96));
   border: 1px solid var(--line);
@@ -254,6 +321,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
 @media (max-width: 700px) {
   .wrap { padding-inline: 16px; }
   .station-grid { grid-template-columns: 1fr; }
+  .broadcast-strip { grid-template-columns: 1fr; }
   #ns-frame { width: 100%; }
 }
 </style>

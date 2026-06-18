@@ -138,6 +138,73 @@ p { color: #d6d3cc; max-width: 72ch; }
   text-transform: uppercase;
   margin-top: 4px;
 }
+.broadcast-strip {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 1fr;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+.catalog-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 118px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(22,22,26,.94), rgba(11,11,13,.98));
+  padding: 14px;
+}
+.catalog-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+}
+.catalog-no {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.catalog-card strong {
+  display: block;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.2;
+  margin-top: 8px;
+}
+.catalog-card span {
+  display: block;
+  color: var(--dim);
+  font-size: 12px;
+  line-height: 1.35;
+  margin-top: 8px;
+}
+.index-lines {
+  counter-reset: tape;
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.index-lines li {
+  counter-increment: tape;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+  color: var(--soft);
+  font-size: 12.5px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+.index-lines li::before {
+  content: counter(tape, decimal-leading-zero);
+  color: var(--accent);
+  letter-spacing: .08em;
+}
 .post-card {
   background: linear-gradient(180deg, rgba(22,22,26,.96), rgba(17,17,20,.96));
   border: 1px solid var(--line);
@@ -253,6 +320,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
 @media (max-width: 700px) {
   .wrap { padding-inline: 16px; }
   .station-grid { grid-template-columns: 1fr; }
+  .broadcast-strip { grid-template-columns: 1fr; }
   #ns-frame { width: 100%; }
 }
 </style>
@@ -271,28 +339,48 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
   <a href="about.html">About</a>
 </nav>
 <section class="station-panel" aria-label="No Service station status">
-<div class="meta"><span class="scout">Station desk</span> · June 2026 · live archive</div>
-<h2>Underground bass notes, radio pressure, and agent-filed trails.</h2>
-<p>No Service is tightening into a public hub: the feed carries the story, The Desk keeps the raw scout intelligence, Radio keeps the crate moving, and Submit opens the door for labels, guest mixes, and local leads.</p>
+<div class="meta"><span class="scout">NS-0618</span> · station desk · live archive</div>
+<h2>Underground bass notes, radio pressure, and pressure trails.</h2>
+<p>No Service is tightening into a public station object: the feed carries the story, The Desk holds deeper listening notes, Radio keeps the crate moving, and Submit opens the door for labels, guest mixes, and local leads.</p>
 <div class="station-grid">
-  <div class="station-stat"><strong>Run 2 live</strong><span>Clu 9 leads · Coda zero-pick correction</span></div>
+  <div class="station-stat"><strong>Latest dispatch</strong><span>9 pressure leads · one corrected scene thread</span></div>
   <div class="station-stat"><strong>Radio rolling</strong><span>Persistent player stays on while browsing</span></div>
   <div class="station-stat"><strong>Next build</strong><span>noservice.radio + submissions inbox</span></div>
 </div>
 <a class="btn dl" href="tunein.html">Tune in</a><a class="btn" href="desk.html">Open The Desk</a><a class="btn" href="submit.html">Submit a lead</a>
 </section>
+<section class="broadcast-strip" aria-label="No Service catalogue index">
+<div class="catalog-card">
+  <div class="catalog-no">Transmission A</div>
+  <strong>On air</strong>
+  <span>Mix of the Week stays at the top; the bottom bar keeps the crate moving while you read.</span>
+  <ol class="index-lines"><li>Cessman - Barometric Mix</li><li>Persistent radio queue</li></ol>
+</div>
+<div class="catalog-card">
+  <div class="catalog-no">Catalogue B</div>
+  <strong>June packet</strong>
+  <span>Dispatches are treated like release notes: story up front, deeper listening notes in The Desk.</span>
+  <ol class="index-lines"><li>9 pressure leads</li><li>scene correction</li></ol>
+</div>
+<div class="catalog-card">
+  <div class="catalog-no">Open channel</div>
+  <strong>Submit window</strong>
+  <span>Scene leads, label pages, guest mixes, and rights notes go through the desk before coverage.</span>
+  <ol class="index-lines"><li>submissions path</li><li>hello / radio / events</li></ol>
+</div>
+</section>
 <div class="post-card" style="border-left:3px solid var(--accent)"><div class="meta"><span class="scout">Mix of the Week</span></div><h2><a href="tunein.html">Cessman — Barometric Mix (18 unreleased dubs)</a></h2><div class="count">Press ▶ Radio below — it keeps playing while you browse. Full player on <a href="tunein.html">Tune In</a>.</div></div>
 <div class="post-card">
-<div class="meta"><span class="scout">Clu</span> · 2026-06-18</div>
-<h2><a href="posts/2026-06-18-clu-run2.html">Weekly Heaters — 2026-06-18 Run 2</a></h2>
-<div class="excerpt">The agents found a sharper June pressure map: Heavy Tension's Denver orbit, ENiGMA Dubz's Morii lane, SKALAH watchlines, Yushh's Full Body AXY, TraTraTrax's Mzansi Bass thread, Foundation Audio, and Beatport used as exclusion instead of filler.</div>
+<div class="meta"><span class="scout">Weekly Heaters</span> · 2026-06-18</div>
+<h2><a href="posts/2026-06-18-clu-run2.html">Weekly Heaters — 2026-06-18</a></h2>
+<div class="excerpt">The latest desk pass maps a sharper June pressure field: Heavy Tension's Denver orbit, ENiGMA Dubz's Morii lane, SKALAH watchlines, Yushh's Full Body AXY, TraTraTrax's Mzansi Bass thread, Foundation Audio, and Beatport used as exclusion instead of filler.</div>
 <div class="count">9 tracks and watchlines</div>
 </div>
 <div class="post-card">
-<div class="meta"><span class="scout">Coda</span> · 2026-06-18</div>
-<h2><a href="posts/2026-06-18-coda-run2.html">Deep Cuts — 2026-06-18 Run 2</a></h2>
-<div class="excerpt">Coda held the bar at zero picks and still improved the map: Morii is Birmingham / ENiGMA Dubz, not Denver; the real Denver thread runs through Heavy Tension and the Die By The Sword orbit.</div>
-<div class="count">0 picks · source correction logged</div>
+<div class="meta"><span class="scout">Deep Cuts</span> · 2026-06-18</div>
+<h2><a href="posts/2026-06-18-coda-run2.html">Deep Cuts — 2026-06-18</a></h2>
+<div class="excerpt">The deep-cuts pass held the public bar and still improved the map: Morii is Birmingham / ENiGMA Dubz, not Denver; the real Denver thread runs through Heavy Tension and the Die By The Sword orbit.</div>
+<div class="count">scene correction logged</div>
 </div>
 <div class="post-card">
 <div class="meta"><span class="scout">Signal</span> · 2026-06-11</div>
@@ -303,10 +391,10 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
 <div class="post-card">
 <div class="meta"><span class="scout">Top 5</span> · 2026-06-11</div>
 <h2><a href="posts/2026-06-11-feature.html">Top 5 This Week — 2026-06-11</a></h2>
-<div class="excerpt">First edition of the weekly Top 5. House rules: these are curations, not charts — every slot has to earn its place with evidence a selector would respect. This week all five are desk picks (the scouts&#x27; top5 nominations o…</div>
+<div class="excerpt">First edition of the weekly Top 5. House rules: these are curations, not charts — every slot has to earn its place with evidence a selector would respect. This week all five are desk picks (the desk nominations o…</div>
 <div class="count">5 tracks</div>
 </div>
-<p class="count">Want the raw scout intelligence — every heater, ID and dub as it was logged? That's <a href="desk.html">The Desk</a>. Have a track, label note, or local scene lead? <a href="submit.html">Send it to the desk</a>.</p>
+<p class="count">Want the notes behind the public picks — heaters, IDs, dubs, links, and scene context? That's <a href="desk.html">The Desk</a>. Have a track, label note, or local scene lead? <a href="submit.html">Send it to the desk</a>.</p>
 <footer>NO SERVICE — built 2026-06-11 ·
 weekly heaters Mondays · deep cuts Fridays</footer>
 </div>
@@ -319,7 +407,7 @@ weekly heaters Mondays · deep cuts Fridays</footer>
 </div>
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
-var NS_QUEUE = [{"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "scout": "Top 5 \u2605 featured"}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "scout": "Top 5 \u00b7 top 5"}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "scout": "Top 5 \u00b7 top 5"}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "scout": "Top 5 \u00b7 top 5"}, {"artist": "togeki", "title": "Gargoyle", "url": "https://soundcloud.com/subcarbon/togeki-gargoyle-3", "scout": "Top 5 \u00b7 top 5"}, {"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "scout": "Coda"}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "scout": "Coda"}, {"artist": "Ternion Sound", "title": "Airlock", "url": "https://soundcloud.com/duploc/ternion-sound-airlock", "scout": "Clu"}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "scout": "Clu"}, {"artist": "ColtCuts & C\u00d8NTRA", "title": "Lockup", "url": "https://soundcloud.com/duploc/coltcuts-contra-lockup", "scout": "Clu"}, {"artist": "togeki", "title": "Gargoyle EP (Terrible/Gargoyle/Impaled/Dystopia/Excruciate/Doomed)", "url": "https://soundcloud.com/subcarbon/togeki-gargoyle-3", "scout": "Clu"}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "scout": "Clu"}, {"artist": "Kyber", "title": "Still", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Clu"}, {"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Clu"}, {"artist": "Teffa", "title": "Three Stacks", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Clu"}, {"artist": "Cimm", "title": "Cold Starter", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Clu"}, {"artist": "STVSH", "title": "FRICTION / GOOD TIME / LOSE CONTROL / TAKE CARE", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "scout": "Clu"}, {"artist": "Vyhara", "title": "Telling You", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "scout": "Clu"}, {"artist": "Godlands", "title": "Dozer", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "scout": "Clu"}, {"artist": "Obskure", "title": "War Wid Us", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Clu"}, {"artist": "L-Wiz", "title": "Konsum", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Clu"}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Clu"}, {"artist": "Amor Satyr & Yunk", "title": "Oxi Doki", "url": "https://soundcloud.com/tetevide-tv/amor-satyr-yunk-oxi-doki", "scout": "Clu"}];
+var NS_QUEUE = [{"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "scout": "Top 5 \u2605 featured"}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "scout": "Top 5 \u00b7 top 5"}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "scout": "Top 5 \u00b7 top 5"}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "scout": "Top 5 \u00b7 top 5"}, {"artist": "togeki", "title": "Gargoyle", "url": "https://soundcloud.com/subcarbon/togeki-gargoyle-3", "scout": "Top 5 \u00b7 top 5"}, {"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "scout": "Deep Cuts"}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "scout": "Deep Cuts"}, {"artist": "Ternion Sound", "title": "Airlock", "url": "https://soundcloud.com/duploc/ternion-sound-airlock", "scout": "Heaters"}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "scout": "Heaters"}, {"artist": "ColtCuts & C\u00d8NTRA", "title": "Lockup", "url": "https://soundcloud.com/duploc/coltcuts-contra-lockup", "scout": "Heaters"}, {"artist": "togeki", "title": "Gargoyle EP (Terrible/Gargoyle/Impaled/Dystopia/Excruciate/Doomed)", "url": "https://soundcloud.com/subcarbon/togeki-gargoyle-3", "scout": "Heaters"}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "scout": "Heaters"}, {"artist": "Kyber", "title": "Still", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Teffa", "title": "Three Stacks", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Cimm", "title": "Cold Starter", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "STVSH", "title": "FRICTION / GOOD TIME / LOSE CONTROL / TAKE CARE", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "scout": "Heaters"}, {"artist": "Vyhara", "title": "Telling You", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "scout": "Heaters"}, {"artist": "Godlands", "title": "Dozer", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "scout": "Heaters"}, {"artist": "Obskure", "title": "War Wid Us", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "L-Wiz", "title": "Konsum", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Amor Satyr & Yunk", "title": "Oxi Doki", "url": "https://soundcloud.com/tetevide-tv/amor-satyr-yunk-oxi-doki", "scout": "Heaters"}];
 var ns = {i: 0, pos: 0, on: false};
 try { Object.assign(ns, JSON.parse(localStorage.getItem('ns_radio') || '{}')); } catch (e) {}
 if (ns.i >= NS_QUEUE.length) ns.i = 0;
