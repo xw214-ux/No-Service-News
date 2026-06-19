@@ -4,293 +4,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About — NO SERVICE</title>
 <style>
-:root {
-  --accent: #ff4d00;
-  --signal: #65ffb4;
-  --violet: #9b7cff;
-  --bg: #080b0a;
-  --bg-2: #0d1210;
-  --card: #111614;
-  --card-2: #151314;
-  --ink: #ecebe4;
-  --soft: #cbd0c6;
-  --dim: #8f958d;
-  --muted: #666d68;
-  --line: #27312d;
-  --shadow: rgba(0, 0, 0, .36);
-}
+:root { --accent: #ff4d00; --bg: #0c0c0e; --card: #16161a;
+        --ink: #e8e6e1; --dim: #8a8780; --line: #26262c; }
 * { box-sizing: border-box; }
-html { background: var(--bg); }
-body {
-  margin: 0;
-  min-height: 100vh;
+body { margin: 0; background: var(--bg); color: var(--ink);
+       font: 16px/1.65 -apple-system, "Helvetica Neue", Arial, sans-serif;
+       min-height: 100vh; overflow-x: hidden; }
+body::before, body::after { content: ""; position: fixed; inset: 0; pointer-events: none; }
+body::before { z-index: 0;
   background:
-    linear-gradient(rgba(255,77,0,.014) 1px, transparent 1px) 0 0 / 100% 7px,
-    linear-gradient(90deg, rgba(155,124,255,.032), transparent 24%, transparent 76%, rgba(101,255,180,.03)),
-    radial-gradient(ellipse at top, #13201b 0%, #080b0a 56%);
-  color: var(--ink);
-  font: 16px/1.65 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  padding-bottom: 116px;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: .16;
+    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at var(--ns-signal-x, 50%) 16%, rgba(255,77,0,.10), transparent 34%),
+    linear-gradient(115deg, rgba(255,77,0,.04), transparent 42%, rgba(120,255,210,.035));
+  opacity: .18; transform: translate3d(0, 0, 0);
+  animation: nsScanDrift 14s linear infinite paused; }
+body::after { z-index: 0;
   background:
-    linear-gradient(180deg, rgba(8,11,10,.55), transparent 18%, transparent 70%, rgba(8,11,10,.7)),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.026) 0 1px, transparent 1px 5px),
-    repeating-linear-gradient(0deg, rgba(0,0,0,.2) 0 1px, transparent 1px 3px);
-  mix-blend-mode: screen;
-}
-.wrap {
-  position: relative;
-  z-index: 1;
-  width: min(1040px, calc(100% - 36px));
-  margin: 0 auto;
-  padding: 18px 0 96px;
-}
-header.site {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-  border-bottom: 1px solid var(--line);
-  padding: 26px 0 14px;
-  margin-bottom: 10px;
-}
-header.site h1 {
-  margin: 0;
-  font-size: clamp(28px, 5vw, 58px);
-  line-height: .9;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,77,0,.025) 18px 19px),
+    radial-gradient(ellipse at var(--ns-signal-x, 50%) 85%, rgba(255,77,0,.13), transparent 44%);
+  mix-blend-mode: screen; opacity: 0; filter: blur(.2px);
+  animation: nsSignalBloom 5.5s ease-in-out infinite paused; }
+body.ns-radio-live::before { opacity: .34; animation-play-state: running; }
+body.ns-radio-live::after { opacity: .25; animation-play-state: running; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 24px 18px 80px;
+        position: relative; z-index: 1; }
+header.site { border-bottom: 2px solid var(--accent); padding: 28px 0 14px; margin-bottom: 6px; }
+header.site h1 { margin: 0; font-size: 30px; letter-spacing: .14em; }
 header.site h1 a { color: var(--ink); text-decoration: none; }
-header.site .tag {
-  max-width: 420px;
-  color: var(--dim);
-  font-size: 12px;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  text-align: right;
-}
-nav.top {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin: 12px 0 30px;
-  font-size: 12px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-nav.top a {
-  color: var(--dim);
-  text-decoration: none;
-  border: 1px solid var(--line);
-  background: rgba(16,22,20,.72);
-  padding: 5px 9px;
-}
-nav.top a:hover { color: var(--accent); border-color: var(--accent); }
-h1,h2,h3,h4 { line-height: 1.18; }
-h1 { font-size: clamp(34px, 7vw, 72px); letter-spacing: .02em; margin: 28px 0 12px; }
-h2 { font-size: clamp(22px, 3vw, 34px); margin: 30px 0 10px; }
-h3 { font-size: 18px; margin: 20px 0 8px; }
-a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-p { max-width: 72ch; color: #d8dbd2; }
-.meta, .count, .src {
-  color: var(--dim);
-  font-size: 12px;
-  letter-spacing: .11em;
-  text-transform: uppercase;
-}
-.meta .scout { color: var(--accent); font-weight: 700; }
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(320px, 1.1fr);
-  gap: 28px;
-  align-items: end;
-  border-bottom: 1px solid var(--line);
-  padding: 12px 0 28px;
-  margin-bottom: 18px;
-}
-.hero h2 {
-  margin: 8px 0 12px;
-  font-size: clamp(38px, 6vw, 78px);
-  line-height: .9;
-  letter-spacing: .01em;
-  max-width: 7.6em;
-}
-.hero p { color: #dfe1d8; font-size: clamp(15px, 1.5vw, 19px); }
-.actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
-.btn {
-  display: inline-block;
-  color: var(--ink);
-  background: rgba(16,22,20,.74);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 7px 12px;
-  margin: 8px 8px 0 0;
-  font-size: 12px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.btn:hover { border-color: var(--accent); color: var(--accent); }
-.btn.dl { border-color: var(--accent); color: var(--accent); }
-.hero-art {
-  display: grid;
-  grid-template-columns: 1fr .74fr;
-  gap: 8px;
-  min-height: 340px;
-}
-.hero-art img, .feature img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  display: block;
-}
-.hero-art img { filter: saturate(.86) contrast(1.08); }
-.hero-art .stack { display: grid; gap: 8px; grid-template-rows: 1fr 1fr; }
-.feature-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 0 0 24px;
-}
-.feature, .post-card, .track {
-  background: linear-gradient(180deg, rgba(21,19,20,.92), rgba(11,15,13,.96));
-  border: 1px solid var(--line);
-  box-shadow: 0 14px 40px var(--shadow);
-}
-.feature {
-  overflow: hidden;
-  text-decoration: none;
-  border-radius: 8px;
-}
-.feature img { aspect-ratio: 1; }
-.feature div { padding: 11px; }
-.feature strong { display: block; color: var(--ink); font-size: 13px; line-height: 1.25; }
-.feature span { display: block; color: var(--dim); font-size: 12px; margin-top: 3px; }
-.post-card {
-  position: relative;
-  border-radius: 8px;
-  padding: 18px 20px 18px 56px;
-  margin: 0 0 12px;
-  counter-increment: dispatch;
-}
-.wrap { counter-reset: dispatch; }
-.post-card::before {
-  content: "NS-" counter(dispatch, decimal-leading-zero);
-  position: absolute;
-  left: 18px;
-  top: 21px;
-  color: var(--accent);
-  font-size: 11px;
-  letter-spacing: .11em;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-.post-card h2 { margin: 4px 0 4px; font-size: 21px; }
+header.site .tag { color: var(--dim); font-size: 13px; letter-spacing: .05em; margin-top: 4px; }
+nav.top { margin: 10px 0 26px; font-size: 13px; letter-spacing: .06em; }
+nav.top a { color: var(--dim); text-decoration: none; margin-right: 16px; text-transform: uppercase; }
+nav.top a:hover { color: var(--accent); }
+h1,h2,h3,h4 { line-height: 1.25; }
+a { color: var(--accent); }
+.post-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+             padding: 18px 20px; margin: 0 0 18px; }
+.post-card h2 { margin: 0 0 4px; font-size: 20px; }
 .post-card h2 a { color: var(--ink); text-decoration: none; }
 .post-card h2 a:hover { color: var(--accent); }
-.excerpt { color: var(--soft); font-size: 14.5px; margin-top: 8px; max-width: 82ch; }
-article.post { max-width: 820px; }
-article.post p { color: #d8dbd2; }
-.track { border-left: 3px solid var(--accent); border-radius: 8px; padding: 14px 16px; margin: 14px 0; }
+.meta { color: var(--dim); font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; }
+.meta .scout { color: var(--accent); font-weight: 600; }
+.excerpt { color: #c9c6bf; font-size: 14.5px; margin-top: 8px; }
+.count { color: var(--dim); font-size: 13px; margin-top: 6px; }
+article.post p { color: #d6d3cc; }
+.track { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+         border-radius: 8px; padding: 14px 16px; margin: 14px 0; }
 .track-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-.artist { font-weight: 750; }
-.title { color: #d6d9d0; }
-.note { color: var(--soft); font-size: 14px; margin-top: 6px; }
-.badge {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  border: 1px solid var(--line);
-  color: var(--dim);
-  border-radius: 99px;
-  padding: 2px 8px;
-  margin-left: 6px;
-}
+.artist { font-weight: 700; }
+.title { color: #d6d3cc; }
+.src { color: var(--dim); font-size: 13px; margin-top: 2px; }
+.note { color: #c9c6bf; font-size: 14px; margin-top: 6px; }
+.badge { display: inline-block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+         border: 1px solid var(--line); color: var(--dim); border-radius: 99px;
+         padding: 2px 9px; margin-left: 6px; }
 .badge.underdog { border-color: var(--accent); color: var(--accent); }
 .player { margin-top: 10px; }
-.player iframe, iframe { border-radius: 6px; }
+.player iframe { border-radius: 6px; }
 .links { margin-top: 10px; }
+.btn { display: inline-block; font-size: 13px; text-decoration: none; color: var(--ink);
+       border: 1px solid var(--line); border-radius: 6px; padding: 5px 12px; margin-right: 8px; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.dl { border-color: var(--accent); color: var(--accent); }
 table { border-collapse: collapse; width: 100%; font-size: 14px; }
-td, th { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; }
-th { color: var(--dim); font-size: 12px; text-transform: uppercase; letter-spacing: .09em; }
-footer {
-  margin-top: 60px;
-  color: var(--muted);
-  font-size: 12px;
-  border-top: 1px solid var(--line);
-  padding-top: 16px;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-pre { background: #0b0f0d; border: 1px solid var(--line); border-radius: 8px; padding: 12px; overflow-x: auto; font-size: 13px; }
-code { background: #0b0f0d; padding: 1px 5px; border-radius: 4px; font-size: .92em; }
+td, th { border-bottom: 1px solid var(--line); padding: 7px 8px; text-align: left; }
+th { color: var(--dim); font-size: 12px; text-transform: uppercase; letter-spacing: .07em; }
+footer { margin-top: 60px; color: var(--dim); font-size: 12.5px; border-top: 1px solid var(--line);
+         padding-top: 16px; }
+pre { background: #111114; border: 1px solid var(--line); border-radius: 8px; padding: 12px;
+      overflow-x: auto; font-size: 13px; }
+code { background: #111114; padding: 1px 5px; border-radius: 4px; font-size: 0.92em; }
 hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
-#ns-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 99;
-  background: rgba(12,12,14,.96);
-  border-top: 2px solid var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
-  flex-wrap: wrap;
-  box-shadow: 0 -16px 36px rgba(0,0,0,.35);
-  backdrop-filter: blur(10px);
+@keyframes nsScanDrift {
+  0% { background-position: 0 0, 50% 16%, 0 0; }
+  100% { background-position: 0 36px, 58% 16%, 120px 0; }
 }
-#ns-art {
-  width: 42px;
-  height: 42px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid var(--line);
-  flex: 0 0 auto;
+@keyframes nsSignalBloom {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: .16; }
+  45% { transform: translate3d(0, -7px, 0); opacity: .30; }
+  50% { transform: translate3d(0, 2px, 0); opacity: .22; }
 }
-#ns-bar .nsbtn {
-  cursor: pointer;
-  font-size: 13px;
-  color: var(--ink);
-  background: none;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 5px 12px;
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none; }
+  body.ns-radio-live::before { opacity: .24; }
+  body.ns-radio-live::after { opacity: .12; }
 }
+
+#ns-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 99;
+  background: #131316; border-top: 2px solid var(--accent);
+  display: flex; align-items: center; gap: 10px; padding: 8px 14px; flex-wrap: wrap; }
+#ns-bar .nsbtn { cursor: pointer; font-size: 13px; color: var(--ink); background: none;
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 12px; }
 #ns-bar .nsbtn:hover { border-color: var(--accent); color: var(--accent); }
-#ns-now {
-  color: var(--dim);
-  font-size: 12.5px;
-  flex: 1;
-  min-width: 140px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-#ns-frame { width: 340px; height: 64px; border: 0; border-radius: 6px; display: none; }
-@media (max-width: 760px) {
-  .wrap { width: min(100% - 28px, 1040px); }
-  header.site { display: block; }
-  header.site .tag { text-align: left; margin-top: 8px; }
-  .hero { grid-template-columns: 1fr; }
-  .hero h2 { font-size: clamp(38px, 14vw, 68px); }
-  .hero-art { min-height: 260px; }
-  .feature-row { grid-template-columns: 1fr; }
-  .post-card { padding-left: 48px; }
-  #ns-frame { width: 100%; }
-}
+#ns-now { color: var(--dim); font-size: 12.5px; flex: 1; min-width: 140px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#ns-frame, #ns-spotify-frame { width: 340px; height: 64px; border: 0; border-radius: 6px; display: none; }
+body.ns-radio-live #ns-bar { box-shadow: 0 -10px 28px rgba(255,77,0,.10); }
+#ns-spotify-frame { height: 80px; }
+@media (max-width: 700px) { #ns-frame, #ns-spotify-frame { width: 100%; } }
+body { padding-bottom: 132px; }
 </style>
 </head><body><div class="wrap">
 <header class="site">
@@ -298,70 +109,73 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
   <div class="tag">sound-system weight · meditative pressure · underdog signal</div>
 </header>
 <nav class="top">
-  <a href="index.html">Feed</a>
+  <a href="index.html">Journal</a>
+  <a href="new-music.html">New Music</a>
   <a href="radio/index.html">Radio</a>
-  <a href="tunein.html">Tune In</a>
-  <a href="monthly/index.html">Monthly</a>
-  <a href="desk.html">The Desk</a>
+  <a href="monthly/index.html">Archive</a>
   <a href="submit.html">Submit</a>
   <a href="about.html">About</a>
 </nav>
 <h1>About</h1>
-<p>NO SERVICE is a crate-digging desk for deep bass music:
+<p>NO SERVICE is an independent journal and radio thread for deep bass music:
 sound-system weight · meditative pressure · underdog signal.</p>
-<ul><li><strong>Clu</strong> — breadth — weekly heaters (files Monday)</li><li><strong>Coda</strong> — depth — deep cuts (files Friday)</li><li><strong>Signal</strong> — editorial synthesis (files end of week)</li><li><strong>Top 5</strong> — weekly curation — top 5 + featured release (files Friday)</li></ul>
-<p>Players stream from the original source (SoundCloud / Spotify / YouTube).
-Download buttons appear when a scout supplies a DL link. Support the artists:
-buy on Bandcamp and Beatport when the plates drop.</p>
-<div class="post-card">
-<h2>The next build</h2>
-<p class="excerpt">No Service is moving through its domain launch: noservice.online first, then the formal submission inbox, mailing list, and radio packet cadence. The project can become a business if trust comes first: useful curation, clean rights boundaries, scene relationships, then support, sponsorship, events, services, or merch.</p>
-<p class="count"><a href="submit.html">Send a lead to the desk</a></p>
-</div>
-<div class="post-card ns-domain-ready" style="border-left:3px solid var(--signal)">
-<div class="meta"><span class="scout">Start here</span> · noservice.online</div>
-<h2>A public desk, not a content farm</h2>
-<p class="excerpt">No Service is a human-led curation desk for underground bass music: records, radio notes, IDs, source trails, and scene context first. The systems behind it help keep memory and cadence; the public face stays with the music.</p>
-<p class="count"><a href="submit.html">Submission guide</a> · <a href="radio/index.html">Radio crate</a></p>
-</div>
-<footer>NO SERVICE — built 2026-06-11 ·
-noservice.online · weekly heaters Mondays · deep cuts Fridays</footer>
+<p>The site stays close to records with sub-pressure, restraint, dub technique, and a sense of space. Some weeks that means a pile of leads. Some weeks it means one record worth replaying until the room changes shape.</p>
+<p>Everything here is meant to be used: listen in the deck, jump back to the original source, and follow the archive as it takes form. When the plates drop, support the artists on their own pages.</p>
+<footer>NO SERVICE · independent bass writing and radio</footer>
 </div>
 <div id="ns-bar">
   <button class="nsbtn" id="ns-play" onclick="nsToggle()">▶ Radio</button>
   <button class="nsbtn" onclick="nsStep(-1)">⏮</button>
   <button class="nsbtn" onclick="nsStep(1)">⏭</button>
-  <img id="ns-art" alt="" hidden><span id="ns-now">No Service Radio — this week's crate, continuous</span>
+  <span id="ns-now">No Service Radio — this week's crate, continuous</span>
   <iframe id="ns-frame" allow="autoplay"></iframe>
+  <iframe id="ns-spotify-frame" allow="encrypted-media; autoplay; clipboard-write"></iframe>
 </div>
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
-var NS_QUEUE = [{"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "scout": "Top 5 \u2605 featured"}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "scout": "Top 5 \u00b7 top 5"}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "scout": "Top 5 \u00b7 top 5"}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "scout": "Top 5 \u00b7 top 5"}, {"artist": "togeki", "title": "Gargoyle", "url": "https://soundcloud.com/subcarbon/togeki-gargoyle-3", "scout": "Top 5 \u00b7 top 5"}, {"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "scout": "Deep Cuts"}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "scout": "Deep Cuts"}, {"artist": "Ternion Sound", "title": "Airlock", "url": "https://soundcloud.com/duploc/ternion-sound-airlock", "scout": "Heaters"}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "scout": "Heaters"}, {"artist": "ColtCuts & C\u00d8NTRA", "title": "Lockup", "url": "https://soundcloud.com/duploc/coltcuts-contra-lockup", "scout": "Heaters"}, {"artist": "togeki", "title": "Gargoyle EP (Terrible/Gargoyle/Impaled/Dystopia/Excruciate/Doomed)", "url": "https://soundcloud.com/subcarbon/togeki-gargoyle-3", "scout": "Heaters"}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "scout": "Heaters"}, {"artist": "Kyber", "title": "Still", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Teffa", "title": "Three Stacks", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Cimm", "title": "Cold Starter", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "STVSH", "title": "FRICTION / GOOD TIME / LOSE CONTROL / TAKE CARE", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "scout": "Heaters"}, {"artist": "Vyhara", "title": "Telling You", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "scout": "Heaters"}, {"artist": "Godlands", "title": "Dozer", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "scout": "Heaters"}, {"artist": "Obskure", "title": "War Wid Us", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "L-Wiz", "title": "Konsum", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "scout": "Heaters"}, {"artist": "Amor Satyr & Yunk", "title": "Oxi Doki", "url": "https://soundcloud.com/tetevide-tv/amor-satyr-yunk-oxi-doki", "scout": "Heaters"}];
-var NS_ART = {"Kyber|Relentless": "https://f4.bcbits.com/img/a3128437646_10.jpg", "Kyber|Still": "https://i1.sndcdn.com/artworks-LUzqNMFezLyJIRP0-2f2iGg-t500x500.jpg", "Cessman|Barometric Mix": "https://i1.sndcdn.com/artworks-jXT7v88JeyTK2ZeV-hI8XNQ-t500x500.jpg", "Cessman|Murderers": "https://i1.sndcdn.com/artworks-jXT7v88JeyTK2ZeV-hI8XNQ-t500x500.jpg", "Garrett Fields|Steady Now (LOCUS041)": "https://i1.sndcdn.com/artworks-3s3WVJ25oBKzFCCu-NgiucA-t500x500.jpg", "WZ|Speakers Died [INFERNAL SOUNDS PREMIERE]": "https://i1.sndcdn.com/artworks-3s3WVJ25oBKzFCCu-NgiucA-t500x500.jpg", "Ternion Sound|Airlock": "https://i1.sndcdn.com/artworks-xPnymMCWx6zlyg6x-1mKTNA-t500x500.jpg", "Pharma|Dem Move VIP": "https://i1.sndcdn.com/artworks-TzpqvoaUH5zzWvJl-zMKKPg-t500x500.jpg", "ColtCuts & CØNTRA|Lockup": "https://i1.sndcdn.com/artworks-xPnymMCWx6zlyg6x-1mKTNA-t500x500.jpg", "togeki|Gargoyle": "https://i1.sndcdn.com/artworks-VBlbXxmNbIf8gdHj-0Nalgw-t500x500.jpg", "togeki|Gargoyle EP (Terrible/Gargoyle/Impaled/Dystopia/Excruciate/Doomed)": "https://i1.sndcdn.com/artworks-VBlbXxmNbIf8gdHj-0Nalgw-t500x500.jpg", "Hebbe|Small Town Dub": "https://i1.sndcdn.com/artworks-LUzqNMFezLyJIRP0-2f2iGg-t500x500.jpg", "Teffa|Three Stacks": "https://i1.sndcdn.com/artworks-LUzqNMFezLyJIRP0-2f2iGg-t500x500.jpg", "Cimm|Cold Starter": "https://i1.sndcdn.com/artworks-LUzqNMFezLyJIRP0-2f2iGg-t500x500.jpg", "Obskure|War Wid Us": "https://i1.sndcdn.com/artworks-LUzqNMFezLyJIRP0-2f2iGg-t500x500.jpg", "L-Wiz|Konsum": "https://i1.sndcdn.com/artworks-LUzqNMFezLyJIRP0-2f2iGg-t500x500.jpg", "Somebodyyyy x Rational Soul|Mo Pi (Joe Nice Remix)": "https://i1.sndcdn.com/artworks-LUzqNMFezLyJIRP0-2f2iGg-t500x500.jpg", "Amor Satyr & Yunk|Oxi Doki": "https://i1.sndcdn.com/artworks-1aDiVngDmHZhGeX9-yTyTLQ-t500x500.jpg"};
-var ns = {i: 0, pos: 0, on: false};
+var NS_QUEUE = [{"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "platform": "soundcloud", "scout": "Featured"}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "platform": "soundcloud", "scout": ""}, {"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "platform": "soundcloud", "scout": ""}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "platform": "soundcloud", "scout": ""}, {"artist": "Ternion Sound", "title": "Airlock", "url": "https://soundcloud.com/duploc/ternion-sound-airlock", "platform": "soundcloud", "scout": ""}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "platform": "soundcloud", "scout": ""}, {"artist": "ColtCuts & C\u00d8NTRA", "title": "Lockup", "url": "https://soundcloud.com/duploc/coltcuts-contra-lockup", "platform": "soundcloud", "scout": ""}, {"artist": "togeki", "title": "Gargoyle EP (Terrible/Gargoyle/Impaled/Dystopia/Excruciate/Doomed)", "url": "https://soundcloud.com/subcarbon/togeki-gargoyle-3", "platform": "soundcloud", "scout": ""}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "platform": "soundcloud", "scout": ""}, {"artist": "Kyber", "title": "Still", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Teffa", "title": "Three Stacks", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Cimm", "title": "Cold Starter", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "STVSH", "title": "FRICTION / GOOD TIME / LOSE CONTROL / TAKE CARE", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "platform": "soundcloud", "scout": ""}, {"artist": "Vyhara", "title": "Telling You", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "platform": "soundcloud", "scout": ""}, {"artist": "Godlands", "title": "Dozer", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "platform": "soundcloud", "scout": ""}, {"artist": "Obskure", "title": "War Wid Us", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "L-Wiz", "title": "Konsum", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Amor Satyr & Yunk", "title": "Oxi Doki", "url": "https://soundcloud.com/tetevide-tv/amor-satyr-yunk-oxi-doki", "platform": "soundcloud", "scout": ""}];
+var ns = {i: 0, pos: 0, on: false, platform: 'soundcloud'};
 try { Object.assign(ns, JSON.parse(localStorage.getItem('ns_radio') || '{}')); } catch (e) {}
 if (ns.i >= NS_QUEUE.length) ns.i = 0;
 var nsW = null;
 function nsSave() { try { localStorage.setItem('ns_radio', JSON.stringify(ns)); } catch (e) {} }
+function nsSignal() {
+  document.body.classList.toggle('ns-radio-live', !!ns.on);
+  var drift = ((ns.i || 0) * 17 + Math.floor((ns.pos || 0) / 9000)) % 42;
+  document.documentElement.style.setProperty('--ns-signal-x', (34 + drift) + '%');
+}
 function nsUpdate() {
   var t = NS_QUEUE[ns.i] || {};
+  var platform = ns.mixPlatform || t.platform || ns.platform || 'soundcloud';
   document.getElementById('ns-now').textContent = ns.mix
-    ? 'MIX · ' + (ns.mixLabel || '')
-    : (ns.i + 1) + '/' + NS_QUEUE.length + ' · ' + (t.artist || '') + ' — ' + (t.title || '');
-  document.getElementById('ns-play').textContent = ns.on ? '⏸' : '▶ Radio';
-  document.getElementById('ns-frame').style.display = nsW ? 'block' : 'none';
-  var art = document.getElementById('ns-art');
-  if (art && t.artist) {
-    var src = NS_ART[(t.artist || '') + '|' + (t.title || '')] || '';
-    if (src) { art.hidden = false; art.src = src; art.alt = (t.artist || '') + ' - ' + (t.title || '') + ' artwork'; }
-    else { art.hidden = true; art.removeAttribute('src'); art.alt = ''; }
-  }
+    ? platform.toUpperCase() + ' · ' + (ns.mixLabel || '')
+    : (ns.i + 1) + '/' + NS_QUEUE.length + ' · ' + platform.toUpperCase() + ' · ' + (t.artist || '') + ' — ' + (t.title || '');
+  document.getElementById('ns-play').textContent = platform === 'spotify' ? 'Spotify' : (ns.on ? '⏸' : '▶ Radio');
+  document.getElementById('ns-frame').style.display = (platform === 'soundcloud' && nsW) ? 'block' : 'none';
+  document.getElementById('ns-spotify-frame').style.display = platform === 'spotify' ? 'block' : 'none';
+  nsSignal();
   document.querySelectorAll('a[data-ns-idx]').forEach(function(a) {
     a.style.color = (!ns.mix && +a.dataset.nsIdx === ns.i) ? 'var(--accent)' : 'var(--ink)';
   });
 }
+function nsSpotifySrc(url) {
+  try { var u = new URL(url); return 'https://open.spotify.com/embed' + u.pathname; }
+  catch(e) { return ''; }
+}
+function nsLoadSpotify(url, label) {
+  var src = nsSpotifySrc(url);
+  if (!src) return;
+  if (nsW) try { nsW.pause(); } catch(e) {}
+  ns.platform = 'spotify'; ns.mixPlatform = 'spotify'; ns.mix = url; ns.mixLabel = label || 'Spotify'; ns.on = true; ns.pos = 0;
+  var sp = document.getElementById('ns-spotify-frame');
+  sp.src = src;
+  nsSave(); nsUpdate();
+}
 function nsBoot(auto) {
   if (!NS_QUEUE.length) return;
+  var t = NS_QUEUE[ns.i] || {};
+  if ((t.platform || '').toLowerCase() === 'spotify') { nsLoadSpotify(t.url, (t.artist || '') + ' — ' + (t.title || '')); return; }
+  ns.platform = 'soundcloud'; ns.mixPlatform = null;
   var f = document.getElementById('ns-frame');
   f.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(NS_QUEUE[ns.i].url) +
           '&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&visual=false';
@@ -373,8 +187,8 @@ function nsBoot(auto) {
       if (ns.mix) { ns.mix = null; } else { ns.i = (ns.i + 1) % NS_QUEUE.length; }
       ns.pos = 0; nsGo(true);
     });
-    nsW.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) { ns.pos = e.currentPosition; ns.on = true; nsSave(); });
-    nsW.bind(SC.Widget.Events.PAUSE, function() { ns.on = false; nsSave(); nsUpdate(); });
+    nsW.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) { ns.pos = e.currentPosition; ns.on = true; nsSignal(); nsSave(); });
+    nsW.bind(SC.Widget.Events.PAUSE, function() { if (ns.platform === 'spotify') return; ns.on = false; nsSave(); nsUpdate(); });
     nsW.bind(SC.Widget.Events.PLAY, function() { ns.on = true; nsUpdate(); });
     nsW.bind(SC.Widget.Events.READY, function() {
       if (ns.pos > 3000) nsW.seekTo(ns.pos);
@@ -385,14 +199,24 @@ function nsBoot(auto) {
 }
 function nsGo(auto) {
   if (!nsW) { nsBoot(auto); return; }
+  var t = NS_QUEUE[ns.i] || {};
+  if ((t.platform || '').toLowerCase() === 'spotify') { nsLoadSpotify(t.url, (t.artist || '') + ' — ' + (t.title || '')); return; }
+  ns.platform = 'soundcloud'; ns.mixPlatform = null;
+  document.getElementById('ns-spotify-frame').style.display = 'none';
   nsW.load(NS_QUEUE[ns.i].url, { auto_play: auto, hide_related: true, show_comments: false, visual: false,
     callback: function() { if (ns.pos > 3000) nsW.seekTo(ns.pos); nsSave(); nsUpdate(); } });
 }
-function nsToggle() { if (!nsW) { nsBoot(true); } else { nsW.toggle(); } }
+function nsToggle() {
+  var t = NS_QUEUE[ns.i] || {};
+  if ((ns.mixPlatform || t.platform) === 'spotify') { nsLoadSpotify(ns.mix || t.url, ns.mixLabel || ((t.artist || '') + ' — ' + (t.title || ''))); }
+  else if (!nsW) { nsBoot(true); } else { nsW.toggle(); }
+}
 function nsStep(d) { ns.mix = null; ns.i = (ns.i + d + NS_QUEUE.length) % NS_QUEUE.length; ns.pos = 0; nsGo(true); nsSave(); }
 function nsPlayAt(n) { ns.mix = null; ns.i = n; ns.pos = 0; nsGo(true); nsSave(); }
 function nsPlayUrl(url, label) {
-  ns.mix = url; ns.mixLabel = label || 'Mix'; ns.pos = 0;
+  if ((url || '').toLowerCase().indexOf('open.spotify.com') > -1) { nsLoadSpotify(url, label); return; }
+  ns.mix = url; ns.mixLabel = label || 'Mix'; ns.mixPlatform = 'soundcloud'; ns.platform = 'soundcloud'; ns.pos = 0;
+  document.getElementById('ns-spotify-frame').style.display = 'none';
   if (!nsW) { nsBoot(false); var w8 = setInterval(function() { if (nsW) { clearInterval(w8); nsW.load(url, { auto_play: true, callback: nsUpdate }); } }, 300); }
   else { nsW.load(url, { auto_play: true, hide_related: true, show_comments: false, visual: false, callback: nsUpdate }); }
   nsUpdate();
