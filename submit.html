@@ -97,11 +97,14 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
 #ns-bar .nsbtn:hover { border-color: var(--accent); color: var(--accent); }
 #ns-now { color: var(--dim); font-size: 12.5px; flex: 1; min-width: 140px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#ns-volume-wrap { display: flex; align-items: center; gap: 8px; color: var(--dim); font-size: 12px; }
+#ns-volume { width: 104px; accent-color: var(--accent); }
+#ns-volume-note { color: var(--dim); font-size: 11px; }
 #ns-frame, #ns-spotify-frame { width: 340px; height: 64px; border: 0; border-radius: 6px; display: none; }
 body.ns-radio-live #ns-bar { box-shadow: 0 -10px 28px rgba(255,77,0,.10); }
 #ns-spotify-frame { height: 80px; }
-@media (max-width: 700px) { #ns-frame, #ns-spotify-frame { width: 100%; } }
-body { padding-bottom: 132px; }
+@media (max-width: 700px) { #ns-frame, #ns-spotify-frame { width: 100%; } #ns-volume { width: 100%; } }
+body { padding-bottom: 148px; }
 </style>
 </head><body><div class="wrap">
 <header class="site">
@@ -140,17 +143,45 @@ body { padding-bottom: 132px; }
   <button class="nsbtn" onclick="nsStep(-1)">⏮</button>
   <button class="nsbtn" onclick="nsStep(1)">⏭</button>
   <span id="ns-now">No Service Radio — this week's crate, continuous</span>
+  <label id="ns-volume-wrap" for="ns-volume">
+    <span>Vol</span>
+    <input id="ns-volume" type="range" min="0" max="100" value="72" oninput="nsSetVolume(this.value)">
+    <span id="ns-volume-note"></span>
+  </label>
   <iframe id="ns-frame" allow="autoplay"></iframe>
   <iframe id="ns-spotify-frame" allow="encrypted-media; autoplay; clipboard-write"></iframe>
 </div>
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
 var NS_QUEUE = [{"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "platform": "soundcloud", "scout": "Featured"}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "platform": "soundcloud", "scout": ""}, {"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "platform": "soundcloud", "scout": ""}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "platform": "soundcloud", "scout": ""}, {"artist": "Ternion Sound", "title": "Airlock", "url": "https://soundcloud.com/duploc/ternion-sound-airlock", "platform": "soundcloud", "scout": ""}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "platform": "soundcloud", "scout": ""}, {"artist": "ColtCuts & C\u00d8NTRA", "title": "Lockup", "url": "https://soundcloud.com/duploc/coltcuts-contra-lockup", "platform": "soundcloud", "scout": ""}, {"artist": "togeki", "title": "Gargoyle EP (Terrible/Gargoyle/Impaled/Dystopia/Excruciate/Doomed)", "url": "https://soundcloud.com/subcarbon/togeki-gargoyle-3", "platform": "soundcloud", "scout": ""}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "platform": "soundcloud", "scout": ""}, {"artist": "Kyber", "title": "Still", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Teffa", "title": "Three Stacks", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Cimm", "title": "Cold Starter", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "STVSH", "title": "FRICTION / GOOD TIME / LOSE CONTROL / TAKE CARE", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "platform": "soundcloud", "scout": ""}, {"artist": "Vyhara", "title": "Telling You", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "platform": "soundcloud", "scout": ""}, {"artist": "Godlands", "title": "Dozer", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "platform": "soundcloud", "scout": ""}, {"artist": "Obskure", "title": "War Wid Us", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "L-Wiz", "title": "Konsum", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Amor Satyr & Yunk", "title": "Oxi Doki", "url": "https://soundcloud.com/tetevide-tv/amor-satyr-yunk-oxi-doki", "platform": "soundcloud", "scout": ""}];
-var ns = {i: 0, pos: 0, on: false, platform: 'soundcloud'};
+var ns = {i: 0, pos: 0, on: false, platform: 'soundcloud', volume: 72};
 try { Object.assign(ns, JSON.parse(localStorage.getItem('ns_radio') || '{}')); } catch (e) {}
 if (ns.i >= NS_QUEUE.length) ns.i = 0;
+if (typeof ns.volume !== 'number' || isNaN(ns.volume)) ns.volume = 72;
+ns.volume = Math.max(0, Math.min(100, ns.volume));
 var nsW = null;
 function nsSave() { try { localStorage.setItem('ns_radio', JSON.stringify(ns)); } catch (e) {} }
+function nsApplyVolume() {
+  var slider = document.getElementById('ns-volume');
+  var note = document.getElementById('ns-volume-note');
+  if (slider) slider.value = String(ns.volume);
+  var platform = ns.mixPlatform || ns.platform || 'soundcloud';
+  if (platform === 'spotify') {
+    if (slider) slider.disabled = true;
+    if (note) note.textContent = 'Spotify volume in app';
+    return;
+  }
+  if (slider) slider.disabled = false;
+  if (note) note.textContent = ns.volume + '%';
+  if (nsW && typeof nsW.setVolume === 'function') {
+    try { nsW.setVolume(ns.volume); } catch (e) {}
+  }
+}
+function nsSetVolume(v) {
+  ns.volume = Math.max(0, Math.min(100, parseInt(v, 10) || 0));
+  nsApplyVolume();
+  nsSave();
+}
 function nsSignal() {
   document.body.classList.toggle('ns-radio-live', !!ns.on);
   var drift = ((ns.i || 0) * 17 + Math.floor((ns.pos || 0) / 9000)) % 42;
@@ -165,6 +196,7 @@ function nsUpdate() {
   document.getElementById('ns-play').textContent = platform === 'spotify' ? 'Spotify' : (ns.on ? '⏸' : '▶ Radio');
   document.getElementById('ns-frame').style.display = (platform === 'soundcloud' && nsW) ? 'block' : 'none';
   document.getElementById('ns-spotify-frame').style.display = platform === 'spotify' ? 'block' : 'none';
+  nsApplyVolume();
   nsSignal();
   document.querySelectorAll('a[data-ns-idx]').forEach(function(a) {
     a.style.color = (!ns.mix && +a.dataset.nsIdx === ns.i) ? 'var(--accent)' : 'var(--ink)';
@@ -203,6 +235,7 @@ function nsBoot(auto) {
     nsW.bind(SC.Widget.Events.PAUSE, function() { if (ns.platform === 'spotify') return; ns.on = false; nsSave(); nsUpdate(); });
     nsW.bind(SC.Widget.Events.PLAY, function() { ns.on = true; nsUpdate(); });
     nsW.bind(SC.Widget.Events.READY, function() {
+      nsApplyVolume();
       if (ns.pos > 3000) nsW.seekTo(ns.pos);
       if (auto) nsW.play();
       nsUpdate();
@@ -216,7 +249,7 @@ function nsGo(auto) {
   ns.platform = 'soundcloud'; ns.mixPlatform = null;
   document.getElementById('ns-spotify-frame').style.display = 'none';
   nsW.load(NS_QUEUE[ns.i].url, { auto_play: auto, hide_related: true, show_comments: false, visual: false,
-    callback: function() { if (ns.pos > 3000) nsW.seekTo(ns.pos); nsSave(); nsUpdate(); } });
+    callback: function() { nsApplyVolume(); if (ns.pos > 3000) nsW.seekTo(ns.pos); nsSave(); nsUpdate(); } });
 }
 function nsToggle() {
   var t = NS_QUEUE[ns.i] || {};
@@ -229,8 +262,8 @@ function nsPlayUrl(url, label) {
   if ((url || '').toLowerCase().indexOf('open.spotify.com') > -1) { nsLoadSpotify(url, label); return; }
   ns.mix = url; ns.mixLabel = label || 'Mix'; ns.mixPlatform = 'soundcloud'; ns.platform = 'soundcloud'; ns.pos = 0;
   document.getElementById('ns-spotify-frame').style.display = 'none';
-  if (!nsW) { nsBoot(false); var w8 = setInterval(function() { if (nsW) { clearInterval(w8); nsW.load(url, { auto_play: true, callback: nsUpdate }); } }, 300); }
-  else { nsW.load(url, { auto_play: true, hide_related: true, show_comments: false, visual: false, callback: nsUpdate }); }
+  if (!nsW) { nsBoot(false); var w8 = setInterval(function() { if (nsW) { clearInterval(w8); nsW.load(url, { auto_play: true, callback: function() { nsApplyVolume(); nsUpdate(); } }); } }, 300); }
+  else { nsW.load(url, { auto_play: true, hide_related: true, show_comments: false, visual: false, callback: function() { nsApplyVolume(); nsUpdate(); } }); }
   nsUpdate();
 }
 nsUpdate();
