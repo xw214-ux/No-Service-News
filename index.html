@@ -3,6 +3,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Journal — NO SERVICE</title>
+<meta name="description" content="A crate-digger&#x27;s journal for deep bass music — field notes, selections, and a radio thread close to the low end.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NO SERVICE">
+<meta property="og:title" content="Journal — NO SERVICE">
+<meta property="og:description" content="A crate-digger&#x27;s journal for deep bass music — field notes, selections, and a radio thread close to the low end.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Journal — NO SERVICE">
+<meta name="twitter:description" content="A crate-digger&#x27;s journal for deep bass music — field notes, selections, and a radio thread close to the low end.">
 <style>
 :root { --accent: #ff4d00; --bg: #0c0c0e; --card: #16161a;
         --ink: #e8e6e1; --dim: #8a8780; --line: #26262c; }
@@ -113,24 +121,34 @@ body { padding-bottom: 148px; }
 </header>
 <nav class="top">
   <a href="index.html">Journal</a>
-  <a href="new-music.html">New Music</a>
+  <a href="this-week.html">This Week</a>
   <a href="radio/index.html">Radio</a>
-  <a href="monthly/index.html">Archive</a>
   <a href="submit.html">Submit</a>
   <a href="about.html">About</a>
 </nav>
 <h1>Journal</h1>
-<p class='count'>No Service is a listener-first home for deep bass music: new records, recurring rotation, and a radio thread that stays close to the low end.</p>
-<div class="post-card" style="border-left:3px solid var(--accent)"><div class="meta"><span class="scout">Featured</span></div><h2><a href="tunein.html">Garrett Fields — Steady Now (LOCUS041)</a></h2><div class="count">Start here, then roll straight into <a href="new-music.html">New Music</a> for the full current rotation.</div></div>
-<div class="post-card"><div class="meta"><span class="scout">New Music</span></div><h2><a href="new-music.html">This week's rotation</a></h2><div class="count">A continuous deck of the latest records in orbit, with direct links back to the source pages.</div></div>
+<p class='count'>No Service is a crate-digger's journal for deep bass music: field notes, selections, and a radio thread that stays close to the low end. One ear, written down.</p>
+<div class="post-card" style="border-left:3px solid var(--accent)"><div class="meta"><span class="scout">This Week</span></div><h2><a href="this-week.html">Tunes in rotation</a></h2><div class="count">A handful of records carrying the week. Listen, then follow the artists.</div></div>
+<h2>Latest dispatches</h2>
+<div class="post-card">
+<div class="meta"><span class="scout">Signal</span> · 2026-06-23</div>
+<h2><a href="posts/2026-06-23-signal.html">Signal — 2026-06-23</a></h2>
+<div class="excerpt">The low end took the scenic route this week. Nothing here came down the New York–London–Berlin line. The pressure arrived from a taxi rank in Durban, a dubplate cut in twenty copies, an imprint built around silence, and …</div>
+</div>
+<div class="post-card">
+<div class="meta"><span class="scout">Signal</span> · 2026-06-22</div>
+<h2><a href="posts/2026-06-22-signal.html">Signal — 2026-06-22</a></h2>
+<div class="excerpt">There&#x27;s a number we keep coming back to this week, and it isn&#x27;t a BPM. It&#x27;s followers — three of them, all under a thousand, attached to the heaviest dubplates we&#x27;ve heard in a month.</div>
+</div>
 <div class="post-card"><div class="meta"><span class="scout">Radio</span></div><h2><a href="radio/index.html">No Service Radio</a></h2><div class="count">Mixes, selections, and whatever is carrying the room right now.</div></div>
-<div class="post-card"><div class="meta"><span class="scout">Archive</span></div><h2><a href="monthly/index.html">Monthly roundup</a></h2><div class="count">A running archive of records that stayed in the conversation.</div></div>
 <footer>NO SERVICE · independent bass writing and radio</footer>
 </div>
 <div id="ns-bar">
-  <button class="nsbtn" id="ns-play" onclick="nsToggle()">▶ Radio</button>
+  <button class="nsbtn" id="ns-play" onclick="nsToggle()">▶ Play</button>
   <button class="nsbtn" onclick="nsStep(-1)">⏮</button>
   <button class="nsbtn" onclick="nsStep(1)">⏭</button>
+  <button class="nsbtn" onclick="nsShuffle()">🔀 Shuffle</button>
+  <button class="nsbtn" onclick="nsShuffle()">🔀 Shuffle</button>
   <span id="ns-now">No Service Radio — this week's crate, continuous</span>
   <label id="ns-volume-wrap" for="ns-volume">
     <span>Vol</span>
@@ -142,7 +160,7 @@ body { padding-bottom: 148px; }
 </div>
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
-var NS_QUEUE = [{"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "platform": "soundcloud", "scout": "Featured"}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "platform": "soundcloud", "scout": "Top 5"}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "platform": "soundcloud", "scout": ""}, {"artist": "Garrett Fields", "title": "Steady Now (LOCUS041)", "url": "https://soundcloud.com/locus_sound/garrett-fields-steady-now", "platform": "soundcloud", "scout": ""}, {"artist": "WZ", "title": "Speakers Died [INFERNAL SOUNDS PREMIERE]", "url": "https://soundcloud.com/infernal_sounds/wz-speakers-died", "platform": "soundcloud", "scout": ""}, {"artist": "Ternion Sound", "title": "Airlock", "url": "https://soundcloud.com/duploc/ternion-sound-airlock", "platform": "soundcloud", "scout": ""}, {"artist": "Pharma", "title": "Dem Move VIP", "url": "https://soundcloud.com/duploc/pharma-dem-move-vip", "platform": "soundcloud", "scout": ""}, {"artist": "ColtCuts & C\u00d8NTRA", "title": "Lockup", "url": "https://soundcloud.com/duploc/coltcuts-contra-lockup", "platform": "soundcloud", "scout": ""}, {"artist": "togeki", "title": "Gargoyle EP (Terrible/Gargoyle/Impaled/Dystopia/Excruciate/Doomed)", "url": "https://soundcloud.com/subcarbon/togeki-gargoyle-3", "platform": "soundcloud", "scout": ""}, {"artist": "Cessman", "title": "Murderers", "url": "https://soundcloud.com/cessman/cessman-murderers", "platform": "soundcloud", "scout": ""}, {"artist": "Kyber", "title": "Still", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Teffa", "title": "Three Stacks", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Cimm", "title": "Cold Starter", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "STVSH", "title": "FRICTION / GOOD TIME / LOSE CONTROL / TAKE CARE", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "platform": "soundcloud", "scout": ""}, {"artist": "Vyhara", "title": "Telling You", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "platform": "soundcloud", "scout": ""}, {"artist": "Godlands", "title": "Dozer", "url": "https://soundcloud.com/deadbeatsrecords/374-deadbeats-radio-with-zeds", "platform": "soundcloud", "scout": ""}, {"artist": "Obskure", "title": "War Wid Us", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "L-Wiz", "title": "Konsum", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": ""}, {"artist": "Amor Satyr & Yunk", "title": "Oxi Doki", "url": "https://soundcloud.com/tetevide-tv/amor-satyr-yunk-oxi-doki", "platform": "soundcloud", "scout": ""}];
+var NS_QUEUE = [{"artist": "RIOT TEN", "title": "RIOT TEN - WHO GOT THE WUBS", "url": "https://soundcloud.com/riotten/riot-ten-who-got-the-wubs", "platform": "soundcloud", "scout": "clu"}, {"artist": "SKisM", "title": "Never Say Die Vol. 7 - Mixed by SKisM", "url": "https://soundcloud.com/weareskism/never-say-die-vol-7", "platform": "soundcloud", "scout": "clu"}, {"artist": "SILLYUGLYUK", "title": "MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)", "url": "https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22", "platform": "soundcloud", "scout": "clu"}, {"artist": "efan", "title": "RUMBLE (efan bootleg)", "url": "https://soundcloud.com/efanuk/rumbleukbass", "platform": "soundcloud", "scout": "clu"}, {"artist": "Bakey", "title": "Welcome To London - Flowdan (Bakey Edit)", "url": "https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit", "platform": "soundcloud", "scout": "clu"}, {"artist": "Aylen", "title": "Aylen - Bomba", "url": "https://soundcloud.com/aylen/aylen-bomba", "platform": "soundcloud", "scout": "clu"}, {"artist": "Kyber", "title": "Skream x Kyber - ID (Clip)", "url": "https://soundcloud.com/kyber_nz/skream-x-kyber-id-clip", "platform": "soundcloud", "scout": "coda"}, {"artist": "KIOTI", "title": "ASTRAL W/SKRAPPY", "url": "https://soundcloud.com/officialkioti/astral-wskrappy-2", "platform": "soundcloud", "scout": "coda"}, {"artist": "Cereale", "title": "Cutecore01 [FREE DL]", "url": "https://soundcloud.com/itscereale/cutecore01", "platform": "soundcloud", "scout": "coda"}, {"artist": "Circuitry", "title": "Kioti - Blur", "url": "https://soundcloud.com/circuitrycollective/blur", "platform": "soundcloud", "scout": "prism"}, {"artist": "forres", "title": "be_nice_2_me.wav (edit)", "url": "https://soundcloud.com/forress/be-nice-2-me-edit-2024", "platform": "soundcloud", "scout": "prism"}, {"artist": "subtoll", "title": "sim simma", "url": "https://soundcloud.com/subtollmusic/sim-simma", "platform": "soundcloud", "scout": "prism"}, {"artist": "forres (retired)", "title": "be_nice_2_me.wav (edit) [2024]", "url": "https://soundcloud.com/forress/be-nice-2-me-edit-2024", "platform": "soundcloud", "scout": "prism"}, {"artist": "TIARO", "title": "3 - 6 - 9 (ROQUE x TIARO)", "url": "https://soundcloud.com/tiarowastaken/369girlswanna", "platform": "soundcloud", "scout": "prism"}, {"artist": "The Gradient Perspective", "title": "C\u00d8NTRA x Saturna - What I Can Do (Savej Remix)", "url": "https://soundcloud.com/gradientperspective/contra-x-saturna-what-i-can-1", "platform": "soundcloud", "scout": "prism"}, {"artist": "Jon Casey", "title": "Hamdi - Yum (Jon Casey Edit)", "url": "https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit", "platform": "soundcloud", "scout": "seam"}, {"artist": "Tuzzle", "title": "Why You Gotta", "url": "https://soundcloud.com/tuzzle/why-you-gotta", "platform": "soundcloud", "scout": "seam"}, {"artist": "Bakey", "title": "BACKROOMS", "url": "https://soundcloud.com/bakeymusic/backrooms-1", "platform": "soundcloud", "scout": "seam"}];
 var ns = {i: 0, pos: 0, on: false, platform: 'soundcloud', volume: 72};
 try { Object.assign(ns, JSON.parse(localStorage.getItem('ns_radio') || '{}')); } catch (e) {}
 if (ns.i >= NS_QUEUE.length) ns.i = 0;
@@ -231,6 +249,13 @@ function nsBoot(auto) {
     });
   };
 }
+function nsShuffle() {
+  for (var k = NS_QUEUE.length - 1; k > 0; k--) {
+    var j = Math.floor(Math.random() * (k + 1));
+    var tmp = NS_QUEUE[k]; NS_QUEUE[k] = NS_QUEUE[j]; NS_QUEUE[j] = tmp;
+  }
+  ns.i = 0; ns.pos = 0; ns.mix = null; ns.on = true; nsSave(); nsGo(true);
+}
 function nsGo(auto) {
   if (!nsW) { nsBoot(auto); return; }
   var t = NS_QUEUE[ns.i] || {};
@@ -246,6 +271,7 @@ function nsToggle() {
   else if (!nsW) { nsBoot(true); } else { nsW.toggle(); }
 }
 function nsStep(d) { ns.mix = null; ns.i = (ns.i + d + NS_QUEUE.length) % NS_QUEUE.length; ns.pos = 0; nsGo(true); nsSave(); }
+function nsShuffle() { for (var i = NS_QUEUE.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = NS_QUEUE[i]; NS_QUEUE[i] = NS_QUEUE[j]; NS_QUEUE[j] = t; } ns.mix = null; ns.i = 0; ns.pos = 0; nsGo(true); nsSave(); }
 function nsPlayAt(n) { ns.mix = null; ns.i = n; ns.pos = 0; nsGo(true); nsSave(); }
 function nsPlayUrl(url, label) {
   if ((url || '').toLowerCase().indexOf('open.spotify.com') > -1) { nsLoadSpotify(url, label); return; }
