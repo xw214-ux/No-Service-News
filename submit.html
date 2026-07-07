@@ -100,6 +100,27 @@ pre { background: #111114; border: 1px solid var(--line); border-radius: 8px; pa
       overflow-x: auto; font-size: 13px; }
 code { background: #111114; padding: 1px 5px; border-radius: 4px; font-size: 0.92em; }
 hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+.hero { padding: 26px 0 30px; border-bottom: 1px solid var(--line); margin-bottom: 30px; }
+.hero-title { font-size: 44px; line-height: 1.12; margin: 10px 0 14px; letter-spacing: -.01em; }
+.hero-title a { color: var(--ink); text-decoration: none; }
+.hero-title a:hover { color: var(--accent); }
+.hero-excerpt { font: 19px/1.7 Georgia, 'Times New Roman', serif; color: #dcd9d2; max-width: 640px; margin: 0 0 18px; }
+.home-sec { margin: 34px 0; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+.sec-head h2 { margin: 0; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.sec-more { font-size: 13px; text-decoration: none; color: var(--dim); }
+.sec-more:hover { color: var(--accent); }
+.rot-row { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 11px 2px; border-bottom: 1px solid var(--line); }
+.rot-row:last-of-type { border-bottom: 0; }
+.rot-name { font-size: 16px; }
+.arc-row { display: flex; gap: 18px; align-items: baseline; padding: 10px 2px; text-decoration: none;
+  border-bottom: 1px solid var(--line); }
+.arc-row:last-of-type { border-bottom: 0; }
+.arc-date { color: var(--dim); font-size: 12.5px; letter-spacing: .06em; min-width: 88px; }
+.arc-title { color: var(--ink); font-size: 16.5px; }
+.arc-row:hover .arc-title { color: var(--accent); }
+@media (max-width: 620px) { .hero-title { font-size: 32px; } }
 @keyframes nsScanDrift {
   0% { background-position: 0 0, 50% 16%, 0 0; }
   100% { background-position: 0 36px, 58% 16%, 120px 0; }
@@ -154,18 +175,14 @@ body { padding-bottom: 148px; }
 <div class="post-card">
 <div class="meta"><span class="scout">What to send</span></div>
 <h2>One clean route in</h2>
-<div class="excerpt">Share the most direct public link you have: artist page, label page, Bandcamp release, SoundCloud upload, radio archive, or mix link with timestamps if needed. Include artwork, credits, release date, and any context that actually matters.</div>
+<div class="excerpt">Email <a href="mailto:submissions@noservice.online"><strong>submissions@noservice.online</strong></a> with the most direct public link you have: artist page, label page, Bandcamp release, SoundCloud upload, radio archive, or mix link with timestamps if needed. Include artwork, credits, release date, and any context that actually matters.</div>
 </div>
 <div class="post-card">
 <div class="meta"><span class="scout">Best fit</span></div>
 <h2>What belongs here</h2>
 <div class="excerpt">Deep dubstep, 140 pressure, dub technique, meditative weight, low-end experiments, regional underground trails, and mixes with a point of view. The bar is restraint, not volume.</div>
 </div>
-<div class="post-card">
-<div class="meta"><span class="scout">Current status</span></div>
-<h2>Contact path is being finalized</h2>
-<div class="excerpt">The permanent inbox split is still being connected under <strong>noservice.online</strong>. Until that is live, treat this page as the submission brief and keep the official links and release context ready.</div>
-</div>
+
 <footer>NO SERVICE · independent bass writing and radio</footer>
 </div>
 <canvas id="ns-visualizer" aria-hidden="true"></canvas>

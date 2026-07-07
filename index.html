@@ -3,14 +3,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Journal — NO SERVICE</title>
-<meta name="description" content="Independent writing and radio for new bass music — small names, deep records, one human ear.">
+<meta name="description" content="Independent writing and radio for new bass music — small names, deep records.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NO SERVICE">
 <meta property="og:title" content="Journal — NO SERVICE">
-<meta property="og:description" content="Independent writing and radio for new bass music — small names, deep records, one human ear.">
+<meta property="og:description" content="Independent writing and radio for new bass music — small names, deep records.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Journal — NO SERVICE">
-<meta name="twitter:description" content="Independent writing and radio for new bass music — small names, deep records, one human ear.">
+<meta name="twitter:description" content="Independent writing and radio for new bass music — small names, deep records.">
 <style>
 :root { --accent: #ff4d00; --bg: #161519; --card: #1f1e24;
         --ink: #f2f0ea; --dim: #a8a49b; --line: #34333c; --teal: #78ffd2; }
@@ -100,6 +100,27 @@ pre { background: #111114; border: 1px solid var(--line); border-radius: 8px; pa
       overflow-x: auto; font-size: 13px; }
 code { background: #111114; padding: 1px 5px; border-radius: 4px; font-size: 0.92em; }
 hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+.hero { padding: 26px 0 30px; border-bottom: 1px solid var(--line); margin-bottom: 30px; }
+.hero-title { font-size: 44px; line-height: 1.12; margin: 10px 0 14px; letter-spacing: -.01em; }
+.hero-title a { color: var(--ink); text-decoration: none; }
+.hero-title a:hover { color: var(--accent); }
+.hero-excerpt { font: 19px/1.7 Georgia, 'Times New Roman', serif; color: #dcd9d2; max-width: 640px; margin: 0 0 18px; }
+.home-sec { margin: 34px 0; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+.sec-head h2 { margin: 0; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.sec-more { font-size: 13px; text-decoration: none; color: var(--dim); }
+.sec-more:hover { color: var(--accent); }
+.rot-row { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 11px 2px; border-bottom: 1px solid var(--line); }
+.rot-row:last-of-type { border-bottom: 0; }
+.rot-name { font-size: 16px; }
+.arc-row { display: flex; gap: 18px; align-items: baseline; padding: 10px 2px; text-decoration: none;
+  border-bottom: 1px solid var(--line); }
+.arc-row:last-of-type { border-bottom: 0; }
+.arc-date { color: var(--dim); font-size: 12.5px; letter-spacing: .06em; min-width: 88px; }
+.arc-title { color: var(--ink); font-size: 16.5px; }
+.arc-row:hover .arc-title { color: var(--accent); }
+@media (max-width: 620px) { .hero-title { font-size: 32px; } }
 @keyframes nsScanDrift {
   0% { background-position: 0 0, 50% 16%, 0 0; }
   100% { background-position: 0 36px, 58% 16%, 120px 0; }
@@ -149,37 +170,34 @@ body { padding-bottom: 148px; }
   <a href="submit.html">Submit</a>
   <a href="about.html">About</a>
 </nav>
-<h1>Journal</h1>
-<p class='count'>No Service writes up new bass music while it's still new — small names, deep records, listened to properly and played on the radio thread. Run by one person: software does the legwork, a human makes every call.</p>
-<div class="post-card invite"><div class="meta"><span class="scout">To the producers</span></div><h2><a href="submit.html">Sitting on music?</a></h2><div class="excerpt">Fewer places write up underground records than there used to be. This is one of them, and it answers. Send your strongest link — <a href="submit.html">the brief is here</a>.</div></div>
-<div class="post-card" style="border-left:3px solid var(--accent)"><div class="meta"><span class="scout">This Week</span></div><h2><a href="this-week.html">Tunes in rotation</a></h2><div class="count">A handful of records carrying the week. Listen, then follow the artists.</div></div>
-<h2>Latest dispatches</h2>
-<div class="post-card">
-<div class="meta"><span class="scout">Signal</span> · 2026-07-07</div>
-<h2><a href="posts/2026-07-07-signal.html">Signal — 2026-07-07</a></h2>
-<div class="excerpt">Last week the desk stayed close to home. This week the wire lit up again, and what came through wasn&#x27;t from any of the usual capitals.</div>
+<section class="hero">
+<div class="meta">Dispatch · 2026-07-07</div>
+<h1 class="hero-title"><a href="posts/2026-07-07-signal.html">Back On Air</a></h1>
+<p class="hero-excerpt">Last week the desk stayed close to home. This week the wire lit up again, and what came through wasn&#x27;t from any of the usual capitals.</p>
+<a class="btn" href="posts/2026-07-07-signal.html">Read the dispatch</a>
+</section>
+<section class="home-sec">
+<div class="sec-head"><h2>In rotation</h2><a class="sec-more" href="this-week.html">all of this week →</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">Runaaki &amp; SKECH</span> — Fall EP</span><a class="btn" href="https://sirdubmuzik.bandcamp.com/album/fall-ep-sirdub019" target="_blank" rel="noopener">Listen</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">Jaz Imsky &amp; En:vy</span> — Codebreaker</span><a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/codebreaker" target="_blank" rel="noopener">Listen</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">VA</span> — DUPLOC LEGACY 1</span><a class="btn" href="https://duploc.bandcamp.com/album/duploc-legacy-1" target="_blank" rel="noopener">Listen</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">Peter Kan</span> — 2325_seL</span><a class="btn" href="https://peterkan.bandcamp.com/album/2325-sel" target="_blank" rel="noopener">Listen</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">HØST</span> — 5C5 X UR NO GD 4 ME</span><a class="btn" href="https://hstmusic.bandcamp.com/album/5c5-x-ur-no-gd-4-me-ep" target="_blank" rel="noopener">Listen</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">DJ Airwalk</span> — Scan For More / Collide &amp; Scope</span><a class="btn" href="https://eabe.bandcamp.com/album/scan-for-more-collide-scope" target="_blank" rel="noopener">Listen</a></div>
+</section>
+<section class="home-sec">
+<div class="post-card invite">
+<h2><a href="submit.html">Sitting on finished music?</a></h2>
+<div class="excerpt">Fewer places write up and premiere underground records than there used to be. This is one of them, and it answers. Deep, heavy, spacious — if that's your low end, <a href="submit.html">send the strongest link</a>.</div>
 </div>
-<div class="post-card">
-<div class="meta"><span class="scout">Signal</span> · 2026-07-03</div>
-<h2><a href="posts/2026-07-03-signal.html">Signal — 2026-07-03</a></h2>
-<div class="excerpt">The heaviest thing on the board this week came from a producer with eighty-one people watching. Not eighty-one thousand. Eighty-one. Astronomic — &quot;Water falls&quot; is the deep-140 corner lighting back up after a stretch of d…</div>
-</div>
-<div class="post-card">
-<div class="meta"><span class="scout">Signal</span> · 2026-06-26</div>
-<h2><a href="posts/2026-06-26-signal.html">Signal — 2026-06-26</a></h2>
-<div class="excerpt">Four records this week, and not one of them keeps time straight. They stretch it, fold it, drop it to half and let the tail ring out. The grid was a suggestion. What held instead was weight.</div>
-</div>
-<div class="post-card">
-<div class="meta"><span class="scout">Signal</span> · 2026-06-23</div>
-<h2><a href="posts/2026-06-23-signal.html">Signal — 2026-06-23</a></h2>
-<div class="excerpt">The low end took the scenic route this week. Nothing here came down the New York–London–Berlin line. The pressure arrived from a taxi rank in Durban, a dubplate cut in twenty copies, an imprint built around silence, and …</div>
-</div>
-<div class="post-card">
-<div class="meta"><span class="scout">Signal</span> · 2026-06-22</div>
-<h2><a href="posts/2026-06-22-signal.html">Signal — 2026-06-22</a></h2>
-<div class="excerpt">There&#x27;s a number we keep coming back to this week, and it isn&#x27;t a BPM. It&#x27;s followers — three of them, all under a thousand, attached to the heaviest dubplates we&#x27;ve heard in a month.</div>
-</div>
-<div class="post-card"><div class="meta"><span class="scout">Radio</span></div><h2><a href="radio/index.html">No Service Radio</a></h2><div class="count">Mixes, selections, and whatever is carrying the room right now.</div></div>
+</section>
+<section class="home-sec">
+<div class="sec-head"><h2>Earlier dispatches</h2></div>
+<a class="arc-row" href="posts/2026-07-03-signal.html"><span class="arc-date">2026-07-03</span><span class="arc-title">Low Count, High Pressure</span></a>
+<a class="arc-row" href="posts/2026-06-26-signal.html"><span class="arc-date">2026-06-26</span><span class="arc-title">The Clock Comes Apart</span></a>
+<a class="arc-row" href="posts/2026-06-23-signal.html"><span class="arc-date">2026-06-23</span><span class="arc-title">Convoys, Dubplates, and the Long Way Around</span></a>
+<a class="arc-row" href="posts/2026-06-22-signal.html"><span class="arc-date">2026-06-22</span><span class="arc-title">Three Under a Thousand</span></a>
+</section>
 <footer>NO SERVICE · independent bass writing and radio</footer>
 </div>
 <canvas id="ns-visualizer" aria-hidden="true"></canvas>
