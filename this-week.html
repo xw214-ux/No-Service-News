@@ -18,6 +18,20 @@
 body { margin: 0; background: var(--bg); color: var(--ink);
        font: 16px/1.65 -apple-system, "Helvetica Neue", Arial, sans-serif;
        min-height: 100vh; overflow-x: hidden; }
+#ns-visualizer { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  width: 100vw; height: 100vh; opacity: .18; mix-blend-mode: screen;
+  filter: saturate(1.12) contrast(1.05); }
+body.ns-radio-live #ns-visualizer { opacity: .34; }
+.ns-sigil-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; opacity: .28; }
+.ns-sigil { position: absolute; width: 54px; height: 54px; left: var(--x); top: var(--y);
+  border: 1px solid rgba(255,77,0,.28); border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(var(--r)) scale(var(--s));
+  opacity: .28; filter: drop-shadow(0 0 16px rgba(255,77,0,.15));
+  transition: opacity .4s ease, transform .4s ease; }
+.ns-sigil::before, .ns-sigil::after { content: ""; position: absolute; inset: 11px; border: 1px solid rgba(120,255,210,.34); }
+.ns-sigil::before { border-radius: 50%; clip-path: polygon(50% 0, 100% 48%, 50% 100%, 0 48%); }
+.ns-sigil::after { inset: 22px 8px; border-left: 0; border-right: 0; transform: rotate(45deg); opacity: .72; }
+body.ns-radio-live .ns-sigil { opacity: .58; animation: nsSigilSpin 18s linear infinite; }
 body::before, body::after { content: ""; position: fixed; inset: 0; pointer-events: none; }
 body::before { z-index: 0;
   background:
@@ -91,8 +105,13 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
   45% { transform: translate3d(0, -7px, 0); opacity: .30; }
   50% { transform: translate3d(0, 2px, 0); opacity: .22; }
 }
+@keyframes nsSigilSpin {
+  0% { transform: translate(-50%, -50%) rotate(var(--r)) scale(var(--s)); }
+  100% { transform: translate(-50%, -50%) rotate(calc(var(--r) + 360deg)) scale(var(--s)); }
+}
 @media (prefers-reduced-motion: reduce) {
-  body::before, body::after { animation: none; }
+  body::before, body::after, body.ns-radio-live .ns-sigil { animation: none; }
+  #ns-visualizer { display: none; }
   body.ns-radio-live::before { opacity: .24; }
   body.ns-radio-live::after { opacity: .12; }
 }
@@ -144,128 +163,98 @@ body { padding-bottom: 148px; }
 <div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fcessman%2Fcessman-barometric-mix&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
 <div class="links"><a class="btn" href="https://soundcloud.com/cessman/cessman-barometric-mix" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
-<h2>Deep cuts · 2026-06-23</h2>
+<h2>Deep cuts · 2026-07-07</h2>
 <div class="track">
-<div class="track-head"><div><span class="artist">aeOm</span> — <span class="title">Forgotten Tribes</span></div></div>
-<div class="links"><a class="btn" href="https://aeom-dubs.bandcamp.com/album/forgotten-tribes-observe" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">Runaaki &amp; SKECH</span> — <span class="title">Fall EP</span></div></div>
+<div class="links"><a class="btn" href="https://sirdubmuzik.bandcamp.com/album/fall-ep-sirdub019" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">Kyber</span> — <span class="title">Skream x Kyber - ID (Clip)</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fkyber_nz%2Fskream-x-kyber-id-clip&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/kyber_nz/skream-x-kyber-id-clip" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">Astronomic</span> — <span class="title">Water falls</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fastronomics%2Fwater-falls_2&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/astronomics/water-falls_2" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">KIOTI</span> — <span class="title">ASTRAL W/SKRAPPY</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fofficialkioti%2Fastral-wskrappy-2&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/officialkioti/astral-wskrappy-2" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">SL33PY</span> — <span class="title">TUG</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fshlumpedsleepy%2Ftug-1&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/shlumpedsleepy/tug-1" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">Cereale</span> — <span class="title">Cutecore01 [FREE DL]</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fitscereale%2Fcutecore01&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/itscereale/cutecore01" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">Eternol</span> — <span class="title">Invasion</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Feternol%2Feternol-invasion&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/eternol/eternol-invasion" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
-<h2>Heaters · 2026-06-23</h2>
+<h2>Heaters · 2026-07-07</h2>
 <div class="track">
-<div class="track-head"><div><span class="artist">Wu-Lu &amp; POiSON ANNA</span> — <span class="title">King Kong</span></div></div>
-<div class="links"><a class="btn" href="https://wu-lu.bandcamp.com/album/bakerz-dozen" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<div class="track">
-<div class="track-head"><div><span class="artist">RIOT TEN</span> — <span class="title">RIOT TEN - WHO GOT THE WUBS</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Friotten%2Friot-ten-who-got-the-wubs&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/riotten/riot-ten-who-got-the-wubs" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">Jaz Imsky &amp; En:vy</span> — <span class="title">Codebreaker</span></div></div>
+<div class="links"><a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/codebreaker" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">SKisM</span> — <span class="title">Never Say Die Vol. 7 - Mixed by SKisM</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fweareskism%2Fnever-say-die-vol-7&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/weareskism/never-say-die-vol-7" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">VA</span> — <span class="title">DUPLOC LEGACY 1</span></div></div>
+<div class="links"><a class="btn" href="https://duploc.bandcamp.com/album/duploc-legacy-1" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">SILLYUGLYUK</span> — <span class="title">MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsillyugly%2Fmusic-sounds-better-with-wub-hawthorn-ugly-dubs-vol22&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">CliqClaq</span> — <span class="title">Velocity</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fcliqclaq%2Fvelocity&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/cliqclaq/velocity" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">efan</span> — <span class="title">RUMBLE (efan bootleg)</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fefanuk%2Frumbleukbass&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/efanuk/rumbleukbass" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">TIME WZRD</span> — <span class="title">Me N You</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftimewzrdmusic%2Fmenyou&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/timewzrdmusic/menyou" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">Bakey</span> — <span class="title">Welcome To London - Flowdan (Bakey Edit)</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fbakeymusic%2Fwelcome-to-london-bakey-edit&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">Dmtree</span> — <span class="title">Corruption</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdmtreemusic%2Fcorruption&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/dmtreemusic/corruption" target="_blank" rel="noopener">Listen ↗</a></div>
+</div>
+<h2>Jungle / DnB · 2026-07-07</h2>
+<div class="track">
+<div class="track-head"><div><span class="artist">DJ Airwalk</span> — <span class="title">Scan For More / Collide &amp; Scope</span></div></div>
+<div class="links"><a class="btn" href="https://eabe.bandcamp.com/album/scan-for-more-collide-scope" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">Aylen</span> — <span class="title">Aylen - Bomba</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Faylen%2Faylen-bomba&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/aylen/aylen-bomba" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<h2>Jungle / DnB · 2026-06-23</h2>
-<div class="track">
-<div class="track-head"><div><span class="artist">Subjects</span> — <span class="title">Summer Is Gone</span></div></div>
-<div class="links"><a class="btn" href="https://deepjungle.bandcamp.com/track/subjects-summer-is-gone" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">DAVINXI</span> — <span class="title">Elevia</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdjdavinxi%2Felevia&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/djdavinxi/elevia" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">Kid Lib</span> — <span class="title">Dubplate Chop</span></div></div>
-<div class="links"><a class="btn" href="https://deepjungle.bandcamp.com/album/dat124-kid-lib-living-in-the-zone-remix-a-new-start-dubplate-chop-feel-4-u" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">in:sane</span> — <span class="title">You&#x27;re Not There</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Finsane_dnb%2Finsane-youre-not-there&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/insane_dnb/insane-youre-not-there" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
-<h2>Forward / experimental · 2026-06-23</h2>
+<h2>Forward / experimental · 2026-07-07</h2>
 <div class="track">
-<div class="track-head"><div><span class="artist">DJ Lag</span> — <span class="title">NOPS</span></div></div>
-<div class="links"><a class="btn" href="https://tratratrax.bandcamp.com/album/mzansi-bass-curated-by-shannen-sp" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<div class="track">
-<div class="track-head"><div><span class="artist">Deep Narratives</span> — <span class="title">Ghetto Gong</span></div></div>
-<div class="links"><a class="btn" href="https://tratratrax.bandcamp.com/album/mzansi-bass-curated-by-shannen-sp" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">HØST</span> — <span class="title">5C5 X UR NO GD 4 ME</span></div></div>
+<div class="links"><a class="btn" href="https://hstmusic.bandcamp.com/album/5c5-x-ur-no-gd-4-me-ep" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">Circuitry</span> — <span class="title">Kioti - Blur</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fcircuitrycollective%2Fblur&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/circuitrycollective/blur" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">mai</span> — <span class="title">balance.</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fmaiyabi%2Fbalance&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/maiyabi/balance" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">forres</span> — <span class="title">be_nice_2_me.wav (edit)</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fforress%2Fbe-nice-2-me-edit-2024&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/forress/be-nice-2-me-edit-2024" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">K.L.O</span> — <span class="title">Selotape</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fkloofficial%2Fselotape&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/kloofficial/selotape" target="_blank" rel="noopener">Listen ↗</a></div>
+</div>
+<h2>In-between · 2026-07-07</h2>
+<div class="track">
+<div class="track-head"><div><span class="artist">Peter Kan</span> — <span class="title">2325_seL</span></div></div>
+<div class="links"><a class="btn" href="https://peterkan.bandcamp.com/album/2325-sel" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <div class="track">
-<div class="track-head"><div><span class="artist">subtoll</span> — <span class="title">sim simma</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsubtollmusic%2Fsim-simma&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/subtollmusic/sim-simma" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<div class="track">
-<div class="track-head"><div><span class="artist">forres (retired)</span> — <span class="title">be_nice_2_me.wav (edit) [2024]</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fforress%2Fbe-nice-2-me-edit-2024&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/forress/be-nice-2-me-edit-2024" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<h2>In-between · 2026-06-23</h2>
-<div class="track">
-<div class="track-head"><div><span class="artist">Debit</span> — <span class="title">Assimilate</span></div></div>
-<div class="links"><a class="btn" href="https://daily.bandcamp.com/features/debit-poutpourri-feature" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<div class="track">
-<div class="track-head"><div><span class="artist">LYZZA x Boniface</span> — <span class="title">Favelas</span></div></div>
-<div class="links"><a class="btn" href="https://tratratrax.bandcamp.com/album/mzansi-bass-curated-by-shannen-sp" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<div class="track">
-<div class="track-head"><div><span class="artist">Machinedrum</span> — <span class="title">BL00MS</span></div></div>
-<div class="links"><a class="btn" href="https://machinedrum.bandcamp.com/album/bl00ms" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<div class="track">
-<div class="track-head"><div><span class="artist">Jon Casey</span> — <span class="title">Hamdi - Yum (Jon Casey Edit)</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjoncasey%2Fhamdi-yum-jon-casey-edit&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<div class="track">
-<div class="track-head"><div><span class="artist">Tuzzle</span> — <span class="title">Why You Gotta</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftuzzle%2Fwhy-you-gotta&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/tuzzle/why-you-gotta" target="_blank" rel="noopener">Listen ↗</a></div>
-</div>
-<div class="track">
-<div class="track-head"><div><span class="artist">SILLYUGLYUK</span> — <span class="title">MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)</span></div></div>
-<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsillyugly%2Fmusic-sounds-better-with-wub-hawthorn-ugly-dubs-vol22&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
-<div class="links"><a class="btn" href="https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22" target="_blank" rel="noopener">Listen ↗</a></div>
+<div class="track-head"><div><span class="artist">Jon Cass</span> — <span class="title">GOT2GO</span></div></div>
+<div class="player"><iframe loading="lazy" width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjoncassss%2Fg2g&color=%23ff4d00&auto_play=false&hide_related=true&show_comments=false&show_user=true&visual=false"></iframe></div>
+<div class="links"><a class="btn" href="https://soundcloud.com/joncassss/g2g" target="_blank" rel="noopener">Listen ↗</a></div>
 </div>
 <footer>NO SERVICE · independent bass writing and radio</footer>
+</div>
+<canvas id="ns-visualizer" aria-hidden="true"></canvas>
+<div class="ns-sigil-field" aria-hidden="true">
+  <i class="ns-sigil" style="--x:13%;--y:20%;--r:14deg;--s:.76"></i>
+  <i class="ns-sigil" style="--x:82%;--y:18%;--r:-28deg;--s:.58"></i>
+  <i class="ns-sigil" style="--x:18%;--y:78%;--r:48deg;--s:.52"></i>
+  <i class="ns-sigil" style="--x:76%;--y:72%;--r:8deg;--s:.86"></i>
 </div>
 <div id="ns-bar">
   <button class="nsbtn" id="ns-play" onclick="nsToggle()">▶ Play</button>
@@ -284,7 +273,7 @@ body { padding-bottom: 148px; }
 </div>
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
-var NS_QUEUE = [{"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "feature"}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "feature"}, {"artist": "Cessman", "title": "Barometric Mix (18 unreleased dubs)", "url": "https://soundcloud.com/cessman/cessman-barometric-mix", "platform": "soundcloud", "scout": "feature"}, {"artist": "RIOT TEN", "title": "RIOT TEN - WHO GOT THE WUBS", "url": "https://soundcloud.com/riotten/riot-ten-who-got-the-wubs", "platform": "soundcloud", "scout": "clu"}, {"artist": "SKisM", "title": "Never Say Die Vol. 7 - Mixed by SKisM", "url": "https://soundcloud.com/weareskism/never-say-die-vol-7", "platform": "soundcloud", "scout": "clu"}, {"artist": "SILLYUGLYUK", "title": "MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)", "url": "https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22", "platform": "soundcloud", "scout": "clu"}, {"artist": "efan", "title": "RUMBLE (efan bootleg)", "url": "https://soundcloud.com/efanuk/rumbleukbass", "platform": "soundcloud", "scout": "clu"}, {"artist": "Bakey", "title": "Welcome To London - Flowdan (Bakey Edit)", "url": "https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit", "platform": "soundcloud", "scout": "clu"}, {"artist": "Aylen", "title": "Aylen - Bomba", "url": "https://soundcloud.com/aylen/aylen-bomba", "platform": "soundcloud", "scout": "clu"}, {"artist": "Kyber", "title": "Skream x Kyber - ID (Clip)", "url": "https://soundcloud.com/kyber_nz/skream-x-kyber-id-clip", "platform": "soundcloud", "scout": "coda"}, {"artist": "KIOTI", "title": "ASTRAL W/SKRAPPY", "url": "https://soundcloud.com/officialkioti/astral-wskrappy-2", "platform": "soundcloud", "scout": "coda"}, {"artist": "Cereale", "title": "Cutecore01 [FREE DL]", "url": "https://soundcloud.com/itscereale/cutecore01", "platform": "soundcloud", "scout": "coda"}, {"artist": "Circuitry", "title": "Kioti - Blur", "url": "https://soundcloud.com/circuitrycollective/blur", "platform": "soundcloud", "scout": "prism"}, {"artist": "forres", "title": "be_nice_2_me.wav (edit)", "url": "https://soundcloud.com/forress/be-nice-2-me-edit-2024", "platform": "soundcloud", "scout": "prism"}, {"artist": "subtoll", "title": "sim simma", "url": "https://soundcloud.com/subtollmusic/sim-simma", "platform": "soundcloud", "scout": "prism"}, {"artist": "forres (retired)", "title": "be_nice_2_me.wav (edit) [2024]", "url": "https://soundcloud.com/forress/be-nice-2-me-edit-2024", "platform": "soundcloud", "scout": "prism"}, {"artist": "TIARO", "title": "3 - 6 - 9 (ROQUE x TIARO)", "url": "https://soundcloud.com/tiarowastaken/369girlswanna", "platform": "soundcloud", "scout": "prism"}, {"artist": "The Gradient Perspective", "title": "C\u00d8NTRA x Saturna - What I Can Do (Savej Remix)", "url": "https://soundcloud.com/gradientperspective/contra-x-saturna-what-i-can-1", "platform": "soundcloud", "scout": "prism"}, {"artist": "Jon Casey", "title": "Hamdi - Yum (Jon Casey Edit)", "url": "https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit", "platform": "soundcloud", "scout": "seam"}, {"artist": "Tuzzle", "title": "Why You Gotta", "url": "https://soundcloud.com/tuzzle/why-you-gotta", "platform": "soundcloud", "scout": "seam"}, {"artist": "Bakey", "title": "BACKROOMS", "url": "https://soundcloud.com/bakeymusic/backrooms-1", "platform": "soundcloud", "scout": "seam"}];
+var NS_QUEUE = [{"artist": "Hebbe", "title": "Small Town Dub", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "feature"}, {"artist": "Somebodyyyy x Rational Soul", "title": "Mo Pi (Joe Nice Remix)", "url": "https://soundcloud.com/deeptempo140/s08-ep05-ad-nova-flava-d", "platform": "soundcloud", "scout": "feature"}, {"artist": "Cessman", "title": "Barometric Mix (18 unreleased dubs)", "url": "https://soundcloud.com/cessman/cessman-barometric-mix", "platform": "soundcloud", "scout": "feature"}, {"artist": "CliqClaq", "title": "Velocity", "url": "https://soundcloud.com/cliqclaq/velocity", "platform": "soundcloud", "scout": "clu"}, {"artist": "TIME WZRD", "title": "Me N You", "url": "https://soundcloud.com/timewzrdmusic/menyou", "platform": "soundcloud", "scout": "clu"}, {"artist": "Dmtree", "title": "Corruption", "url": "https://soundcloud.com/dmtreemusic/corruption", "platform": "soundcloud", "scout": "clu"}, {"artist": "Astronomic", "title": "Water falls", "url": "https://soundcloud.com/astronomics/water-falls_2", "platform": "soundcloud", "scout": "coda"}, {"artist": "SL33PY", "title": "TUG", "url": "https://soundcloud.com/shlumpedsleepy/tug-1", "platform": "soundcloud", "scout": "coda"}, {"artist": "Eternol", "title": "Invasion", "url": "https://soundcloud.com/eternol/eternol-invasion", "platform": "soundcloud", "scout": "coda"}, {"artist": "DAVINXI", "title": "Elevia", "url": "https://soundcloud.com/djdavinxi/elevia", "platform": "soundcloud", "scout": "breakline"}, {"artist": "in:sane", "title": "You're Not There", "url": "https://soundcloud.com/insane_dnb/insane-youre-not-there", "platform": "soundcloud", "scout": "breakline"}, {"artist": "mai", "title": "balance.", "url": "https://soundcloud.com/maiyabi/balance", "platform": "soundcloud", "scout": "prism"}, {"artist": "K.L.O", "title": "Selotape", "url": "https://soundcloud.com/kloofficial/selotape", "platform": "soundcloud", "scout": "prism"}, {"artist": "Jon Cass", "title": "GOT2GO", "url": "https://soundcloud.com/joncassss/g2g", "platform": "soundcloud", "scout": "seam"}];
 var ns = {i: 0, pos: 0, on: false, platform: 'soundcloud', volume: 72};
 try { Object.assign(ns, JSON.parse(localStorage.getItem('ns_radio') || '{}')); } catch (e) {}
 if (ns.i >= NS_QUEUE.length) ns.i = 0;
@@ -317,6 +306,7 @@ function nsSignal() {
   document.body.classList.toggle('ns-radio-live', !!ns.on);
   var drift = ((ns.i || 0) * 17 + Math.floor((ns.pos || 0) / 9000)) % 42;
   document.documentElement.style.setProperty('--ns-signal-x', (34 + drift) + '%');
+  if (window.nsVizPulse) window.nsVizPulse();
 }
 function nsUpdate() {
   var t = NS_QUEUE[ns.i] || {};
@@ -406,6 +396,90 @@ function nsPlayUrl(url, label) {
   nsUpdate();
 }
 nsUpdate();
+// --- lightweight No Service background visualizer ---
+(function() {
+  var canvas = document.getElementById('ns-visualizer');
+  if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ctx = canvas.getContext('2d');
+  var dpr = Math.min(2, window.devicePixelRatio || 1);
+  var t = 0, pulse = 0, last = 0;
+  // Real No Service glyph marks (from the 2026-06-30 glyph database; inline, no external assets)
+  var NS_GLYPH_DATA = [["1x",[["M-54 -52 H-26 V52",0],["M10 -24 L56 24 M56 -24 L10 24",0],["M-72 70 H72",2]]],["777",[["M86 52 H136 L108 118 M148 52 H198 L170 118 M210 52 H260 L232 118",0],["M78 132 H268",0]]],["ghost-carrier",[["M126.0 82.0A42.0 42.0 0 1 0 210.0 82.0A42.0 42.0 0 1 0 126.0 82.0Z",0],["M150.0 82.0A42.0 42.0 0 1 0 234.0 82.0A42.0 42.0 0 1 0 150.0 82.0Z",0],["M108 82 H250",0]]],["redial",[["M126.0 82.0A50.0 50.0 0 1 0 226.0 82.0A50.0 50.0 0 1 0 126.0 82.0Z",0],["M218 56 C238 82 228 118 196 130",0],["M196 130 L224 130 L216 104",0],["M146 66 H162 V108 M186 76 L210 100 M210 76 L186 100",0]]],["handshake",[["M-104 -22 L-62 -58 L-18 -20 L18 -58 L62 -22 L20 34 L-20 34 Z",0],["M-64 -18 L-26 20 M-34 -10 L4 28 M-4 -12 L34 26 M24 -18 L62 18",1],["M-112 62 H-52 M52 62 H112",2],["M-6.0 -4.0A6.0 6.0 0 1 0 6.0 -4.0A6.0 6.0 0 1 0 -6.0 -4.0Z",0]]],["antenna-rain",[["M0 -104 V88 M-48 88 H48 M-62 -64 C-30 -96 30 -96 62 -64 M-88 -34 C-44 -88 44 -88 88 -34",0],["M-70 6 L-88 46 M-24 0 L-42 54 M24 0 L6 54 M70 6 L52 46",1],["M-6.0 -40.0A6.0 6.0 0 1 0 6.0 -40.0A6.0 6.0 0 1 0 -6.0 -40.0Z",2]]],["marker-4",[["M144 78 C146 44 162 30 176 30 C190 30 206 44 208 78",0],["M156 68 C156 50 168 46 176 46 C184 46 196 50 196 68 V126 M156 84 H196 M156 84 L196 52",0],["M122.0 84.0A54.0 54.0 0 1 0 230.0 84.0A54.0 54.0 0 1 0 122.0 84.0Z",0]]],["bass-compass",[["M-82.0 0.0A82.0 82.0 0 1 0 82.0 0.0A82.0 82.0 0 1 0 -82.0 0.0Z",0],["M0 -104 L28 -18 L104 0 L28 18 L0 104 L-28 18 L-104 0 L-28 -18 Z",1],["M-56 56 C-24 88 24 88 56 56 M-72 0 H-104 M72 0 H104",2]]],["vortex",[["M174 78 C218 38 266 86 222 112 C178 140 104 110 130 66 C154 28 224 32 246 66",0],["M132.0 82.0A48.0 48.0 0 1 0 228.0 82.0A48.0 48.0 0 1 0 132.0 82.0Z",0],["M176.0 82.0A4.0 4.0 0 1 0 184.0 82.0A4.0 4.0 0 1 0 176.0 82.0Z",0]]],["waves",[["M70 74 C108 42 136 106 174 74 C208 46 238 100 272 74",0],["M70 102 C108 70 136 134 174 102 C208 74 238 128 272 102",0],["M70 48 H272 M70 124 H272",0]]],["waypoint",[["M-84.0 -48.0A22.0 22.0 0 1 0 -40.0 -48.0A22.0 22.0 0 1 0 -84.0 -48.0Z",0],["M42.0 -18.0A22.0 22.0 0 1 0 86.0 -18.0A22.0 22.0 0 1 0 42.0 -18.0Z",0],["M-32.0 70.0A22.0 22.0 0 1 0 12.0 70.0A22.0 22.0 0 1 0 -32.0 70.0Z",0],["M-42 -42 L42 -24 M54 2 L2 52 M-22 54 L-54 -28",1],["M-8.0 0.0A8.0 8.0 0 1 0 8.0 0.0A8.0 8.0 0 1 0 -8.0 0.0Z",2]]],["blackbox",[["M110.0 48.0H242.0V132.0H110.0Z",0],["M136.0 68.0H216.0V112.0H136.0Z",0],["M171.0 90.0A5.0 5.0 0 1 0 181.0 90.0A5.0 5.0 0 1 0 171.0 90.0Z",0]]],["portal",[["M102 118 V44 H238 V118",0],["M132 118 V74 C132 56 146 46 170 46 H208 V118",0],["M245.0 52.0A5.0 5.0 0 1 0 255.0 52.0A5.0 5.0 0 1 0 245.0 52.0Z",0],["M238 52 H268",0]]],["bad-apple",[["M-68 -48 C-94 -8 -84 62 -30 86 C20 110 82 72 82 4 C82 -54 30 -86 -14 -66 C-34 -84 -52 -76 -68 -48 Z",0],["M-12 -74 C-8 -108 22 -116 42 -94",0],["M14 -86 C36 -116 72 -106 72 -72 C50 -68 30 -70 14 -86 Z",1],["M-32 -20 L-12 0 M-12 -20 L-32 0 M26 -20 L46 0 M46 -20 L26 0",2],["M-36 22 C-6 42 22 38 44 12",1],["M22 34 C34 66 58 50 46 24",2],["M-78 74 C-34 94 28 102 78 58",0]]],["dead-satellite",[["M-52 -66 C-18 -100 48 -86 58 -34 C68 18 14 46 -34 24 C-78 4 -84 -34 -52 -66 Z",0],["M-8 26 L-8 92 M-54 92 H38 M34 -70 C76 -84 106 -48 98 -10 M-78 -82 L78 82",1],["M1.0 -22.0A7.0 7.0 0 1 0 15.0 -22.0A7.0 7.0 0 1 0 1.0 -22.0Z",2]]],["uplink",[["M138.0 98.0A38.0 38.0 0 1 0 214.0 98.0A38.0 38.0 0 1 0 138.0 98.0Z",0],["M176 124 V36",0],["M150 62 L176 36 L202 62",0],["M136 124 H216",0]]]];
+  var NS_GLYPH_PATHS = NS_GLYPH_DATA.map(function(g) { return g[1].map(function(pr) { return [new Path2D(pr[0]), pr[1]]; }); });
+  function resize() {
+    canvas.width = Math.floor(innerWidth * dpr);
+    canvas.height = Math.floor(innerHeight * dpr);
+    canvas.style.width = innerWidth + 'px';
+    canvas.style.height = innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function accent(alpha) { return 'rgba(255,77,0,' + alpha + ')'; }
+  function teal(alpha) { return 'rgba(120,255,210,' + alpha + ')'; }
+  window.nsVizPulse = function() { pulse = Math.min(1, pulse + .12); };
+  function violet(alpha) { return 'rgba(155,91,255,' + alpha + ')'; }
+  function drawGlyph(x, y, r, s, gi, a) {
+    var shapes = NS_GLYPH_PATHS[gi % NS_GLYPH_PATHS.length];
+    var k = s * .24;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(r);
+    ctx.scale(k, k);
+    ctx.globalAlpha = a;
+    ctx.lineCap = 'square';
+    ctx.lineJoin = 'miter';
+    for (var i = 0; i < shapes.length; i++) {
+      var c = shapes[i][1];
+      ctx.strokeStyle = c === 2 ? accent(.6) : (c === 1 ? violet(.55) : teal(.5));
+      ctx.lineWidth = c === 1 ? 5 : 7;
+      ctx.stroke(shapes[i][0]);
+    }
+    ctx.restore();
+  }
+  function frame(now) {
+    var dt = Math.min(48, now - (last || now)); last = now; t += dt * .001;
+    var live = !!(window.ns && ns.on);
+    var w = innerWidth, h = innerHeight;
+    var energy = live ? .48 + (ns.volume || 72) / 180 + pulse * .8 : .16;
+    var idx = window.ns ? (ns.i || 0) : 0;
+    pulse *= .93;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = 'rgba(12,12,14,.20)';
+    ctx.fillRect(0, 0, w, h);
+    ctx.globalCompositeOperation = 'screen';
+    for (var i = 0; i < 24; i++) {
+      var x = ((i * 83 + idx * 29 + t * (live ? 18 : 4)) % (w + 180)) - 90;
+      var y = ((i * 137 + idx * 41) % (h + 120)) - 60;
+      var len = 42 + energy * 120 + ((i + idx) % 5) * 18;
+      ctx.strokeStyle = i % 3 ? accent(.045 + energy * .035) : teal(.035 + energy * .03);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + Math.sin(t + i) * 12, y + len);
+      ctx.stroke();
+    }
+    for (var g = 0; g < 9; g++) {
+      var gx = (w * ((g * .173 + .11 + idx * .037) % 1)) + Math.sin(t * .6 + g) * 22;
+      var gy = (h * ((g * .291 + .18) % 1)) + Math.cos(t * .45 + g) * 18;
+      var rot = t * (.08 + g * .012) + idx * .3;
+      var sc = .54 + ((g + idx) % 4) * .16 + energy * .2;
+      drawGlyph(gx, gy, rot, sc, g + idx, live ? .22 + energy * .16 : .09);
+    }
+    var cx = w * (.5 + Math.sin(t * .18 + idx) * .08);
+    var cy = h * .48;
+    for (var r = 0; r < 4; r++) {
+      ctx.strokeStyle = r % 2 ? teal(.04 + energy * .04) : accent(.05 + energy * .05);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, 90 + r * 76 + pulse * 80, 28 + r * 22 + pulse * 24, t * .08, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    ctx.globalCompositeOperation = 'source-over';
+    requestAnimationFrame(frame);
+  }
+  resize();
+  addEventListener('resize', resize);
+  requestAnimationFrame(frame);
+})();
 // --- SPA navigation: swap page content in place so the radio never stops ---
 document.addEventListener('click', function(e) {
   var a = e.target.closest('a'); if (!a) return;
