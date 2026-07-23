@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NO SERVICE">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' mailto:; img-src 'self' https: data:; media-src 'self' https: blob:; connect-src 'self' https://api.soundcloud.com https://w.soundcloud.com; frame-src https://w.soundcloud.com https://open.spotify.com https://www.youtube.com https://www.mixcloud.com https://bandcamp.com https://*.bandcamp.com; script-src 'self' 'unsafe-inline' https://w.soundcloud.com; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' mailto: https://buttondown.com; img-src 'self' https: data:; media-src 'self' https: blob:; connect-src 'self' https://api.soundcloud.com https://w.soundcloud.com https://*.goatcounter.com; frame-src https://w.soundcloud.com https://open.spotify.com https://www.youtube.com https://www.mixcloud.com https://bandcamp.com https://*.bandcamp.com; script-src 'self' 'unsafe-inline' https://w.soundcloud.com https://gc.zgo.at; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
 <title>Radio — NO SERVICE</title>
 <meta name="description" content="Deep bass selections and No Service radio programs.">
 <meta name="robots" content="index, follow">
@@ -308,7 +308,23 @@ body { padding-bottom: 148px; }
 <h1>No Service Radio</h1>
 <p class="count">Start anywhere. After the first press, the current selection plays through.</p>
 <p class='count'>Full programs are on the way. The rotation stays open in the meantime.</p>
-<footer>NO SERVICE · music selected by Xanzîbar · <a href="../site-notes.html">site notes</a></footer>
+<section class="post-card newsletter-card" aria-labelledby="newsletter-title">
+<div class="meta"><span class="signal-label">Email list</span></div>
+<h2 id="newsletter-title">Radio notes by email</h2>
+<div class="excerpt">A low-frequency note with records, new transmissions, and Denver signals when there is something worth sending.</div>
+<form class="newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/No-Service" method="post" data-newsletter-source="radio">
+  <label class="sr-only" for="newsletter-email-radio">Email address</label>
+  <input id="newsletter-email-radio" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+  <input type="hidden" name="embed" value="1">
+  <input type="hidden" name="tag" value="website">
+  <input type="hidden" name="utm_source" value="noservice.online">
+  <input type="hidden" name="utm_medium" value="website">
+  <input type="hidden" name="utm_campaign" value="radio">
+  <button type="submit">Join the list</button>
+</form>
+<div class="newsletter-fine">Confirm by email. Unsubscribe whenever you want. The list is not sold or shared for advertising.</div>
+</section>
+<footer>NO SERVICE · music selected by Xanzîbar · <a href="../site-notes.html">site notes</a> · <a href="../newsletter.html">email list</a></footer>
 </div>
 <canvas id="ns-visualizer" aria-hidden="true"></canvas>
 <div class="ns-sigil-field" aria-hidden="true">
@@ -1048,5 +1064,5 @@ if (!document.documentElement.dataset.nsEngagementBound) {
 }
 nsInitEngagement();
 </script>
-
+<script id="ns-analytics" data-goatcounter="https://no-service.goatcounter.com/count" async src="https://gc.zgo.at/count.js" onload="nsFlushMetrics()"></script>
 </body></html>

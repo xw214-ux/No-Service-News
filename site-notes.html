@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NO SERVICE">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' mailto:; img-src 'self' https: data:; media-src 'self' https: blob:; connect-src 'self' https://api.soundcloud.com https://w.soundcloud.com; frame-src https://w.soundcloud.com https://open.spotify.com https://www.youtube.com https://www.mixcloud.com https://bandcamp.com https://*.bandcamp.com; script-src 'self' 'unsafe-inline' https://w.soundcloud.com; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' mailto: https://buttondown.com; img-src 'self' https: data:; media-src 'self' https: blob:; connect-src 'self' https://api.soundcloud.com https://w.soundcloud.com https://*.goatcounter.com; frame-src https://w.soundcloud.com https://open.spotify.com https://www.youtube.com https://www.mixcloud.com https://bandcamp.com https://*.bandcamp.com; script-src 'self' 'unsafe-inline' https://w.soundcloud.com https://gc.zgo.at; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
 <title>Site notes — NO SERVICE</title>
 <meta name="description" content="Independence, privacy, rights, and corrections information for No Service.">
 <meta name="robots" content="index, follow">
@@ -311,13 +311,13 @@ body { padding-bottom: 148px; }
 <li>No Service is independently run by Xanzîbar. Coverage cannot be bought or guaranteed.</li>
 <li>Music and artwork remain the property of their artists, labels, and other rights holders.</li>
 <li>Record links and players point to official or publicly shared sources whenever possible.</li>
-<li>The site has no audience analytics. Player preferences are stored only on your device.</li>
-
+<li>No Service uses GoatCounter for aggregate page and interaction counts, including private Love / Keep / Pass responses. It does not publish vote totals or join them to email addresses. Your response is also stored on your device to prevent repeat voting.</li>
+<li>Email subscriptions use Buttondown and require confirmation. Subscriber addresses are used only to send No Service email and are not joined to listening or voting data.</li>
 <li>SoundCloud, Spotify, and other embedded services may apply their own privacy policies when loaded.</li>
 <li>A submission permits review and linking only; broadcast, upload, clipping, archiving, and redistribution require separate permission.</li>
 </ul>
 <p>Corrections, accessibility problems, or rights concerns: <a href="mailto:hello@noservice.online">hello@noservice.online</a>.</p>
-<footer>NO SERVICE · music selected by Xanzîbar · <a href="site-notes.html">site notes</a></footer>
+<footer>NO SERVICE · music selected by Xanzîbar · <a href="site-notes.html">site notes</a> · <a href="newsletter.html">email list</a></footer>
 </div>
 <canvas id="ns-visualizer" aria-hidden="true"></canvas>
 <div class="ns-sigil-field" aria-hidden="true">
@@ -1057,5 +1057,5 @@ if (!document.documentElement.dataset.nsEngagementBound) {
 }
 nsInitEngagement();
 </script>
-
+<script id="ns-analytics" data-goatcounter="https://no-service.goatcounter.com/count" async src="https://gc.zgo.at/count.js" onload="nsFlushMetrics()"></script>
 </body></html>
