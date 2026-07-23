@@ -27,7 +27,7 @@
 <script src="ns_glyphs.js"></script>
 <style>
 :root { --accent: #ff4d00; --bg: #161519; --card: #1f1e24;
-        --ink: #f2f0ea; --dim: #a8a49b; --line: #34333c; --teal: #78ffd2; }
+        --ink: #f2f0ea; --dim: #a8a49b; --line: #34333c; --teal: #78ffd2; --violet: #9b7cff; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink);
        font: 17px/1.7 -apple-system, "Helvetica Neue", Arial, sans-serif;
@@ -111,6 +111,27 @@ article.post h1 { font-size: 36px; }
        border: 1px solid var(--line); border-radius: 6px; padding: 5px 12px; margin-right: 8px; }
 .btn:hover { border-color: var(--accent); color: var(--accent); }
 .btn.dl { border-color: var(--accent); color: var(--accent); }
+.taste-vote { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-top: 12px;
+  padding-top: 11px; border-top: 1px solid var(--line); }
+.taste-prompt, .taste-status { color: var(--dim); font-size: 12px; }
+.taste-actions { display: flex; gap: 6px; }
+.taste-btn { appearance: none; cursor: pointer; background: transparent; color: var(--dim);
+  border: 1px solid var(--line); border-radius: 99px; padding: 4px 10px; font: inherit; font-size: 12px; }
+.taste-btn:hover:not(:disabled) { color: var(--ink); border-color: var(--accent); }
+.taste-btn.selected { color: var(--bg); background: var(--teal); border-color: var(--teal); font-weight: 700; }
+.taste-btn:disabled { cursor: default; opacity: .48; }
+.taste-btn.selected:disabled { opacity: 1; }
+.feedback-note { color: var(--dim); font-size: 12.5px; border-left: 2px solid var(--teal);
+  padding: 7px 11px; margin: -6px 0 22px; max-width: 620px; }
+.newsletter-card { border-left: 3px solid var(--teal); }
+.newsletter-card h2 { margin-bottom: 8px; }
+.newsletter-form { display: flex; gap: 8px; align-items: stretch; margin-top: 15px; max-width: 620px; }
+.newsletter-form input[type="email"] { min-width: 0; flex: 1; background: #111114; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 7px; padding: 9px 11px; font: inherit; font-size: 14px; }
+.newsletter-form button { cursor: pointer; background: var(--accent); color: #111114; border: 1px solid var(--accent);
+  border-radius: 7px; padding: 9px 15px; font: 700 13px/1.2 inherit; }
+.newsletter-fine { color: var(--dim); font-size: 11.5px; margin-top: 8px; }
+@media (max-width: 520px) { .newsletter-form { flex-direction: column; } }
 table { border-collapse: collapse; width: 100%; font-size: 14px; }
 td, th { border-bottom: 1px solid var(--line); padding: 7px 8px; text-align: left; }
 th { color: var(--dim); font-size: 12px; text-transform: uppercase; letter-spacing: .07em; }
@@ -157,6 +178,19 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
 .acq-pool li:last-child { border-bottom: 0; }
 .acq-source-line { color: var(--dim); font-size: 13px; }
 @media (max-width: 620px) { .hero-title { font-size: 32px; } }
+.tw-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 30px; }
+.tw-nav a { font-size: 12.5px; letter-spacing: .05em; text-transform: uppercase; text-decoration: none;
+  color: var(--dim); border: 1px solid var(--line); border-radius: 99px; padding: 4px 12px; }
+.tw-nav a:hover { border-color: var(--lane-c, var(--accent)); color: var(--lane-c, var(--accent)); }
+.tw-sec { margin: 0 0 40px; scroll-margin-top: 20px; }
+.tw-sec-head { border-top: 3px solid var(--lane-c, var(--accent)); padding-top: 12px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.tw-sec-head h2 { margin: 0; font-size: 22px; }
+.tw-sec-date { color: var(--dim); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.tw-sec-blurb { color: #c9c6bf; font-size: 14.5px; margin: 6px 0 18px; max-width: 560px; }
+.tw-sec .track { border-left-color: var(--lane-c, var(--accent)); position: relative; padding-left: 44px; }
+.tw-sec .track-num { position: absolute; left: 14px; top: 14px; color: var(--dim); font-size: 12px;
+  letter-spacing: .05em; }
 .crate-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 18px 0 14px; }
 .chip { font-size: 12.5px; letter-spacing: .05em; text-transform: uppercase; cursor: pointer;
   background: none; border: 1px solid var(--line); color: var(--dim); border-radius: 99px; padding: 4px 12px; }
@@ -170,6 +204,16 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
 .crate-name { font-size: 15.5px; }
 .crate-meta { color: var(--dim); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
 @media (max-width: 620px) { .crate-meta { display: none; } }
+.crate-save { padding: 5px 10px; min-width: 30px; text-align: center; }
+.src-dot { display: inline-block; width: 7px; height: 7px; margin-right: 5px; vertical-align: middle; }
+.src-dot.src-soundcloud { border-radius: 50%; background: var(--accent); }
+.src-dot.src-youtube { border-radius: 50%; background: var(--violet); }
+.src-dot.src-spotify { background: var(--teal); }
+.src-dot.src-bandcamp, .src-dot.src-bandcamp-link { background: var(--dim); }
+.src-dot.src-source { background: var(--dim); opacity: .5; }
+#my-queue-panel { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 0 0 18px; background: var(--card); }
+#my-queue-panel .crate-row { padding: 8px 0; }
+.mq-remove { padding: 4px 10px; font-size: 12px; }
 @media (max-width: 620px) { .acq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @keyframes nsScanDrift {
   0% { background-position: 0 0, 50% 16%, 0 0; }
@@ -197,35 +241,55 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
 #ns-bar .nsbtn { cursor: pointer; font-size: 13px; color: var(--ink); background: none;
   border: 1px solid var(--line); border-radius: 6px; padding: 5px 12px; }
 #ns-bar .nsbtn:hover { border-color: var(--accent); color: var(--accent); }
+#ns-bar .nsbtn:disabled { cursor: default; color: var(--dim); border-color: var(--line); opacity: .72; }
 #ns-now { flex: 1; min-width: 180px; line-height: 1.25; overflow: hidden; }
 #ns-now-title { display: block; color: var(--ink); font-size: 13px; font-weight: 700;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #ns-now-sub { display: block; color: var(--dim); font-size: 11px; letter-spacing: .04em;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#ns-mode { color: var(--teal); border: 1px solid rgba(120,255,210,.35); border-radius: 99px;
-  padding: 2px 8px; font-size: 9px; letter-spacing: .11em; white-space: nowrap; }
+#ns-progress-wrap { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+#ns-progress { flex: 1; height: 4px; background: var(--line); border-radius: 99px; cursor: pointer;
+  position: relative; overflow: hidden; }
+#ns-progress-fill { height: 100%; width: 0%; background: var(--accent); }
+#ns-progress-time { color: var(--dim); font-size: 10px; white-space: nowrap; }
+#ns-art { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; background: var(--line);
+  display: none; flex-shrink: 0; }
+#ns-art.show { display: block; }
 #ns-volume-wrap { display: flex; align-items: center; gap: 8px; color: var(--dim); font-size: 12px; }
 #ns-volume { width: 104px; accent-color: var(--accent); }
 #ns-volume-note { color: var(--dim); font-size: 11px; }
-#ns-frame, #ns-spotify-frame { width: 340px; height: 64px; border: 0; border-radius: 6px; display: none; }
+#ns-frame, #ns-spotify-frame, #ns-yt-frame, #ns-bandcamp-frame { width: 340px; height: 64px; border: 0; border-radius: 6px; display: none; }
 body.ns-radio-live #ns-bar { box-shadow: 0 -10px 28px rgba(255,77,0,.10); }
-#ns-spotify-frame { height: 80px; }
+#ns-spotify-frame, #ns-bandcamp-frame { height: 80px; }
+#ns-yt-frame { height: 64px; }
 @media (max-width: 700px) {
   #ns-bar { display: grid; grid-template-columns: repeat(4, minmax(0, auto)) 1fr;
     gap: 6px; padding: 8px 10px max(8px, env(safe-area-inset-bottom)); }
   #ns-now { grid-column: 1 / -1; grid-row: 1; min-width: 0; padding-right: 4px; }
   #ns-now-title { font-size: 14px; }
   #ns-now-sub { font-size: 10.5px; }
-  #ns-mode { grid-column: 5; grid-row: 2; justify-self: end; }
   #ns-bar .nsbtn { padding: 6px 9px; min-height: 34px; }
   #ns-volume-wrap { grid-column: 1 / -1; font-size: 10px; }
   #ns-volume { width: 100%; }
   #ns-frame { display: block !important; position: absolute; width: 1px !important;
     height: 1px !important; opacity: .001; pointer-events: none; overflow: hidden; }
-  #ns-spotify-frame { grid-column: 1 / -1; width: 100%; }
+  #ns-spotify-frame, #ns-yt-frame, #ns-bandcamp-frame { grid-column: 1 / -1; width: 100%; }
+  #ns-art { display: none !important; }
   body { padding-bottom: 190px !important; }
+  #ns-queue-panel { padding-bottom: 190px !important; }
 }
 body { padding-bottom: 148px; }
+#ns-queue-panel { position: fixed; left: 0; right: 0; bottom: 0; z-index: 97; max-height: 46vh;
+  overflow-y: auto; background: #131316; border-top: 1px solid var(--line);
+  box-shadow: 0 -8px 24px rgba(0,0,0,.35); display: none; padding: 10px 14px 148px; }
+#ns-queue-panel.open { display: block; }
+.ns-q-row { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 8px 4px; border-bottom: 1px solid var(--line); cursor: pointer; font-size: 13.5px;
+  color: var(--ink); }
+.ns-q-row:last-child { border-bottom: 0; }
+.ns-q-row:hover { color: var(--accent); }
+.ns-q-row.current { color: var(--accent); font-weight: 700; }
+.ns-q-plat { color: var(--dim); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
 </style>
 </head><body><div class="wrap">
 <header class="site">
@@ -244,356 +308,365 @@ body { padding-bottom: 148px; }
 <h1>The Crate</h1>
 <p class='count'>Every record that has carried a week here — one shelf, one queue. Play what streams, follow the rest to the source, support the artists.</p>
 <div class="crate-bar"><button class="chip mchip on" data-month="all" aria-pressed="true">All time</button><button class="chip mchip" data-month="2026-07" aria-pressed="false">Jul 2026</button><button class="chip mchip" data-month="2026-06" aria-pressed="false">Jun 2026</button></div>
-<div class="crate-bar"><button class="chip on" data-chip="all" aria-pressed="true">All</button><button class="chip" data-chip="Deep cuts" aria-pressed="false">Deep cuts</button><button class="chip" data-chip="Forward / experimental" aria-pressed="false">Forward / experimental</button><button class="chip" data-chip="Heaters" aria-pressed="false">Heaters</button><button class="chip" data-chip="In rotation" aria-pressed="false">In rotation</button><button class="chip" data-chip="In-between" aria-pressed="false">In-between</button><button class="chip" data-chip="Jungle / DnB" aria-pressed="false">Jungle / DnB</button><button class="chip" data-chip="playable" aria-pressed="false">Streams here</button>
+<div class="crate-bar"><button class="chip on" data-chip="all" aria-pressed="true">All</button><button class="chip" data-chip="Deep cuts" aria-pressed="false">Deep cuts</button><button class="chip" data-chip="Forward / experimental" aria-pressed="false">Forward / experimental</button><button class="chip" data-chip="Heaters" aria-pressed="false">Heaters</button><button class="chip" data-chip="In rotation" aria-pressed="false">In rotation</button><button class="chip" data-chip="In-between" aria-pressed="false">In-between</button><button class="chip" data-chip="Jungle / DnB" aria-pressed="false">Jungle / DnB</button><button class="chip" data-chip="playable" aria-pressed="false">Streams here</button></div>
+<div class="crate-bar"><button class="chip schip on" data-source="all" aria-pressed="true">All sources</button><button class="chip schip" data-source="bandcamp" aria-pressed="false"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Bandcamp</button><button class="chip schip" data-source="soundcloud" aria-pressed="false"><span class="src-dot src-soundcloud" aria-hidden="true"></span>SoundCloud</button><button class="chip schip" data-source="source" aria-pressed="false"><span class="src-dot src-source" aria-hidden="true"></span>Other</button></div>
+<div class="crate-bar">
 <label class="sr-only" for="crate-q">Search the crate</label>
 <input id="crate-q" type="search" placeholder="Search the crate">
-<button class="btn" id="crate-playall">Play all shown</button></div>
-<div id="crate-list"><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-playable="0" data-text="bud culture recovered dubplates pt. 1 ep">
+<button class="btn" id="crate-playall">Play these</button>
+<button class="btn" id="my-queue-toggle">My queue (<span id="my-queue-count">0</span>)</button>
+</div>
+<div id="my-queue-panel" style="display:none">
+<div id="my-queue-list"></div>
+<div class="crate-bar"><button class="btn" id="my-queue-play">Play my queue</button><button class="btn" id="my-queue-clear">Clear</button></div>
+</div>
+<div id="crate-list"><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-source="bandcamp" data-playable="0" data-text="bud culture recovered dubplates pt. 1 ep">
 <span class="crate-name"><span class="artist">Bud Culture</span> — Recovered Dubplates Pt. 1 EP</span>
-<span class="crate-meta">Deep cuts · 2026-07-23</span>
-<a class="btn" href="https://sirdubmuzik.bandcamp.com/album/recovered-dubplates-pt-1-ep-sirdub020" target="_blank" rel="noopener" aria-label="Open Bud Culture — Recovered Dubplates Pt. 1 EP at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="witness evanesxent">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Deep cuts · Bandcamp · 2026-07-23</span>
+<a class="btn" href="https://sirdubmuzik.bandcamp.com/album/recovered-dubplates-pt-1-ep-sirdub020" target="_blank" rel="noopener" aria-label="Open Bud Culture — Recovered Dubplates Pt. 1 EP at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="witness evanesxent">
 <span class="crate-name"><span class="artist">witness</span> — Evanesxent</span>
-<span class="crate-meta">Heaters · 2026-07-20</span>
-<a class="btn" href="https://witnessxo.bandcamp.com/track/evanesxent" target="_blank" rel="noopener" aria-label="Open witness — Evanesxent at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="river river">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-20</span>
+<a class="btn" href="https://witnessxo.bandcamp.com/track/evanesxent" target="_blank" rel="noopener" aria-label="Open witness — Evanesxent at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="river river">
 <span class="crate-name"><span class="artist">River</span> — River</span>
-<span class="crate-meta">Heaters · 2026-07-20</span>
-<a class="btn" href="https://dubcolonymusic.bandcamp.com/album/river" target="_blank" rel="noopener" aria-label="Open River — River at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="prismadoxum panic">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-20</span>
+<a class="btn" href="https://dubcolonymusic.bandcamp.com/album/river" target="_blank" rel="noopener" aria-label="Open River — River at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="prismadoxum panic">
 <span class="crate-name"><span class="artist">Prismadoxum</span> — Panic</span>
-<span class="crate-meta">Heaters · 2026-07-20</span>
-<a class="btn" href="https://dubstepsfrec.bandcamp.com/track/panic" target="_blank" rel="noopener" aria-label="Open Prismadoxum — Panic at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="soeneido br-002">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-20</span>
+<a class="btn" href="https://dubstepsfrec.bandcamp.com/track/panic" target="_blank" rel="noopener" aria-label="Open Prismadoxum — Panic at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="soeneido br-002">
 <span class="crate-name"><span class="artist">Soeneido</span> — BR-002</span>
-<span class="crate-meta">Heaters · 2026-07-20</span>
-<a class="btn" href="https://basicsrecords.bandcamp.com/album/br-002-3" target="_blank" rel="noopener" aria-label="Open Soeneido — BR-002 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="damian&#x27;s ghost universalis">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-20</span>
+<a class="btn" href="https://basicsrecords.bandcamp.com/album/br-002-3" target="_blank" rel="noopener" aria-label="Open Soeneido — BR-002 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="damian&#x27;s ghost universalis">
 <span class="crate-name"><span class="artist">Damian&#x27;s Ghost</span> — Universalis</span>
-<span class="crate-meta">Heaters · 2026-07-20</span>
-<a class="btn" href="https://damiansghost.bandcamp.com/album/universalis" target="_blank" rel="noopener" aria-label="Open Damian&#x27;s Ghost — Universalis at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="unknown face simlp001 - unknown face (album)">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-20</span>
+<a class="btn" href="https://damiansghost.bandcamp.com/album/universalis" target="_blank" rel="noopener" aria-label="Open Damian&#x27;s Ghost — Universalis at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="unknown face simlp001 - unknown face (album)">
 <span class="crate-name"><span class="artist">Unknown Face</span> — SIMLP001 - Unknown Face (Album)</span>
-<span class="crate-meta">Heaters · 2026-07-20</span>
-<a class="btn" href="https://soulinmotion.bandcamp.com/album/simlp001-unknown-face-album" target="_blank" rel="noopener" aria-label="Open Unknown Face — SIMLP001 - Unknown Face (Album) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-playable="1" data-text="calmfy frog decisions (calmfy bootleg)">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-20</span>
+<a class="btn" href="https://soulinmotion.bandcamp.com/album/simlp001-unknown-face-album" target="_blank" rel="noopener" aria-label="Open Unknown Face — SIMLP001 - Unknown Face (Album) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-source="soundcloud" data-playable="1" data-text="calmfy frog decisions (calmfy bootleg)">
 <span class="crate-name"><span class="artist">CALMFY</span> — Frog Decisions (Calmfy Bootleg)</span>
-<span class="crate-meta">Deep cuts · 2026-07-17</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/itscalmfy/frog-decisions-calmfy-bootleg" data-label="CALMFY — Frog Decisions (Calmfy Bootleg)" aria-label="Play CALMFY — Frog Decisions (Calmfy Bootleg)">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="pruvan halls">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Deep cuts · SoundCloud · 2026-07-17</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/itscalmfy/frog-decisions-calmfy-bootleg" data-label="CALMFY — Frog Decisions (Calmfy Bootleg)" data-platform="soundcloud" aria-label="Play CALMFY — Frog Decisions (Calmfy Bootleg)">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/itscalmfy/frog-decisions-calmfy-bootleg" data-label="CALMFY — Frog Decisions (Calmfy Bootleg)" data-platform="soundcloud" aria-label="Save CALMFY — Frog Decisions (Calmfy Bootleg) to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="pruvan halls">
 <span class="crate-name"><span class="artist">Pruvan</span> — Halls</span>
-<span class="crate-meta">Heaters · 2026-07-13</span>
-<a class="btn" href="https://1985-music.bandcamp.com/track/pruvan-halls" target="_blank" rel="noopener" aria-label="Open Pruvan — Halls at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="quartz hyperreal">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-13</span>
+<a class="btn" href="https://1985-music.bandcamp.com/track/pruvan-halls" target="_blank" rel="noopener" aria-label="Open Pruvan — Halls at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="quartz hyperreal">
 <span class="crate-name"><span class="artist">Quartz</span> — Hyperreal</span>
-<span class="crate-meta">Heaters · 2026-07-13</span>
-<a class="btn" href="https://1985-music.bandcamp.com/track/quartz-hyperreal" target="_blank" rel="noopener" aria-label="Open Quartz — Hyperreal at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="cimm cold starter">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-13</span>
+<a class="btn" href="https://1985-music.bandcamp.com/track/quartz-hyperreal" target="_blank" rel="noopener" aria-label="Open Quartz — Hyperreal at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="cimm cold starter">
 <span class="crate-name"><span class="artist">Cimm</span> — Cold Starter</span>
-<span class="crate-meta">Heaters · 2026-07-13</span>
-<a class="btn" href="https://1985-music.bandcamp.com/track/cimm-cold-starter" target="_blank" rel="noopener" aria-label="Open Cimm — Cold Starter at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="glm &amp; verbz jack it">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-13</span>
+<a class="btn" href="https://1985-music.bandcamp.com/track/cimm-cold-starter" target="_blank" rel="noopener" aria-label="Open Cimm — Cold Starter at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="glm &amp; verbz jack it">
 <span class="crate-name"><span class="artist">GLM &amp; Verbz</span> — Jack It</span>
-<span class="crate-meta">Heaters · 2026-07-13</span>
-<a class="btn" href="https://1985-music.bandcamp.com/track/glm-verbz-jack-it" target="_blank" rel="noopener" aria-label="Open GLM &amp; Verbz — Jack It at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="cimm &amp; hijinx bail out">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-13</span>
+<a class="btn" href="https://1985-music.bandcamp.com/track/glm-verbz-jack-it" target="_blank" rel="noopener" aria-label="Open GLM &amp; Verbz — Jack It at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="cimm &amp; hijinx bail out">
 <span class="crate-name"><span class="artist">Cimm &amp; HIJINX</span> — Bail Out</span>
-<span class="crate-meta">Heaters · 2026-07-13</span>
-<a class="btn" href="https://1985-music.bandcamp.com/track/cimm-hijinx-bail-out" target="_blank" rel="noopener" aria-label="Open Cimm &amp; HIJINX — Bail Out at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="echo brown depth of feel">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-13</span>
+<a class="btn" href="https://1985-music.bandcamp.com/track/cimm-hijinx-bail-out" target="_blank" rel="noopener" aria-label="Open Cimm &amp; HIJINX — Bail Out at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="echo brown depth of feel">
 <span class="crate-name"><span class="artist">Echo Brown</span> — Depth of Feel</span>
-<span class="crate-meta">Heaters · 2026-07-13</span>
-<a class="btn" href="https://1985-music.bandcamp.com/track/echo-brown-depth-of-feel" target="_blank" rel="noopener" aria-label="Open Echo Brown — Depth of Feel at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="simula pressure wave">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-13</span>
+<a class="btn" href="https://1985-music.bandcamp.com/track/echo-brown-depth-of-feel" target="_blank" rel="noopener" aria-label="Open Echo Brown — Depth of Feel at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="simula pressure wave">
 <span class="crate-name"><span class="artist">Simula</span> — Pressure Wave</span>
-<span class="crate-meta">Heaters · 2026-07-13</span>
-<a class="btn" href="https://1985-music.bandcamp.com/track/simula-pressure-wave" target="_blank" rel="noopener" aria-label="Open Simula — Pressure Wave at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="calyx lemme take it">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-13</span>
+<a class="btn" href="https://1985-music.bandcamp.com/track/simula-pressure-wave" target="_blank" rel="noopener" aria-label="Open Simula — Pressure Wave at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="calyx lemme take it">
 <span class="crate-name"><span class="artist">Calyx</span> — Lemme Take It</span>
-<span class="crate-meta">Heaters · 2026-07-13</span>
-<a class="btn" href="https://criticalmusic.bandcamp.com/track/lemme-take-it" target="_blank" rel="noopener" aria-label="Open Calyx — Lemme Take It at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="va duploc legacy 2">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-13</span>
+<a class="btn" href="https://criticalmusic.bandcamp.com/track/lemme-take-it" target="_blank" rel="noopener" aria-label="Open Calyx — Lemme Take It at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="va duploc legacy 2">
 <span class="crate-name"><span class="artist">VA</span> — DUPLOC LEGACY 2</span>
-<span class="crate-meta">Heaters · 2026-07-13</span>
-<a class="btn" href="https://duploc.bandcamp.com/album/duploc-legacy-2" target="_blank" rel="noopener" aria-label="Open VA — DUPLOC LEGACY 2 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="In-between" data-playable="0" data-text="sub basics &amp; pugilist control">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-13</span>
+<a class="btn" href="https://duploc.bandcamp.com/album/duploc-legacy-2" target="_blank" rel="noopener" aria-label="Open VA — DUPLOC LEGACY 2 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="In-between" data-source="bandcamp" data-playable="0" data-text="sub basics &amp; pugilist control">
 <span class="crate-name"><span class="artist">Sub Basics &amp; Pugilist</span> — Control</span>
-<span class="crate-meta">In-between · 2026-07-10</span>
-<a class="btn" href="https://pugilist.bandcamp.com/album/control" target="_blank" rel="noopener" aria-label="Open Sub Basics &amp; Pugilist — Control at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Forward / experimental" data-playable="0" data-text="k wata give u space">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>In-between · Bandcamp · 2026-07-10</span>
+<a class="btn" href="https://pugilist.bandcamp.com/album/control" target="_blank" rel="noopener" aria-label="Open Sub Basics &amp; Pugilist — Control at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Forward / experimental" data-source="bandcamp" data-playable="0" data-text="k wata give u space">
 <span class="crate-name"><span class="artist">K Wata</span> — Give U Space</span>
-<span class="crate-meta">Forward / experimental · 2026-07-10</span>
-<a class="btn" href="https://kwata.bandcamp.com/album/give-u-space" target="_blank" rel="noopener" aria-label="Open K Wata — Give U Space at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-playable="1" data-text="guns taksim">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Forward / experimental · Bandcamp · 2026-07-10</span>
+<a class="btn" href="https://kwata.bandcamp.com/album/give-u-space" target="_blank" rel="noopener" aria-label="Open K Wata — Give U Space at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-source="soundcloud" data-playable="1" data-text="guns taksim">
 <span class="crate-name"><span class="artist">GUNS</span> — Taksim</span>
-<span class="crate-meta">Deep cuts · 2026-07-10</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/gunselsenol/taksim" data-label="GUNS — Taksim" aria-label="Play GUNS — Taksim">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="hijinx survival loop ep">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Deep cuts · SoundCloud · 2026-07-10</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/gunselsenol/taksim" data-label="GUNS — Taksim" data-platform="soundcloud" aria-label="Play GUNS — Taksim">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/gunselsenol/taksim" data-label="GUNS — Taksim" data-platform="soundcloud" aria-label="Save GUNS — Taksim to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="hijinx survival loop ep">
 <span class="crate-name"><span class="artist">HIJINX</span> — Survival Loop EP</span>
-<span class="crate-meta">Heaters · 2026-07-10</span>
-<a class="btn" href="https://hijinxuk.bandcamp.com/album/survival-loop-ep" target="_blank" rel="noopener" aria-label="Open HIJINX — Survival Loop EP at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Jungle / DnB" data-playable="0" data-text="lander acid jungle">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-10</span>
+<a class="btn" href="https://hijinxuk.bandcamp.com/album/survival-loop-ep" target="_blank" rel="noopener" aria-label="Open HIJINX — Survival Loop EP at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Jungle / DnB" data-source="bandcamp" data-playable="0" data-text="lander acid jungle">
 <span class="crate-name"><span class="artist">Lander</span> — Acid Jungle</span>
-<span class="crate-meta">Jungle / DnB · 2026-07-10</span>
-<a class="btn" href="https://wergild.bandcamp.com/album/acid-jungle" target="_blank" rel="noopener" aria-label="Open Lander — Acid Jungle at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="In-between" data-playable="0" data-text="peter kan 2325_sel">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Jungle / DnB · Bandcamp · 2026-07-10</span>
+<a class="btn" href="https://wergild.bandcamp.com/album/acid-jungle" target="_blank" rel="noopener" aria-label="Open Lander — Acid Jungle at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="In-between" data-source="bandcamp" data-playable="0" data-text="peter kan 2325_sel">
 <span class="crate-name"><span class="artist">Peter Kan</span> — 2325_seL</span>
-<span class="crate-meta">In-between · 2026-07-07</span>
-<a class="btn" href="https://peterkan.bandcamp.com/album/2325-sel" target="_blank" rel="noopener" aria-label="Open Peter Kan — 2325_seL at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Forward / experimental" data-playable="0" data-text="høst 5c5 x ur no gd 4 me">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>In-between · Bandcamp · 2026-07-07</span>
+<a class="btn" href="https://peterkan.bandcamp.com/album/2325-sel" target="_blank" rel="noopener" aria-label="Open Peter Kan — 2325_seL at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Forward / experimental" data-source="bandcamp" data-playable="0" data-text="høst 5c5 x ur no gd 4 me">
 <span class="crate-name"><span class="artist">HØST</span> — 5C5 X UR NO GD 4 ME</span>
-<span class="crate-meta">Forward / experimental · 2026-07-07</span>
-<a class="btn" href="https://hstmusic.bandcamp.com/album/5c5-x-ur-no-gd-4-me-ep" target="_blank" rel="noopener" aria-label="Open HØST — 5C5 X UR NO GD 4 ME at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-playable="0" data-text="runaaki &amp; skech fall ep">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Forward / experimental · Bandcamp · 2026-07-07</span>
+<a class="btn" href="https://hstmusic.bandcamp.com/album/5c5-x-ur-no-gd-4-me-ep" target="_blank" rel="noopener" aria-label="Open HØST — 5C5 X UR NO GD 4 ME at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-source="bandcamp" data-playable="0" data-text="runaaki &amp; skech fall ep">
 <span class="crate-name"><span class="artist">Runaaki &amp; SKECH</span> — Fall EP</span>
-<span class="crate-meta">Deep cuts · 2026-07-07</span>
-<a class="btn" href="https://sirdubmuzik.bandcamp.com/album/fall-ep-sirdub019" target="_blank" rel="noopener" aria-label="Open Runaaki &amp; SKECH — Fall EP at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="jaz imsky &amp; en:vy codebreaker">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Deep cuts · Bandcamp · 2026-07-07</span>
+<a class="btn" href="https://sirdubmuzik.bandcamp.com/album/fall-ep-sirdub019" target="_blank" rel="noopener" aria-label="Open Runaaki &amp; SKECH — Fall EP at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="jaz imsky &amp; en:vy codebreaker">
 <span class="crate-name"><span class="artist">Jaz Imsky &amp; En:vy</span> — Codebreaker</span>
-<span class="crate-meta">Heaters · 2026-07-07</span>
-<a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/codebreaker" target="_blank" rel="noopener" aria-label="Open Jaz Imsky &amp; En:vy — Codebreaker at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="0" data-text="va duploc legacy 1">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-07</span>
+<a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/codebreaker" target="_blank" rel="noopener" aria-label="Open Jaz Imsky &amp; En:vy — Codebreaker at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="va duploc legacy 1">
 <span class="crate-name"><span class="artist">VA</span> — DUPLOC LEGACY 1</span>
-<span class="crate-meta">Heaters · 2026-07-07</span>
-<a class="btn" href="https://duploc.bandcamp.com/album/duploc-legacy-1" target="_blank" rel="noopener" aria-label="Open VA — DUPLOC LEGACY 1 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Jungle / DnB" data-playable="0" data-text="dj airwalk scan for more / collide &amp; scope">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-07-07</span>
+<a class="btn" href="https://duploc.bandcamp.com/album/duploc-legacy-1" target="_blank" rel="noopener" aria-label="Open VA — DUPLOC LEGACY 1 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="Jungle / DnB" data-source="bandcamp" data-playable="0" data-text="dj airwalk scan for more / collide &amp; scope">
 <span class="crate-name"><span class="artist">DJ Airwalk</span> — Scan For More / Collide &amp; Scope</span>
-<span class="crate-meta">Jungle / DnB · 2026-07-07</span>
-<a class="btn" href="https://eabe.bandcamp.com/album/scan-for-more-collide-scope" target="_blank" rel="noopener" aria-label="Open DJ Airwalk — Scan For More / Collide &amp; Scope at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="In-between" data-playable="1" data-text="jon cass got2go">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Jungle / DnB · Bandcamp · 2026-07-07</span>
+<a class="btn" href="https://eabe.bandcamp.com/album/scan-for-more-collide-scope" target="_blank" rel="noopener" aria-label="Open DJ Airwalk — Scan For More / Collide &amp; Scope at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-07" data-lane="In-between" data-source="soundcloud" data-playable="1" data-text="jon cass got2go">
 <span class="crate-name"><span class="artist">Jon Cass</span> — GOT2GO</span>
-<span class="crate-meta">In-between · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/joncassss/g2g" data-label="Jon Cass — GOT2GO" aria-label="Play Jon Cass — GOT2GO">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Forward / experimental" data-playable="1" data-text="mai balance.">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In-between · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/joncassss/g2g" data-label="Jon Cass — GOT2GO" data-platform="soundcloud" aria-label="Play Jon Cass — GOT2GO">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/joncassss/g2g" data-label="Jon Cass — GOT2GO" data-platform="soundcloud" aria-label="Save Jon Cass — GOT2GO to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Forward / experimental" data-source="soundcloud" data-playable="1" data-text="mai balance.">
 <span class="crate-name"><span class="artist">mai</span> — balance.</span>
-<span class="crate-meta">Forward / experimental · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/maiyabi/balance" data-label="mai — balance." aria-label="Play mai — balance.">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Forward / experimental" data-playable="1" data-text="k.l.o selotape">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Forward / experimental · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/maiyabi/balance" data-label="mai — balance." data-platform="soundcloud" aria-label="Play mai — balance.">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/maiyabi/balance" data-label="mai — balance." data-platform="soundcloud" aria-label="Save mai — balance. to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Forward / experimental" data-source="soundcloud" data-playable="1" data-text="k.l.o selotape">
 <span class="crate-name"><span class="artist">K.L.O</span> — Selotape</span>
-<span class="crate-meta">Forward / experimental · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/kloofficial/selotape" data-label="K.L.O — Selotape" aria-label="Play K.L.O — Selotape">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-playable="1" data-text="astronomic water falls">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Forward / experimental · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/kloofficial/selotape" data-label="K.L.O — Selotape" data-platform="soundcloud" aria-label="Play K.L.O — Selotape">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/kloofficial/selotape" data-label="K.L.O — Selotape" data-platform="soundcloud" aria-label="Save K.L.O — Selotape to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-source="soundcloud" data-playable="1" data-text="astronomic water falls">
 <span class="crate-name"><span class="artist">Astronomic</span> — Water falls</span>
-<span class="crate-meta">Deep cuts · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/astronomics/water-falls_2" data-label="Astronomic — Water falls" aria-label="Play Astronomic — Water falls">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-playable="1" data-text="sl33py tug">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Deep cuts · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/astronomics/water-falls_2" data-label="Astronomic — Water falls" data-platform="soundcloud" aria-label="Play Astronomic — Water falls">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/astronomics/water-falls_2" data-label="Astronomic — Water falls" data-platform="soundcloud" aria-label="Save Astronomic — Water falls to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-source="soundcloud" data-playable="1" data-text="sl33py tug">
 <span class="crate-name"><span class="artist">SL33PY</span> — TUG</span>
-<span class="crate-meta">Deep cuts · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/shlumpedsleepy/tug-1" data-label="SL33PY — TUG" aria-label="Play SL33PY — TUG">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-playable="1" data-text="eternol invasion">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Deep cuts · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/shlumpedsleepy/tug-1" data-label="SL33PY — TUG" data-platform="soundcloud" aria-label="Play SL33PY — TUG">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/shlumpedsleepy/tug-1" data-label="SL33PY — TUG" data-platform="soundcloud" aria-label="Save SL33PY — TUG to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Deep cuts" data-source="soundcloud" data-playable="1" data-text="eternol invasion">
 <span class="crate-name"><span class="artist">Eternol</span> — Invasion</span>
-<span class="crate-meta">Deep cuts · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/eternol/eternol-invasion" data-label="Eternol — Invasion" aria-label="Play Eternol — Invasion">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="1" data-text="cliqclaq velocity">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Deep cuts · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/eternol/eternol-invasion" data-label="Eternol — Invasion" data-platform="soundcloud" aria-label="Play Eternol — Invasion">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/eternol/eternol-invasion" data-label="Eternol — Invasion" data-platform="soundcloud" aria-label="Save Eternol — Invasion to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="cliqclaq velocity">
 <span class="crate-name"><span class="artist">CliqClaq</span> — Velocity</span>
-<span class="crate-meta">Heaters · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/cliqclaq/velocity" data-label="CliqClaq — Velocity" aria-label="Play CliqClaq — Velocity">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="1" data-text="time wzrd me n you">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/cliqclaq/velocity" data-label="CliqClaq — Velocity" data-platform="soundcloud" aria-label="Play CliqClaq — Velocity">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/cliqclaq/velocity" data-label="CliqClaq — Velocity" data-platform="soundcloud" aria-label="Save CliqClaq — Velocity to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="time wzrd me n you">
 <span class="crate-name"><span class="artist">TIME WZRD</span> — Me N You</span>
-<span class="crate-meta">Heaters · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/timewzrdmusic/menyou" data-label="TIME WZRD — Me N You" aria-label="Play TIME WZRD — Me N You">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-playable="1" data-text="dmtree corruption">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/timewzrdmusic/menyou" data-label="TIME WZRD — Me N You" data-platform="soundcloud" aria-label="Play TIME WZRD — Me N You">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/timewzrdmusic/menyou" data-label="TIME WZRD — Me N You" data-platform="soundcloud" aria-label="Save TIME WZRD — Me N You to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="dmtree corruption">
 <span class="crate-name"><span class="artist">Dmtree</span> — Corruption</span>
-<span class="crate-meta">Heaters · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/dmtreemusic/corruption" data-label="Dmtree — Corruption" aria-label="Play Dmtree — Corruption">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Jungle / DnB" data-playable="1" data-text="davinxi elevia">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/dmtreemusic/corruption" data-label="Dmtree — Corruption" data-platform="soundcloud" aria-label="Play Dmtree — Corruption">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/dmtreemusic/corruption" data-label="Dmtree — Corruption" data-platform="soundcloud" aria-label="Save Dmtree — Corruption to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Jungle / DnB" data-source="soundcloud" data-playable="1" data-text="davinxi elevia">
 <span class="crate-name"><span class="artist">DAVINXI</span> — Elevia</span>
-<span class="crate-meta">Jungle / DnB · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/djdavinxi/elevia" data-label="DAVINXI — Elevia" aria-label="Play DAVINXI — Elevia">Play</button></div><div class="crate-row" data-month="2026-07" data-lane="Jungle / DnB" data-playable="1" data-text="in:sane you&#x27;re not there">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Jungle / DnB · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/djdavinxi/elevia" data-label="DAVINXI — Elevia" data-platform="soundcloud" aria-label="Play DAVINXI — Elevia">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/djdavinxi/elevia" data-label="DAVINXI — Elevia" data-platform="soundcloud" aria-label="Save DAVINXI — Elevia to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-07" data-lane="Jungle / DnB" data-source="soundcloud" data-playable="1" data-text="in:sane you&#x27;re not there">
 <span class="crate-name"><span class="artist">in:sane</span> — You&#x27;re Not There</span>
-<span class="crate-meta">Jungle / DnB · 2026-07-03</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/insane_dnb/insane-youre-not-there" data-label="in:sane — You&#x27;re Not There" aria-label="Play in:sane — You&#x27;re Not There">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="takjacob hardcore symphony">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Jungle / DnB · SoundCloud · 2026-07-03</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/insane_dnb/insane-youre-not-there" data-label="in:sane — You&#x27;re Not There" data-platform="soundcloud" aria-label="Play in:sane — You&#x27;re Not There">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/insane_dnb/insane-youre-not-there" data-label="in:sane — You&#x27;re Not There" data-platform="soundcloud" aria-label="Save in:sane — You&#x27;re Not There to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="takjacob hardcore symphony">
 <span class="crate-name"><span class="artist">Takjacob</span> — Hardcore Symphony</span>
-<span class="crate-meta">Heaters · 2026-06-29</span>
-<a class="btn" href="https://duploc.bandcamp.com/track/hardcore-symphony" target="_blank" rel="noopener" aria-label="Open Takjacob — Hardcore Symphony at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="coltcuts &amp; cøntra lockup">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-29</span>
+<a class="btn" href="https://duploc.bandcamp.com/track/hardcore-symphony" target="_blank" rel="noopener" aria-label="Open Takjacob — Hardcore Symphony at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="coltcuts &amp; cøntra lockup">
 <span class="crate-name"><span class="artist">ColtCuts &amp; CØNTRA</span> — Lockup</span>
-<span class="crate-meta">Heaters · 2026-06-29</span>
-<a class="btn" href="https://duploc.bandcamp.com/track/lockup-2" target="_blank" rel="noopener" aria-label="Open ColtCuts &amp; CØNTRA — Lockup at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="hypho no f&#x27;s given">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-29</span>
+<a class="btn" href="https://duploc.bandcamp.com/track/lockup-2" target="_blank" rel="noopener" aria-label="Open ColtCuts &amp; CØNTRA — Lockup at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="hypho no f&#x27;s given">
 <span class="crate-name"><span class="artist">Hypho</span> — No F&#x27;s Given</span>
-<span class="crate-meta">Heaters · 2026-06-29</span>
-<a class="btn" href="https://duploc.bandcamp.com/track/no-fs-given" target="_blank" rel="noopener" aria-label="Open Hypho — No F&#x27;s Given at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="substrada vilis">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-29</span>
+<a class="btn" href="https://duploc.bandcamp.com/track/no-fs-given" target="_blank" rel="noopener" aria-label="Open Hypho — No F&#x27;s Given at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="substrada vilis">
 <span class="crate-name"><span class="artist">Substrada</span> — Vilis</span>
-<span class="crate-meta">Heaters · 2026-06-29</span>
-<a class="btn" href="https://duploc.bandcamp.com/track/vilis" target="_blank" rel="noopener" aria-label="Open Substrada — Vilis at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="teffa run it">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-29</span>
+<a class="btn" href="https://duploc.bandcamp.com/track/vilis" target="_blank" rel="noopener" aria-label="Open Substrada — Vilis at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="teffa run it">
 <span class="crate-name"><span class="artist">Teffa</span> — Run It</span>
-<span class="crate-meta">Heaters · 2026-06-29</span>
-<a class="btn" href="https://duploc.bandcamp.com/track/run-it-7" target="_blank" rel="noopener" aria-label="Open Teffa — Run It at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="rygby sr71">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-29</span>
+<a class="btn" href="https://duploc.bandcamp.com/track/run-it-7" target="_blank" rel="noopener" aria-label="Open Teffa — Run It at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="rygby sr71">
 <span class="crate-name"><span class="artist">Rygby</span> — SR71</span>
-<span class="crate-meta">Heaters · 2026-06-29</span>
-<a class="btn" href="https://duploc.bandcamp.com/track/sr71" target="_blank" rel="noopener" aria-label="Open Rygby — SR71 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="hebbe area man">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-29</span>
+<a class="btn" href="https://duploc.bandcamp.com/track/sr71" target="_blank" rel="noopener" aria-label="Open Rygby — SR71 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="hebbe area man">
 <span class="crate-name"><span class="artist">Hebbe</span> — Area Man</span>
-<span class="crate-meta">Heaters · 2026-06-29</span>
-<a class="btn" href="https://duploc.bandcamp.com/track/area-man" target="_blank" rel="noopener" aria-label="Open Hebbe — Area Man at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="kyber still">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-29</span>
+<a class="btn" href="https://duploc.bandcamp.com/track/area-man" target="_blank" rel="noopener" aria-label="Open Hebbe — Area Man at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="kyber still">
 <span class="crate-name"><span class="artist">Kyber</span> — Still</span>
-<span class="crate-meta">Heaters · 2026-06-29</span>
-<a class="btn" href="https://duploc.bandcamp.com/track/still" target="_blank" rel="noopener" aria-label="Open Kyber — Still at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="hebbe floor clearing dub">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-29</span>
+<a class="btn" href="https://duploc.bandcamp.com/track/still" target="_blank" rel="noopener" aria-label="Open Kyber — Still at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="hebbe floor clearing dub">
 <span class="crate-name"><span class="artist">Hebbe</span> — Floor Clearing Dub</span>
-<span class="crate-meta">Heaters · 2026-06-28</span>
-<a class="btn" href="https://whitepeach.bandcamp.com/track/floor-clearing-dub" target="_blank" rel="noopener" aria-label="Open Hebbe — Floor Clearing Dub at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="hebbe illa">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-28</span>
+<a class="btn" href="https://whitepeach.bandcamp.com/track/floor-clearing-dub" target="_blank" rel="noopener" aria-label="Open Hebbe — Floor Clearing Dub at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="hebbe illa">
 <span class="crate-name"><span class="artist">Hebbe</span> — Illa</span>
-<span class="crate-meta">Heaters · 2026-06-28</span>
-<a class="btn" href="https://whitepeach.bandcamp.com/track/illa" target="_blank" rel="noopener" aria-label="Open Hebbe — Illa at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="hypho mirrors of smoke">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-28</span>
+<a class="btn" href="https://whitepeach.bandcamp.com/track/illa" target="_blank" rel="noopener" aria-label="Open Hebbe — Illa at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="hypho mirrors of smoke">
 <span class="crate-name"><span class="artist">Hypho</span> — Mirrors of Smoke</span>
-<span class="crate-meta">Heaters · 2026-06-28</span>
-<a class="btn" href="https://deepdarkdangerous.bandcamp.com/track/mirrors-of-smoke" target="_blank" rel="noopener" aria-label="Open Hypho — Mirrors of Smoke at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="hypho teachings">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-28</span>
+<a class="btn" href="https://deepdarkdangerous.bandcamp.com/track/mirrors-of-smoke" target="_blank" rel="noopener" aria-label="Open Hypho — Mirrors of Smoke at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="hypho teachings">
 <span class="crate-name"><span class="artist">Hypho</span> — Teachings</span>
-<span class="crate-meta">Heaters · 2026-06-28</span>
-<a class="btn" href="https://deepdarkdangerous.bandcamp.com/track/teachings" target="_blank" rel="noopener" aria-label="Open Hypho — Teachings at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="ternion sound airlock">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-28</span>
+<a class="btn" href="https://deepdarkdangerous.bandcamp.com/track/teachings" target="_blank" rel="noopener" aria-label="Open Hypho — Teachings at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="ternion sound airlock">
 <span class="crate-name"><span class="artist">Ternion Sound</span> — Airlock</span>
-<span class="crate-meta">Heaters · 2026-06-28</span>
-<a class="btn" href="https://duploc.bandcamp.com/track/airlock" target="_blank" rel="noopener" aria-label="Open Ternion Sound — Airlock at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="truth sandman">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-28</span>
+<a class="btn" href="https://duploc.bandcamp.com/track/airlock" target="_blank" rel="noopener" aria-label="Open Ternion Sound — Airlock at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="truth sandman">
 <span class="crate-name"><span class="artist">Truth</span> — Sandman</span>
-<span class="crate-meta">Heaters · 2026-06-28</span>
-<a class="btn" href="https://deepdarkdangerous.bandcamp.com/track/sandman" target="_blank" rel="noopener" aria-label="Open Truth — Sandman at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="enei &amp; qzb kerosene">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-28</span>
+<a class="btn" href="https://deepdarkdangerous.bandcamp.com/track/sandman" target="_blank" rel="noopener" aria-label="Open Truth — Sandman at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="enei &amp; qzb kerosene">
 <span class="crate-name"><span class="artist">Enei &amp; QZB</span> — Kerosene</span>
-<span class="crate-meta">Heaters · 2026-06-28</span>
-<a class="btn" href="https://criticalmusic.bandcamp.com/track/kerosene" target="_blank" rel="noopener" aria-label="Open Enei &amp; QZB — Kerosene at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="visla &amp; waeys sentry gun">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-28</span>
+<a class="btn" href="https://criticalmusic.bandcamp.com/track/kerosene" target="_blank" rel="noopener" aria-label="Open Enei &amp; QZB — Kerosene at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="visla &amp; waeys sentry gun">
 <span class="crate-name"><span class="artist">VISLA &amp; Waeys</span> — Sentry Gun</span>
-<span class="crate-meta">Heaters · 2026-06-28</span>
-<a class="btn" href="https://criticalmusic.bandcamp.com/track/sentry-gun" target="_blank" rel="noopener" aria-label="Open VISLA &amp; Waeys — Sentry Gun at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-playable="0" data-text="martyn heavy sound">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-28</span>
+<a class="btn" href="https://criticalmusic.bandcamp.com/track/sentry-gun" target="_blank" rel="noopener" aria-label="Open VISLA &amp; Waeys — Sentry Gun at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-source="bandcamp" data-playable="0" data-text="martyn heavy sound">
 <span class="crate-name"><span class="artist">Martyn</span> — Heavy Sound</span>
-<span class="crate-meta">In-between · 2026-06-26</span>
-<a class="btn" href="https://martyn.bandcamp.com/album/music-for-existing" target="_blank" rel="noopener" aria-label="Open Martyn — Heavy Sound at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-playable="0" data-text="alejo nerves">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>In-between · Bandcamp · 2026-06-26</span>
+<a class="btn" href="https://martyn.bandcamp.com/album/music-for-existing" target="_blank" rel="noopener" aria-label="Open Martyn — Heavy Sound at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-source="bandcamp" data-playable="0" data-text="alejo nerves">
 <span class="crate-name"><span class="artist">Alejo</span> — Nerves</span>
-<span class="crate-meta">Forward / experimental · 2026-06-26</span>
-<a class="btn" href="https://certifiedalejo.bandcamp.com/album/nerves" target="_blank" rel="noopener" aria-label="Open Alejo — Nerves at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="nadī dub train">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Forward / experimental · Bandcamp · 2026-06-26</span>
+<a class="btn" href="https://certifiedalejo.bandcamp.com/album/nerves" target="_blank" rel="noopener" aria-label="Open Alejo — Nerves at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="nadī dub train">
 <span class="crate-name"><span class="artist">NADĪ</span> — Dub Train</span>
-<span class="crate-meta">Heaters · 2026-06-26</span>
-<a class="btn" href="https://thisisnadi.bandcamp.com/album/akika" target="_blank" rel="noopener" aria-label="Open NADĪ — Dub Train at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Jungle / DnB" data-playable="0" data-text="dgohn 7 years or more">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-26</span>
+<a class="btn" href="https://thisisnadi.bandcamp.com/album/akika" target="_blank" rel="noopener" aria-label="Open NADĪ — Dub Train at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Jungle / DnB" data-source="bandcamp" data-playable="0" data-text="dgohn 7 years or more">
 <span class="crate-name"><span class="artist">dgoHn</span> — 7 Years Or More</span>
-<span class="crate-meta">Jungle / DnB · 2026-06-26</span>
-<a class="btn" href="https://dgohn-music.bandcamp.com/album/tessares" target="_blank" rel="noopener" aria-label="Open dgoHn — 7 Years Or More at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-playable="0" data-text="debit assimilate">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Jungle / DnB · Bandcamp · 2026-06-26</span>
+<a class="btn" href="https://dgohn-music.bandcamp.com/album/tessares" target="_blank" rel="noopener" aria-label="Open dgoHn — 7 Years Or More at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-source="bandcamp" data-playable="0" data-text="debit assimilate">
 <span class="crate-name"><span class="artist">Debit</span> — Assimilate</span>
-<span class="crate-meta">In-between · 2026-06-23</span>
-<a class="btn" href="https://daily.bandcamp.com/features/debit-poutpourri-feature" target="_blank" rel="noopener" aria-label="Open Debit — Assimilate at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-playable="0" data-text="aeom forgotten tribes">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>In-between · Bandcamp · 2026-06-23</span>
+<a class="btn" href="https://daily.bandcamp.com/features/debit-poutpourri-feature" target="_blank" rel="noopener" aria-label="Open Debit — Assimilate at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-source="bandcamp" data-playable="0" data-text="aeom forgotten tribes">
 <span class="crate-name"><span class="artist">aeOm</span> — Forgotten Tribes</span>
-<span class="crate-meta">Deep cuts · 2026-06-23</span>
-<a class="btn" href="https://aeom-dubs.bandcamp.com/album/forgotten-tribes-observe" target="_blank" rel="noopener" aria-label="Open aeOm — Forgotten Tribes at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="wu-lu &amp; poison anna king kong">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Deep cuts · Bandcamp · 2026-06-23</span>
+<a class="btn" href="https://aeom-dubs.bandcamp.com/album/forgotten-tribes-observe" target="_blank" rel="noopener" aria-label="Open aeOm — Forgotten Tribes at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="wu-lu &amp; poison anna king kong">
 <span class="crate-name"><span class="artist">Wu-Lu &amp; POiSON ANNA</span> — King Kong</span>
-<span class="crate-meta">Heaters · 2026-06-23</span>
-<a class="btn" href="https://wu-lu.bandcamp.com/album/bakerz-dozen" target="_blank" rel="noopener" aria-label="Open Wu-Lu &amp; POiSON ANNA — King Kong at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Jungle / DnB" data-playable="0" data-text="subjects summer is gone">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-23</span>
+<a class="btn" href="https://wu-lu.bandcamp.com/album/bakerz-dozen" target="_blank" rel="noopener" aria-label="Open Wu-Lu &amp; POiSON ANNA — King Kong at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Jungle / DnB" data-source="bandcamp" data-playable="0" data-text="subjects summer is gone">
 <span class="crate-name"><span class="artist">Subjects</span> — Summer Is Gone</span>
-<span class="crate-meta">Jungle / DnB · 2026-06-23</span>
-<a class="btn" href="https://deepjungle.bandcamp.com/track/subjects-summer-is-gone" target="_blank" rel="noopener" aria-label="Open Subjects — Summer Is Gone at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Jungle / DnB" data-playable="0" data-text="kid lib dubplate chop">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Jungle / DnB · Bandcamp · 2026-06-23</span>
+<a class="btn" href="https://deepjungle.bandcamp.com/track/subjects-summer-is-gone" target="_blank" rel="noopener" aria-label="Open Subjects — Summer Is Gone at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Jungle / DnB" data-source="bandcamp" data-playable="0" data-text="kid lib dubplate chop">
 <span class="crate-name"><span class="artist">Kid Lib</span> — Dubplate Chop</span>
-<span class="crate-meta">Jungle / DnB · 2026-06-23</span>
-<a class="btn" href="https://deepjungle.bandcamp.com/album/dat124-kid-lib-living-in-the-zone-remix-a-new-start-dubplate-chop-feel-4-u" target="_blank" rel="noopener" aria-label="Open Kid Lib — Dubplate Chop at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-playable="0" data-text="machinedrum bl00ms">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Jungle / DnB · Bandcamp · 2026-06-23</span>
+<a class="btn" href="https://deepjungle.bandcamp.com/album/dat124-kid-lib-living-in-the-zone-remix-a-new-start-dubplate-chop-feel-4-u" target="_blank" rel="noopener" aria-label="Open Kid Lib — Dubplate Chop at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-source="bandcamp" data-playable="0" data-text="machinedrum bl00ms">
 <span class="crate-name"><span class="artist">Machinedrum</span> — BL00MS</span>
-<span class="crate-meta">In-between · 2026-06-22</span>
-<a class="btn" href="https://machinedrum.bandcamp.com/album/bl00ms" target="_blank" rel="noopener" aria-label="Open Machinedrum — BL00MS at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-playable="1" data-text="jon casey hamdi - yum (jon casey edit)">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>In-between · Bandcamp · 2026-06-22</span>
+<a class="btn" href="https://machinedrum.bandcamp.com/album/bl00ms" target="_blank" rel="noopener" aria-label="Open Machinedrum — BL00MS at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-source="soundcloud" data-playable="1" data-text="jon casey hamdi - yum (jon casey edit)">
 <span class="crate-name"><span class="artist">Jon Casey</span> — Hamdi - Yum (Jon Casey Edit)</span>
-<span class="crate-meta">In-between · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit" data-label="Jon Casey — Hamdi - Yum (Jon Casey Edit)" aria-label="Play Jon Casey — Hamdi - Yum (Jon Casey Edit)">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-playable="1" data-text="tuzzle why you gotta">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In-between · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit" data-label="Jon Casey — Hamdi - Yum (Jon Casey Edit)" data-platform="soundcloud" aria-label="Play Jon Casey — Hamdi - Yum (Jon Casey Edit)">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit" data-label="Jon Casey — Hamdi - Yum (Jon Casey Edit)" data-platform="soundcloud" aria-label="Save Jon Casey — Hamdi - Yum (Jon Casey Edit) to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-source="soundcloud" data-playable="1" data-text="tuzzle why you gotta">
 <span class="crate-name"><span class="artist">Tuzzle</span> — Why You Gotta</span>
-<span class="crate-meta">In-between · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/tuzzle/why-you-gotta" data-label="Tuzzle — Why You Gotta" aria-label="Play Tuzzle — Why You Gotta">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-playable="1" data-text="sillyuglyuk music sounds better with wub - hawthorn (ugly dubs vol.22)">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In-between · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/tuzzle/why-you-gotta" data-label="Tuzzle — Why You Gotta" data-platform="soundcloud" aria-label="Play Tuzzle — Why You Gotta">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/tuzzle/why-you-gotta" data-label="Tuzzle — Why You Gotta" data-platform="soundcloud" aria-label="Save Tuzzle — Why You Gotta to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-source="soundcloud" data-playable="1" data-text="sillyuglyuk music sounds better with wub - hawthorn (ugly dubs vol.22)">
 <span class="crate-name"><span class="artist">SILLYUGLYUK</span> — MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)</span>
-<span class="crate-meta">In-between · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22" data-label="SILLYUGLYUK — MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)" aria-label="Play SILLYUGLYUK — MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-playable="1" data-text="bakey welcome to london - flowdan (bakey edit)">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In-between · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22" data-label="SILLYUGLYUK — MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)" data-platform="soundcloud" aria-label="Play SILLYUGLYUK — MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22" data-label="SILLYUGLYUK — MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)" data-platform="soundcloud" aria-label="Save SILLYUGLYUK — MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22) to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-source="soundcloud" data-playable="1" data-text="bakey welcome to london - flowdan (bakey edit)">
 <span class="crate-name"><span class="artist">Bakey</span> — Welcome To London - Flowdan (Bakey Edit)</span>
-<span class="crate-meta">In-between · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit" data-label="Bakey — Welcome To London - Flowdan (Bakey Edit)" aria-label="Play Bakey — Welcome To London - Flowdan (Bakey Edit)">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-playable="1" data-text="bakey backrooms">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In-between · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit" data-label="Bakey — Welcome To London - Flowdan (Bakey Edit)" data-platform="soundcloud" aria-label="Play Bakey — Welcome To London - Flowdan (Bakey Edit)">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit" data-label="Bakey — Welcome To London - Flowdan (Bakey Edit)" data-platform="soundcloud" aria-label="Save Bakey — Welcome To London - Flowdan (Bakey Edit) to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="In-between" data-source="soundcloud" data-playable="1" data-text="bakey backrooms">
 <span class="crate-name"><span class="artist">Bakey</span> — BACKROOMS</span>
-<span class="crate-meta">In-between · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/bakeymusic/backrooms-1" data-label="Bakey — BACKROOMS" aria-label="Play Bakey — BACKROOMS">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-playable="1" data-text="circuitry kioti - blur">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In-between · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/bakeymusic/backrooms-1" data-label="Bakey — BACKROOMS" data-platform="soundcloud" aria-label="Play Bakey — BACKROOMS">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/bakeymusic/backrooms-1" data-label="Bakey — BACKROOMS" data-platform="soundcloud" aria-label="Save Bakey — BACKROOMS to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-source="soundcloud" data-playable="1" data-text="circuitry kioti - blur">
 <span class="crate-name"><span class="artist">Circuitry</span> — Kioti - Blur</span>
-<span class="crate-meta">Forward / experimental · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/circuitrycollective/blur" data-label="Circuitry — Kioti - Blur" aria-label="Play Circuitry — Kioti - Blur">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-playable="1" data-text="subtoll sim simma">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Forward / experimental · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/circuitrycollective/blur" data-label="Circuitry — Kioti - Blur" data-platform="soundcloud" aria-label="Play Circuitry — Kioti - Blur">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/circuitrycollective/blur" data-label="Circuitry — Kioti - Blur" data-platform="soundcloud" aria-label="Save Circuitry — Kioti - Blur to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-source="soundcloud" data-playable="1" data-text="subtoll sim simma">
 <span class="crate-name"><span class="artist">subtoll</span> — sim simma</span>
-<span class="crate-meta">Forward / experimental · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/subtollmusic/sim-simma" data-label="subtoll — sim simma" aria-label="Play subtoll — sim simma">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-playable="1" data-text="tiaro 3 - 6 - 9 (roque x tiaro)">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Forward / experimental · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/subtollmusic/sim-simma" data-label="subtoll — sim simma" data-platform="soundcloud" aria-label="Play subtoll — sim simma">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/subtollmusic/sim-simma" data-label="subtoll — sim simma" data-platform="soundcloud" aria-label="Save subtoll — sim simma to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-source="soundcloud" data-playable="1" data-text="tiaro 3 - 6 - 9 (roque x tiaro)">
 <span class="crate-name"><span class="artist">TIARO</span> — 3 - 6 - 9 (ROQUE x TIARO)</span>
-<span class="crate-meta">Forward / experimental · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/tiarowastaken/369girlswanna" data-label="TIARO — 3 - 6 - 9 (ROQUE x TIARO)" aria-label="Play TIARO — 3 - 6 - 9 (ROQUE x TIARO)">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-playable="1" data-text="the gradient perspective cøntra x saturna - what i can do (savej remix)">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Forward / experimental · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/tiarowastaken/369girlswanna" data-label="TIARO — 3 - 6 - 9 (ROQUE x TIARO)" data-platform="soundcloud" aria-label="Play TIARO — 3 - 6 - 9 (ROQUE x TIARO)">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/tiarowastaken/369girlswanna" data-label="TIARO — 3 - 6 - 9 (ROQUE x TIARO)" data-platform="soundcloud" aria-label="Save TIARO — 3 - 6 - 9 (ROQUE x TIARO) to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Forward / experimental" data-source="soundcloud" data-playable="1" data-text="the gradient perspective cøntra x saturna - what i can do (savej remix)">
 <span class="crate-name"><span class="artist">The Gradient Perspective</span> — CØNTRA x Saturna - What I Can Do (Savej Remix)</span>
-<span class="crate-meta">Forward / experimental · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/gradientperspective/contra-x-saturna-what-i-can-1" data-label="The Gradient Perspective — CØNTRA x Saturna - What I Can Do (Savej Remix)" aria-label="Play The Gradient Perspective — CØNTRA x Saturna - What I Can Do (Savej Remix)">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-playable="1" data-text="kyber skream x kyber - id (clip)">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Forward / experimental · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/gradientperspective/contra-x-saturna-what-i-can-1" data-label="The Gradient Perspective — CØNTRA x Saturna - What I Can Do (Savej Remix)" data-platform="soundcloud" aria-label="Play The Gradient Perspective — CØNTRA x Saturna - What I Can Do (Savej Remix)">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/gradientperspective/contra-x-saturna-what-i-can-1" data-label="The Gradient Perspective — CØNTRA x Saturna - What I Can Do (Savej Remix)" data-platform="soundcloud" aria-label="Save The Gradient Perspective — CØNTRA x Saturna - What I Can Do (Savej Remix) to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-source="soundcloud" data-playable="1" data-text="kyber skream x kyber - id (clip)">
 <span class="crate-name"><span class="artist">Kyber</span> — Skream x Kyber - ID (Clip)</span>
-<span class="crate-meta">Deep cuts · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/kyber_nz/skream-x-kyber-id-clip" data-label="Kyber — Skream x Kyber - ID (Clip)" aria-label="Play Kyber — Skream x Kyber - ID (Clip)">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-playable="1" data-text="kioti astral w/skrappy">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Deep cuts · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/kyber_nz/skream-x-kyber-id-clip" data-label="Kyber — Skream x Kyber - ID (Clip)" data-platform="soundcloud" aria-label="Play Kyber — Skream x Kyber - ID (Clip)">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/kyber_nz/skream-x-kyber-id-clip" data-label="Kyber — Skream x Kyber - ID (Clip)" data-platform="soundcloud" aria-label="Save Kyber — Skream x Kyber - ID (Clip) to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-source="soundcloud" data-playable="1" data-text="kioti astral w/skrappy">
 <span class="crate-name"><span class="artist">KIOTI</span> — ASTRAL W/SKRAPPY</span>
-<span class="crate-meta">Deep cuts · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/officialkioti/astral-wskrappy-2" data-label="KIOTI — ASTRAL W/SKRAPPY" aria-label="Play KIOTI — ASTRAL W/SKRAPPY">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-playable="1" data-text="cereale cutecore01 [free dl]">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Deep cuts · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/officialkioti/astral-wskrappy-2" data-label="KIOTI — ASTRAL W/SKRAPPY" data-platform="soundcloud" aria-label="Play KIOTI — ASTRAL W/SKRAPPY">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/officialkioti/astral-wskrappy-2" data-label="KIOTI — ASTRAL W/SKRAPPY" data-platform="soundcloud" aria-label="Save KIOTI — ASTRAL W/SKRAPPY to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-source="soundcloud" data-playable="1" data-text="cereale cutecore01 [free dl]">
 <span class="crate-name"><span class="artist">Cereale</span> — Cutecore01 [FREE DL]</span>
-<span class="crate-meta">Deep cuts · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/itscereale/cutecore01" data-label="Cereale — Cutecore01 [FREE DL]" aria-label="Play Cereale — Cutecore01 [FREE DL]">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="1" data-text="riot ten riot ten - who got the wubs">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Deep cuts · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/itscereale/cutecore01" data-label="Cereale — Cutecore01 [FREE DL]" data-platform="soundcloud" aria-label="Play Cereale — Cutecore01 [FREE DL]">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/itscereale/cutecore01" data-label="Cereale — Cutecore01 [FREE DL]" data-platform="soundcloud" aria-label="Save Cereale — Cutecore01 [FREE DL] to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="riot ten riot ten - who got the wubs">
 <span class="crate-name"><span class="artist">RIOT TEN</span> — RIOT TEN - WHO GOT THE WUBS</span>
-<span class="crate-meta">Heaters · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/riotten/riot-ten-who-got-the-wubs" data-label="RIOT TEN — RIOT TEN - WHO GOT THE WUBS" aria-label="Play RIOT TEN — RIOT TEN - WHO GOT THE WUBS">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="1" data-text="skism never say die vol. 7 - mixed by skism">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/riotten/riot-ten-who-got-the-wubs" data-label="RIOT TEN — RIOT TEN - WHO GOT THE WUBS" data-platform="soundcloud" aria-label="Play RIOT TEN — RIOT TEN - WHO GOT THE WUBS">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/riotten/riot-ten-who-got-the-wubs" data-label="RIOT TEN — RIOT TEN - WHO GOT THE WUBS" data-platform="soundcloud" aria-label="Save RIOT TEN — RIOT TEN - WHO GOT THE WUBS to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="skism never say die vol. 7 - mixed by skism">
 <span class="crate-name"><span class="artist">SKisM</span> — Never Say Die Vol. 7 - Mixed by SKisM</span>
-<span class="crate-meta">Heaters · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/weareskism/never-say-die-vol-7" data-label="SKisM — Never Say Die Vol. 7 - Mixed by SKisM" aria-label="Play SKisM — Never Say Die Vol. 7 - Mixed by SKisM">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="1" data-text="efan rumble (efan bootleg)">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/weareskism/never-say-die-vol-7" data-label="SKisM — Never Say Die Vol. 7 - Mixed by SKisM" data-platform="soundcloud" aria-label="Play SKisM — Never Say Die Vol. 7 - Mixed by SKisM">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/weareskism/never-say-die-vol-7" data-label="SKisM — Never Say Die Vol. 7 - Mixed by SKisM" data-platform="soundcloud" aria-label="Save SKisM — Never Say Die Vol. 7 - Mixed by SKisM to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="efan rumble (efan bootleg)">
 <span class="crate-name"><span class="artist">efan</span> — RUMBLE (efan bootleg)</span>
-<span class="crate-meta">Heaters · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/efanuk/rumbleukbass" data-label="efan — RUMBLE (efan bootleg)" aria-label="Play efan — RUMBLE (efan bootleg)">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="1" data-text="aylen aylen - bomba">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/efanuk/rumbleukbass" data-label="efan — RUMBLE (efan bootleg)" data-platform="soundcloud" aria-label="Play efan — RUMBLE (efan bootleg)">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/efanuk/rumbleukbass" data-label="efan — RUMBLE (efan bootleg)" data-platform="soundcloud" aria-label="Save efan — RUMBLE (efan bootleg) to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="aylen aylen - bomba">
 <span class="crate-name"><span class="artist">Aylen</span> — Aylen - Bomba</span>
-<span class="crate-meta">Heaters · 2026-06-22</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/aylen/aylen-bomba" data-label="Aylen — Aylen - Bomba" aria-label="Play Aylen — Aylen - Bomba">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="In rotation" data-playable="1" data-text="wz speakers died [infernal sounds premiere]">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-06-22</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/aylen/aylen-bomba" data-label="Aylen — Aylen - Bomba" data-platform="soundcloud" aria-label="Play Aylen — Aylen - Bomba">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/aylen/aylen-bomba" data-label="Aylen — Aylen - Bomba" data-platform="soundcloud" aria-label="Save Aylen — Aylen - Bomba to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="In rotation" data-source="soundcloud" data-playable="1" data-text="wz speakers died [infernal sounds premiere]">
 <span class="crate-name"><span class="artist">WZ</span> — Speakers Died [INFERNAL SOUNDS PREMIERE]</span>
-<span class="crate-meta">In rotation · 2026-06-19</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/infernal_sounds/wz-speakers-died" data-label="WZ — Speakers Died [INFERNAL SOUNDS PREMIERE]" aria-label="Play WZ — Speakers Died [INFERNAL SOUNDS PREMIERE]">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="In rotation" data-playable="1" data-text="garrett fields steady now (locus041)">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In rotation · SoundCloud · 2026-06-19</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/infernal_sounds/wz-speakers-died" data-label="WZ — Speakers Died [INFERNAL SOUNDS PREMIERE]" data-platform="soundcloud" aria-label="Play WZ — Speakers Died [INFERNAL SOUNDS PREMIERE]">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/infernal_sounds/wz-speakers-died" data-label="WZ — Speakers Died [INFERNAL SOUNDS PREMIERE]" data-platform="soundcloud" aria-label="Save WZ — Speakers Died [INFERNAL SOUNDS PREMIERE] to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="In rotation" data-source="soundcloud" data-playable="1" data-text="garrett fields steady now (locus041)">
 <span class="crate-name"><span class="artist">Garrett Fields</span> — Steady Now (LOCUS041)</span>
-<span class="crate-meta">In rotation · 2026-06-19</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/locus_sound/garrett-fields-steady-now" data-label="Garrett Fields — Steady Now (LOCUS041)" aria-label="Play Garrett Fields — Steady Now (LOCUS041)">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="In rotation" data-playable="1" data-text="pharma dem move vip">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In rotation · SoundCloud · 2026-06-19</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/locus_sound/garrett-fields-steady-now" data-label="Garrett Fields — Steady Now (LOCUS041)" data-platform="soundcloud" aria-label="Play Garrett Fields — Steady Now (LOCUS041)">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/locus_sound/garrett-fields-steady-now" data-label="Garrett Fields — Steady Now (LOCUS041)" data-platform="soundcloud" aria-label="Save Garrett Fields — Steady Now (LOCUS041) to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="In rotation" data-source="soundcloud" data-playable="1" data-text="pharma dem move vip">
 <span class="crate-name"><span class="artist">Pharma</span> — Dem Move VIP</span>
-<span class="crate-meta">In rotation · 2026-06-19</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/duploc/pharma-dem-move-vip" data-label="Pharma — Dem Move VIP" aria-label="Play Pharma — Dem Move VIP">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="In rotation" data-playable="1" data-text="cessman murderers">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In rotation · SoundCloud · 2026-06-19</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/duploc/pharma-dem-move-vip" data-label="Pharma — Dem Move VIP" data-platform="soundcloud" aria-label="Play Pharma — Dem Move VIP">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/duploc/pharma-dem-move-vip" data-label="Pharma — Dem Move VIP" data-platform="soundcloud" aria-label="Save Pharma — Dem Move VIP to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="In rotation" data-source="soundcloud" data-playable="1" data-text="cessman murderers">
 <span class="crate-name"><span class="artist">Cessman</span> — Murderers</span>
-<span class="crate-meta">In rotation · 2026-06-19</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/cessman/cessman-murderers" data-label="Cessman — Murderers" aria-label="Play Cessman — Murderers">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-playable="0" data-text="depth watch it">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>In rotation · SoundCloud · 2026-06-19</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/cessman/cessman-murderers" data-label="Cessman — Murderers" data-platform="soundcloud" aria-label="Play Cessman — Murderers">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/cessman/cessman-murderers" data-label="Cessman — Murderers" data-platform="soundcloud" aria-label="Save Cessman — Murderers to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-source="bandcamp" data-playable="0" data-text="depth watch it">
 <span class="crate-name"><span class="artist">Depth</span> — Watch It</span>
-<span class="crate-meta">Deep cuts · 2026-06-19</span>
-<a class="btn" href="https://depthdub.bandcamp.com/track/watch-it" target="_blank" rel="noopener" aria-label="Open Depth — Watch It at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-playable="1" data-text="lysergene shorty dub [free dl]">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Deep cuts · Bandcamp · 2026-06-19</span>
+<a class="btn" href="https://depthdub.bandcamp.com/track/watch-it" target="_blank" rel="noopener" aria-label="Open Depth — Watch It at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-source="soundcloud" data-playable="1" data-text="lysergene shorty dub [free dl]">
 <span class="crate-name"><span class="artist">Lysergene</span> — Shorty Dub [Free DL]</span>
-<span class="crate-meta">Deep cuts · 2026-06-19</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/lysergene/shorty-dub-free-dl" data-label="Lysergene — Shorty Dub [Free DL]" aria-label="Play Lysergene — Shorty Dub [Free DL]">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-playable="0" data-text="soa420 red island">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Deep cuts · SoundCloud · 2026-06-19</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/lysergene/shorty-dub-free-dl" data-label="Lysergene — Shorty Dub [Free DL]" data-platform="soundcloud" aria-label="Play Lysergene — Shorty Dub [Free DL]">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/lysergene/shorty-dub-free-dl" data-label="Lysergene — Shorty Dub [Free DL]" data-platform="soundcloud" aria-label="Save Lysergene — Shorty Dub [Free DL] to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-source="bandcamp" data-playable="0" data-text="soa420 red island">
 <span class="crate-name"><span class="artist">Soa420</span> — Red Island</span>
-<span class="crate-meta">Deep cuts · 2026-06-19</span>
-<a class="btn" href="https://soa420.bandcamp.com/track/red-island" target="_blank" rel="noopener" aria-label="Open Soa420 — Red Island at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="subjects come on / summer is gone / be mine (dat123)">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Deep cuts · Bandcamp · 2026-06-19</span>
+<a class="btn" href="https://soa420.bandcamp.com/track/red-island" target="_blank" rel="noopener" aria-label="Open Soa420 — Red Island at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="subjects come on / summer is gone / be mine (dat123)">
 <span class="crate-name"><span class="artist">Subjects</span> — Come On / Summer Is Gone / Be Mine (DAT123)</span>
-<span class="crate-meta">Heaters · 2026-06-19</span>
-<a class="btn" href="https://deepjungle.bandcamp.com/album/dat123-subjects-come-on-summer-is-gone-be-mine" target="_blank" rel="noopener" aria-label="Open Subjects — Come On / Summer Is Gone / Be Mine (DAT123) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="kid lib living in the zone remix / a new start / dubplate chop / feel 4 u (dat124)">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-19</span>
+<a class="btn" href="https://deepjungle.bandcamp.com/album/dat123-subjects-come-on-summer-is-gone-be-mine" target="_blank" rel="noopener" aria-label="Open Subjects — Come On / Summer Is Gone / Be Mine (DAT123) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="kid lib living in the zone remix / a new start / dubplate chop / feel 4 u (dat124)">
 <span class="crate-name"><span class="artist">Kid Lib</span> — Living In The Zone Remix / A New Start / Dubplate Chop / Feel 4 U (DAT124)</span>
-<span class="crate-meta">Heaters · 2026-06-19</span>
-<a class="btn" href="https://deepjungle.bandcamp.com/" target="_blank" rel="noopener" aria-label="Open Kid Lib — Living In The Zone Remix / A New Start / Dubplate Chop / Feel 4 U (DAT124) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="va (hebbe / biome / jafu) deep heads dubstep vol.4 v2">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-19</span>
+<a class="btn" href="https://deepjungle.bandcamp.com/" target="_blank" rel="noopener" aria-label="Open Kid Lib — Living In The Zone Remix / A New Start / Dubplate Chop / Feel 4 U (DAT124) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="va (hebbe / biome / jafu) deep heads dubstep vol.4 v2">
 <span class="crate-name"><span class="artist">VA (Hebbe / Biome / Jafu)</span> — Deep Heads Dubstep Vol.4 V2</span>
-<span class="crate-meta">Heaters · 2026-06-19</span>
-<a class="btn" href="https://deepheads.bandcamp.com/album/deep-heads-dubstep-vol-4-v2-digital-tracks" target="_blank" rel="noopener" aria-label="Open VA (Hebbe / Biome / Jafu) — Deep Heads Dubstep Vol.4 V2 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="lemon d all junglists vol 2 (incl. dubwise cuts)">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-19</span>
+<a class="btn" href="https://deepheads.bandcamp.com/album/deep-heads-dubstep-vol-4-v2-digital-tracks" target="_blank" rel="noopener" aria-label="Open VA (Hebbe / Biome / Jafu) — Deep Heads Dubstep Vol.4 V2 at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="lemon d all junglists vol 2 (incl. dubwise cuts)">
 <span class="crate-name"><span class="artist">Lemon D</span> — All Junglists Vol 2 (incl. dubwise cuts)</span>
-<span class="crate-meta">Heaters · 2026-06-19</span>
-<a class="btn" href="https://infraredrecords.bandcamp.com/album/lemon-d-all-junglists-vol-2" target="_blank" rel="noopener" aria-label="Open Lemon D — All Junglists Vol 2 (incl. dubwise cuts) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="various artists best new 140 / deep dubstep: june 2026 (chart)">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-19</span>
+<a class="btn" href="https://infraredrecords.bandcamp.com/album/lemon-d-all-junglists-vol-2" target="_blank" rel="noopener" aria-label="Open Lemon D — All Junglists Vol 2 (incl. dubwise cuts) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="source" data-playable="0" data-text="various artists best new 140 / deep dubstep: june 2026 (chart)">
 <span class="crate-name"><span class="artist">Various Artists</span> — Best New 140 / Deep Dubstep: June 2026 (chart)</span>
-<span class="crate-meta">Heaters · 2026-06-19</span>
-<a class="btn" href="https://www.beatport.com/chart/best-new-140-deep-dubstep-june/777940" target="_blank" rel="noopener" aria-label="Open Various Artists — Best New 140 / Deep Dubstep: June 2026 (chart) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="100mado front mission ep">
+<span class="crate-meta"><span class="src-dot src-source" aria-hidden="true"></span>Heaters · Other · 2026-06-19</span>
+<a class="btn" href="https://www.beatport.com/chart/best-new-140-deep-dubstep-june/777940" target="_blank" rel="noopener" aria-label="Open Various Artists — Best New 140 / Deep Dubstep: June 2026 (chart) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="100mado front mission ep">
 <span class="crate-name"><span class="artist">100mado</span> — Front Mission EP</span>
-<span class="crate-meta">Heaters · 2026-06-19</span>
-<a class="btn" href="https://backtochill.bandcamp.com/" target="_blank" rel="noopener" aria-label="Open 100mado — Front Mission EP at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-playable="0" data-text="kyber relentless">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-19</span>
+<a class="btn" href="https://backtochill.bandcamp.com/" target="_blank" rel="noopener" aria-label="Open 100mado — Front Mission EP at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-source="bandcamp" data-playable="0" data-text="kyber relentless">
 <span class="crate-name"><span class="artist">Kyber</span> — Relentless</span>
-<span class="crate-meta">Deep cuts · 2026-06-18</span>
-<a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/relentless" target="_blank" rel="noopener" aria-label="Open Kyber — Relentless at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="cøntra big skank / six four">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Deep cuts · Bandcamp · 2026-06-18</span>
+<a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/relentless" target="_blank" rel="noopener" aria-label="Open Kyber — Relentless at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="cøntra big skank / six four">
 <span class="crate-name"><span class="artist">CØNTRA</span> — Big Skank / Six Four</span>
-<span class="crate-meta">Heaters · 2026-06-18</span>
-<a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/big-skank-six-four" target="_blank" rel="noopener" aria-label="Open CØNTRA — Big Skank / Six Four at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="oddkut bantha">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-18</span>
+<a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/big-skank-six-four" target="_blank" rel="noopener" aria-label="Open CØNTRA — Big Skank / Six Four at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="oddkut bantha">
 <span class="crate-name"><span class="artist">Oddkut</span> — Bantha</span>
-<span class="crate-meta">Heaters · 2026-06-18</span>
-<a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/bantha" target="_blank" rel="noopener" aria-label="Open Oddkut — Bantha at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="headland baggs / chronic">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-18</span>
+<a class="btn" href="https://deepdarkdangerous.bandcamp.com/album/bantha" target="_blank" rel="noopener" aria-label="Open Oddkut — Bantha at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="headland baggs / chronic">
 <span class="crate-name"><span class="artist">Headland</span> — Baggs / Chronic</span>
-<span class="crate-meta">Heaters · 2026-06-18</span>
-<a class="btn" href="https://headlandnz.bandcamp.com/album/h-2-headland-baggs-chronic" target="_blank" rel="noopener" aria-label="Open Headland — Baggs / Chronic at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="goth-trad be free">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-18</span>
+<a class="btn" href="https://headlandnz.bandcamp.com/album/h-2-headland-baggs-chronic" target="_blank" rel="noopener" aria-label="Open Headland — Baggs / Chronic at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="goth-trad be free">
 <span class="crate-name"><span class="artist">GOTH-TRAD</span> — Be Free</span>
-<span class="crate-meta">Heaters · 2026-06-18</span>
-<a class="btn" href="https://backtochilltokyo.bandcamp.com/track/be-free" target="_blank" rel="noopener" aria-label="Open GOTH-TRAD — Be Free at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="muhla sultanate / khirra">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-18</span>
+<a class="btn" href="https://backtochilltokyo.bandcamp.com/track/be-free" target="_blank" rel="noopener" aria-label="Open GOTH-TRAD — Be Free at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="muhla sultanate / khirra">
 <span class="crate-name"><span class="artist">Muhla</span> — Sultanate / Khirra</span>
-<span class="crate-meta">Heaters · 2026-06-18</span>
-<a class="btn" href="https://140ninja.bandcamp.com/album/genjitsu" target="_blank" rel="noopener" aria-label="Open Muhla — Sultanate / Khirra at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-playable="0" data-text="soukah system reload">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-18</span>
+<a class="btn" href="https://140ninja.bandcamp.com/album/genjitsu" target="_blank" rel="noopener" aria-label="Open Muhla — Sultanate / Khirra at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Deep cuts" data-source="bandcamp" data-playable="0" data-text="soukah system reload">
 <span class="crate-name"><span class="artist">Soukah</span> — System Reload</span>
-<span class="crate-meta">Deep cuts · 2026-06-17</span>
-<a class="btn" href="https://foundationaudio.bandcamp.com/track/system-reload" target="_blank" rel="noopener" aria-label="Open Soukah — System Reload at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="1" data-text="ternion sound airlock [duploc//010 xxl]">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Deep cuts · Bandcamp · 2026-06-17</span>
+<a class="btn" href="https://foundationaudio.bandcamp.com/track/system-reload" target="_blank" rel="noopener" aria-label="Open Soukah — System Reload at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="ternion sound airlock [duploc//010 xxl]">
 <span class="crate-name"><span class="artist">Ternion Sound</span> — Airlock [DUPLOC//010 XXL]</span>
-<span class="crate-meta">Heaters · 2026-06-17</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/duploc/ternion-sound-airlock" data-label="Ternion Sound — Airlock [DUPLOC//010 XXL]" aria-label="Play Ternion Sound — Airlock [DUPLOC//010 XXL]">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="1" data-text="flava d, skalah, d double e different">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-06-17</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/duploc/ternion-sound-airlock" data-label="Ternion Sound — Airlock [DUPLOC//010 XXL]" data-platform="soundcloud" aria-label="Play Ternion Sound — Airlock [DUPLOC//010 XXL]">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/duploc/ternion-sound-airlock" data-label="Ternion Sound — Airlock [DUPLOC//010 XXL]" data-platform="soundcloud" aria-label="Save Ternion Sound — Airlock [DUPLOC//010 XXL] to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="flava d, skalah, d double e different">
 <span class="crate-name"><span class="artist">Flava D, SKALAH, D Double E</span> — Different</span>
-<span class="crate-meta">Heaters · 2026-06-17</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/marakirecords/flavad-skalah-ddoublee-different" data-label="Flava D, SKALAH, D Double E — Different" aria-label="Play Flava D, SKALAH, D Double E — Different">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="skream &amp; rokar rampage">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-06-17</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/marakirecords/flavad-skalah-ddoublee-different" data-label="Flava D, SKALAH, D Double E — Different" data-platform="soundcloud" aria-label="Play Flava D, SKALAH, D Double E — Different">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/marakirecords/flavad-skalah-ddoublee-different" data-label="Flava D, SKALAH, D Double E — Different" data-platform="soundcloud" aria-label="Save Flava D, SKALAH, D Double E — Different to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="skream &amp; rokar rampage">
 <span class="crate-name"><span class="artist">Skream &amp; ROKAR</span> — Rampage</span>
-<span class="crate-meta">Heaters · 2026-06-17</span>
-<a class="btn" href="https://skreamizm.bandcamp.com/track/rampage" target="_blank" rel="noopener" aria-label="Open Skream &amp; ROKAR — Rampage at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="1" data-text="iseeu &amp; fossils loco">
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-06-17</span>
+<a class="btn" href="https://skreamizm.bandcamp.com/track/rampage" target="_blank" rel="noopener" aria-label="Open Skream &amp; ROKAR — Rampage at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="iseeu &amp; fossils loco">
 <span class="crate-name"><span class="artist">ISEEU &amp; Fossils</span> — LOCO</span>
-<span class="crate-meta">Heaters · 2026-06-15</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/subcarbon/iseeu-fossils-loco-1" data-label="ISEEU &amp; Fossils — LOCO" aria-label="Play ISEEU &amp; Fossils — LOCO">Play</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="disrupta, latte, b live omg (distinct motive remix)">
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-06-15</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/subcarbon/iseeu-fossils-loco-1" data-label="ISEEU &amp; Fossils — LOCO" data-platform="soundcloud" aria-label="Play ISEEU &amp; Fossils — LOCO">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/subcarbon/iseeu-fossils-loco-1" data-label="ISEEU &amp; Fossils — LOCO" data-platform="soundcloud" aria-label="Save ISEEU &amp; Fossils — LOCO to my queue" title="Save to my queue">+</button></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="source" data-playable="0" data-text="disrupta, latte, b live omg (distinct motive remix)">
 <span class="crate-name"><span class="artist">Disrupta, Latte, B Live</span> — OMG (Distinct Motive Remix)</span>
-<span class="crate-meta">Heaters · 2026-06-10</span>
-<a class="btn" href="https://www.beatport.com/track/omg/28895652" target="_blank" rel="noopener" aria-label="Open Disrupta, Latte, B Live — OMG (Distinct Motive Remix) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="shosh &amp; rhiannon roze hot">
+<span class="crate-meta"><span class="src-dot src-source" aria-hidden="true"></span>Heaters · Other · 2026-06-10</span>
+<a class="btn" href="https://www.beatport.com/track/omg/28895652" target="_blank" rel="noopener" aria-label="Open Disrupta, Latte, B Live — OMG (Distinct Motive Remix) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="source" data-playable="0" data-text="shosh &amp; rhiannon roze hot">
 <span class="crate-name"><span class="artist">SHOSH &amp; Rhiannon Roze</span> — Hot</span>
-<span class="crate-meta">Heaters · 2026-06-10</span>
-<a class="btn" href="https://www.beatport.com/track/hot/28702726" target="_blank" rel="noopener" aria-label="Open SHOSH &amp; Rhiannon Roze — Hot at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="sempa &amp; fshr ft. trilla shatter">
+<span class="crate-meta"><span class="src-dot src-source" aria-hidden="true"></span>Heaters · Other · 2026-06-10</span>
+<a class="btn" href="https://www.beatport.com/track/hot/28702726" target="_blank" rel="noopener" aria-label="Open SHOSH &amp; Rhiannon Roze — Hot at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="source" data-playable="0" data-text="sempa &amp; fshr ft. trilla shatter">
 <span class="crate-name"><span class="artist">Sempa &amp; FSHR ft. Trilla</span> — Shatter</span>
-<span class="crate-meta">Heaters · 2026-06-10</span>
-<a class="btn" href="https://www.beatport.com/track/shatter/29085141" target="_blank" rel="noopener" aria-label="Open Sempa &amp; FSHR ft. Trilla — Shatter at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="tape b &amp; of the trees brackish">
+<span class="crate-meta"><span class="src-dot src-source" aria-hidden="true"></span>Heaters · Other · 2026-06-10</span>
+<a class="btn" href="https://www.beatport.com/track/shatter/29085141" target="_blank" rel="noopener" aria-label="Open Sempa &amp; FSHR ft. Trilla — Shatter at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="source" data-playable="0" data-text="tape b &amp; of the trees brackish">
 <span class="crate-name"><span class="artist">Tape B &amp; Of The Trees</span> — Brackish</span>
-<span class="crate-meta">Heaters · 2026-06-10</span>
-<a class="btn" href="https://www.beatport.com/track/brackish/29144834" target="_blank" rel="noopener" aria-label="Open Tape B &amp; Of The Trees — Brackish at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="en:vy tecc">
+<span class="crate-meta"><span class="src-dot src-source" aria-hidden="true"></span>Heaters · Other · 2026-06-10</span>
+<a class="btn" href="https://www.beatport.com/track/brackish/29144834" target="_blank" rel="noopener" aria-label="Open Tape B &amp; Of The Trees — Brackish at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="source" data-playable="0" data-text="en:vy tecc">
 <span class="crate-name"><span class="artist">En:vy</span> — TECC</span>
-<span class="crate-meta">Heaters · 2026-06-10</span>
-<a class="btn" href="https://www.beatport.com/track/tecc/28833069" target="_blank" rel="noopener" aria-label="Open En:vy — TECC at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="0" data-text="inez &amp; subtronics eyes cut deeper (virx remix)">
+<span class="crate-meta"><span class="src-dot src-source" aria-hidden="true"></span>Heaters · Other · 2026-06-10</span>
+<a class="btn" href="https://www.beatport.com/track/tecc/28833069" target="_blank" rel="noopener" aria-label="Open En:vy — TECC at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="source" data-playable="0" data-text="inez &amp; subtronics eyes cut deeper (virx remix)">
 <span class="crate-name"><span class="artist">Inez &amp; Subtronics</span> — Eyes Cut Deeper (VIRX Remix)</span>
-<span class="crate-meta">Heaters · 2026-06-10</span>
-<a class="btn" href="https://www.beatport.com/track/eyes-cut-deeper/29104277" target="_blank" rel="noopener" aria-label="Open Inez &amp; Subtronics — Eyes Cut Deeper (VIRX Remix) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-playable="1" data-text="amor satyr &amp; yunk oxi doki">
+<span class="crate-meta"><span class="src-dot src-source" aria-hidden="true"></span>Heaters · Other · 2026-06-10</span>
+<a class="btn" href="https://www.beatport.com/track/eyes-cut-deeper/29104277" target="_blank" rel="noopener" aria-label="Open Inez &amp; Subtronics — Eyes Cut Deeper (VIRX Remix) at the original source">Open release ↗</a></div><div class="crate-row" data-month="2026-06" data-lane="Heaters" data-source="soundcloud" data-playable="1" data-text="amor satyr &amp; yunk oxi doki">
 <span class="crate-name"><span class="artist">Amor Satyr &amp; Yunk</span> — Oxi Doki</span>
-<span class="crate-meta">Heaters · 2026-06-10</span>
-<button class="btn crate-play" data-url="https://soundcloud.com/tetevide-tv/amor-satyr-yunk-oxi-doki" data-label="Amor Satyr &amp; Yunk — Oxi Doki" aria-label="Play Amor Satyr &amp; Yunk — Oxi Doki">Play</button></div></div>
+<span class="crate-meta"><span class="src-dot src-soundcloud" aria-hidden="true"></span>Heaters · SoundCloud · 2026-06-10</span>
+<button class="btn crate-play" data-url="https://soundcloud.com/tetevide-tv/amor-satyr-yunk-oxi-doki" data-label="Amor Satyr &amp; Yunk — Oxi Doki" data-platform="soundcloud" aria-label="Play Amor Satyr &amp; Yunk — Oxi Doki">Play</button><button class="btn crate-save" data-url="https://soundcloud.com/tetevide-tv/amor-satyr-yunk-oxi-doki" data-label="Amor Satyr &amp; Yunk — Oxi Doki" data-platform="soundcloud" aria-label="Save Amor Satyr &amp; Yunk — Oxi Doki to my queue" title="Save to my queue">+</button></div></div>
 <p class='count' id="crate-count">112 records and counting.</p>
 <script>
 (function() {
-  var lane = "all", month = "all", playOnly = false;
+  var lane = "all", month = "all", source = "all", playOnly = false;
   function apply() {
     var q = (document.getElementById("crate-q").value || "").toLowerCase();
     document.querySelectorAll(".crate-row").forEach(function(r) {
       var ok = (lane === "all" || r.dataset.lane === lane) &&
                (month === "all" || r.dataset.month === month) &&
+               (source === "all" || r.dataset.source === source) &&
                (!playOnly || r.dataset.playable === "1") &&
                (!q || r.dataset.text.indexOf(q) > -1);
       r.style.display = ok ? "" : "none";
@@ -608,11 +681,20 @@ body { padding-bottom: 148px; }
       apply();
     };
   });
-  document.querySelectorAll(".chip:not(.mchip)").forEach(function(c) {
+  document.querySelectorAll(".schip").forEach(function(c) {
+    c.onclick = function() {
+      source = c.dataset.source;
+      document.querySelectorAll(".schip").forEach(function(x) { x.classList.remove("on"); x.setAttribute("aria-pressed", "false"); });
+      c.classList.add("on");
+      c.setAttribute("aria-pressed", "true");
+      apply();
+    };
+  });
+  document.querySelectorAll(".chip:not(.mchip):not(.schip)").forEach(function(c) {
     c.onclick = function() {
       if (c.dataset.chip === "playable") { playOnly = !playOnly; c.classList.toggle("on", playOnly); c.setAttribute("aria-pressed", String(playOnly)); }
       else { lane = c.dataset.chip;
-        document.querySelectorAll(".chip").forEach(function(x) { if (x.dataset.chip !== "playable") { x.classList.remove("on"); x.setAttribute("aria-pressed", "false"); } });
+        document.querySelectorAll(".chip:not(.mchip):not(.schip)").forEach(function(x) { if (x.dataset.chip !== "playable") { x.classList.remove("on"); x.setAttribute("aria-pressed", "false"); } });
         c.classList.add("on"); c.setAttribute("aria-pressed", "true"); }
       apply();
     };
@@ -629,19 +711,75 @@ body { padding-bottom: 148px; }
       if (chip) chip.click();
     }
   })();
+  function queueEntries(rows) {
+    return rows.map(function(r) {
+      var b = r.querySelector(".crate-play");
+      var parts = b.dataset.label.split(" — ");
+      return { artist: parts[0] || "", title: parts.slice(1).join(" — "), url: b.dataset.url, platform: b.dataset.platform };
+    });
+  }
   document.getElementById("crate-playall").onclick = function() {
     var rows = Array.prototype.filter.call(document.querySelectorAll(".crate-row"),
       function(r) { return r.style.display !== "none" && r.dataset.playable === "1"; });
     if (!rows.length || !window.NS_QUEUE) return;
     NS_QUEUE.length = 0;
-    rows.forEach(function(r) {
-      var b = r.querySelector(".crate-play");
-      var parts = b.dataset.label.split(" — ");
-      NS_QUEUE.push({ artist: parts[0] || "", title: parts.slice(1).join(" — "), url: b.dataset.url,
-                      platform: b.dataset.url.indexOf("spotify") > -1 ? "spotify" : "soundcloud" });
-    });
+    queueEntries(rows).forEach(function(t) { NS_QUEUE.push(t); });
     if (window.nsPlayAt) nsPlayAt(0);
   };
+
+  // --- My queue: client-side, no login, saved across visits via localStorage ---
+  var MQ_KEY = "ns_my_queue";
+  function mqLoad() {
+    try { return JSON.parse(localStorage.getItem(MQ_KEY) || "[]"); } catch (e) { return []; }
+  }
+  function mqSave(list) {
+    try { localStorage.setItem(MQ_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+  function mqRender() {
+    var list = mqLoad();
+    document.getElementById("my-queue-count").textContent = list.length;
+    var el = document.getElementById("my-queue-list");
+    if (!list.length) { el.innerHTML = '<p class="count">Nothing saved yet — hit + on any playable record.</p>'; return; }
+    el.innerHTML = list.map(function(t, i) {
+      return '<div class="crate-row"><span class="crate-name"><span class="artist">' +
+        (t.artist || '').replace(/</g, '&lt;') + '</span> — ' + (t.title || '').replace(/</g, '&lt;') +
+        '</span><span class="crate-meta"><span class="src-dot src-' + (t.platform || 'source') + '" aria-hidden="true"></span>' + (t.platform || '') +
+        '</span><button class="btn mq-remove" data-i="' + i + '">Remove</button></div>';
+    }).join('');
+    el.querySelectorAll('.mq-remove').forEach(function(b) {
+      b.onclick = function() {
+        var list2 = mqLoad();
+        list2.splice(parseInt(b.dataset.i, 10), 1);
+        mqSave(list2); mqRender();
+      };
+    });
+  }
+  document.querySelectorAll(".crate-save").forEach(function(b) {
+    b.onclick = function() {
+      var list = mqLoad();
+      var url = b.dataset.url;
+      if (list.some(function(t) { return t.url === url; })) return;
+      var parts = b.dataset.label.split(" — ");
+      list.push({ artist: parts[0] || "", title: parts.slice(1).join(" — "), url: url, platform: b.dataset.platform });
+      mqSave(list); mqRender();
+      var was = b.textContent; b.textContent = "✓"; setTimeout(function() { b.textContent = was; }, 900);
+    };
+  });
+  document.getElementById("my-queue-toggle").onclick = function() {
+    var panel = document.getElementById("my-queue-panel");
+    panel.style.display = panel.style.display === "none" ? "block" : "none";
+  };
+  document.getElementById("my-queue-play").onclick = function() {
+    var list = mqLoad();
+    if (!list.length || !window.NS_QUEUE) return;
+    NS_QUEUE.length = 0;
+    list.forEach(function(t) { NS_QUEUE.push(t); });
+    if (window.nsPlayAt) nsPlayAt(0);
+  };
+  document.getElementById("my-queue-clear").onclick = function() {
+    mqSave([]); mqRender();
+  };
+  mqRender();
 })();
 </script>
 <footer>NO SERVICE · music selected by Xanzîbar · <a href="site-notes.html">site notes</a></footer>
@@ -654,15 +792,20 @@ body { padding-bottom: 148px; }
   <i class="ns-sigil" style="--x:76%;--y:72%;--r:8deg;--s:.86"></i>
 </div>
 <div id="ns-bar">
+  <img id="ns-art" alt="" aria-hidden="true">
   <button class="nsbtn" id="ns-play" onclick="nsToggle()">▶ Play</button>
-  <button class="nsbtn" onclick="nsStep(-1)" aria-label="Previous track">⏮ Previous</button>
-  <button class="nsbtn" onclick="nsStep(1)" aria-label="Next track">Next ⏭</button>
+  <button class="nsbtn" onclick="nsStep(-1)" aria-label="Previous track">Back</button>
+  <button class="nsbtn" onclick="nsStep(1)" aria-label="Next track">Next</button>
   <button class="nsbtn" onclick="nsShuffle()">Shuffle</button>
+  <button class="nsbtn" id="ns-queue-btn" onclick="nsQueueToggle()" aria-expanded="false">Queue ▾</button>
   <div id="ns-now" aria-live="polite">
-    <strong id="ns-now-title">NO SERVICE radio</strong>
-    <span id="ns-now-sub">Choose Play once—the station continues from there.</span>
+    <strong id="ns-now-title">Ready when you are</strong>
+    <span id="ns-now-sub">Press play. The queue keeps moving.</span>
+    <div id="ns-progress-wrap">
+      <div id="ns-progress" onclick="nsSeekTo(event.clientX)" role="slider" aria-label="Seek position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0" onkeydown="nsSeekKey(event)"><div id="ns-progress-fill"></div></div>
+      <span id="ns-progress-time">0:00 / 0:00</span>
+    </div>
   </div>
-  <span id="ns-mode">CONTINUOUS</span>
   <label id="ns-volume-wrap" for="ns-volume">
     <span>Volume</span>
     <input id="ns-volume" type="range" min="0" max="100" value="72" oninput="nsSetVolume(this.value)">
@@ -670,10 +813,20 @@ body { padding-bottom: 148px; }
   </label>
   <iframe id="ns-frame" allow="autoplay"></iframe>
   <iframe id="ns-spotify-frame" allow="encrypted-media; autoplay; clipboard-write"></iframe>
+  <div id="ns-yt-frame"></div>
+  <iframe id="ns-bandcamp-frame" allow="autoplay" seamless></iframe>
 </div>
+<div id="ns-queue-panel"></div>
 <script src="https://w.soundcloud.com/player/api.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
-var NS_QUEUE = [{"artist": "CALMFY", "title": "Frog Decisions (Calmfy Bootleg)", "url": "https://soundcloud.com/itscalmfy/frog-decisions-calmfy-bootleg", "platform": "soundcloud"}, {"artist": "GUNS", "title": "Taksim", "url": "https://soundcloud.com/gunselsenol/taksim", "platform": "soundcloud"}, {"artist": "Jon Cass", "title": "GOT2GO", "url": "https://soundcloud.com/joncassss/g2g", "platform": "soundcloud"}, {"artist": "mai", "title": "balance.", "url": "https://soundcloud.com/maiyabi/balance", "platform": "soundcloud"}, {"artist": "K.L.O", "title": "Selotape", "url": "https://soundcloud.com/kloofficial/selotape", "platform": "soundcloud"}, {"artist": "Astronomic", "title": "Water falls", "url": "https://soundcloud.com/astronomics/water-falls_2", "platform": "soundcloud"}, {"artist": "SL33PY", "title": "TUG", "url": "https://soundcloud.com/shlumpedsleepy/tug-1", "platform": "soundcloud"}, {"artist": "Eternol", "title": "Invasion", "url": "https://soundcloud.com/eternol/eternol-invasion", "platform": "soundcloud"}, {"artist": "CliqClaq", "title": "Velocity", "url": "https://soundcloud.com/cliqclaq/velocity", "platform": "soundcloud"}, {"artist": "TIME WZRD", "title": "Me N You", "url": "https://soundcloud.com/timewzrdmusic/menyou", "platform": "soundcloud"}, {"artist": "Dmtree", "title": "Corruption", "url": "https://soundcloud.com/dmtreemusic/corruption", "platform": "soundcloud"}, {"artist": "DAVINXI", "title": "Elevia", "url": "https://soundcloud.com/djdavinxi/elevia", "platform": "soundcloud"}, {"artist": "in:sane", "title": "You're Not There", "url": "https://soundcloud.com/insane_dnb/insane-youre-not-there", "platform": "soundcloud"}, {"artist": "Jon Casey", "title": "Hamdi - Yum (Jon Casey Edit)", "url": "https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit", "platform": "soundcloud"}, {"artist": "Tuzzle", "title": "Why You Gotta", "url": "https://soundcloud.com/tuzzle/why-you-gotta", "platform": "soundcloud"}, {"artist": "SILLYUGLYUK", "title": "MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)", "url": "https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22", "platform": "soundcloud"}, {"artist": "Bakey", "title": "Welcome To London - Flowdan (Bakey Edit)", "url": "https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit", "platform": "soundcloud"}, {"artist": "Bakey", "title": "BACKROOMS", "url": "https://soundcloud.com/bakeymusic/backrooms-1", "platform": "soundcloud"}, {"artist": "Circuitry", "title": "Kioti - Blur", "url": "https://soundcloud.com/circuitrycollective/blur", "platform": "soundcloud"}, {"artist": "subtoll", "title": "sim simma", "url": "https://soundcloud.com/subtollmusic/sim-simma", "platform": "soundcloud"}, {"artist": "TIARO", "title": "3 - 6 - 9 (ROQUE x TIARO)", "url": "https://soundcloud.com/tiarowastaken/369girlswanna", "platform": "soundcloud"}, {"artist": "The Gradient Perspective", "title": "CØNTRA x Saturna - What I Can Do (Savej Remix)", "url": "https://soundcloud.com/gradientperspective/contra-x-saturna-what-i-can-1", "platform": "soundcloud"}, {"artist": "Kyber", "title": "Skream x Kyber - ID (Clip)", "url": "https://soundcloud.com/kyber_nz/skream-x-kyber-id-clip", "platform": "soundcloud"}, {"artist": "KIOTI", "title": "ASTRAL W/SKRAPPY", "url": "https://soundcloud.com/officialkioti/astral-wskrappy-2", "platform": "soundcloud"}, {"artist": "Cereale", "title": "Cutecore01 [FREE DL]", "url": "https://soundcloud.com/itscereale/cutecore01", "platform": "soundcloud"}];
+var NS_QUEUE = [{"id": "calmfy--frogdecisionscalmfybootleg", "artist": "CALMFY", "title": "Frog Decisions (Calmfy Bootleg)", "url": "https://soundcloud.com/itscalmfy/frog-decisions-calmfy-bootleg", "platform": "soundcloud"}, {"id": "guns--taksim", "artist": "GUNS", "title": "Taksim", "url": "https://soundcloud.com/gunselsenol/taksim", "platform": "soundcloud"}, {"id": "joncass--got2go", "artist": "Jon Cass", "title": "GOT2GO", "url": "https://soundcloud.com/joncassss/g2g", "platform": "soundcloud"}, {"id": "mai--balance", "artist": "mai", "title": "balance.", "url": "https://soundcloud.com/maiyabi/balance", "platform": "soundcloud"}, {"id": "klo--selotape", "artist": "K.L.O", "title": "Selotape", "url": "https://soundcloud.com/kloofficial/selotape", "platform": "soundcloud"}, {"id": "astronomic--waterfalls", "artist": "Astronomic", "title": "Water falls", "url": "https://soundcloud.com/astronomics/water-falls_2", "platform": "soundcloud"}, {"id": "sl33py--tug", "artist": "SL33PY", "title": "TUG", "url": "https://soundcloud.com/shlumpedsleepy/tug-1", "platform": "soundcloud"}, {"id": "eternol--invasion", "artist": "Eternol", "title": "Invasion", "url": "https://soundcloud.com/eternol/eternol-invasion", "platform": "soundcloud"}, {"id": "cliqclaq--velocity", "artist": "CliqClaq", "title": "Velocity", "url": "https://soundcloud.com/cliqclaq/velocity", "platform": "soundcloud"}, {"id": "timewzrd--menyou", "artist": "TIME WZRD", "title": "Me N You", "url": "https://soundcloud.com/timewzrdmusic/menyou", "platform": "soundcloud"}, {"id": "dmtree--corruption", "artist": "Dmtree", "title": "Corruption", "url": "https://soundcloud.com/dmtreemusic/corruption", "platform": "soundcloud"}, {"id": "davinxi--elevia", "artist": "DAVINXI", "title": "Elevia", "url": "https://soundcloud.com/djdavinxi/elevia", "platform": "soundcloud"}, {"id": "insane--yourenotthere", "artist": "in:sane", "title": "You're Not There", "url": "https://soundcloud.com/insane_dnb/insane-youre-not-there", "platform": "soundcloud"}, {"id": "joncasey--hamdiyumjoncaseyedit", "artist": "Jon Casey", "title": "Hamdi - Yum (Jon Casey Edit)", "url": "https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit", "platform": "soundcloud"}, {"id": "tuzzle--whyyougotta", "artist": "Tuzzle", "title": "Why You Gotta", "url": "https://soundcloud.com/tuzzle/why-you-gotta", "platform": "soundcloud"}, {"id": "sillyuglyuk--musicsoundsbetterwithwubhawthornuglydubsvol22", "artist": "SILLYUGLYUK", "title": "MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)", "url": "https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22", "platform": "soundcloud"}, {"id": "bakey--welcometolondonflowdanbakeyedit", "artist": "Bakey", "title": "Welcome To London - Flowdan (Bakey Edit)", "url": "https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit", "platform": "soundcloud"}, {"id": "bakey--backrooms", "artist": "Bakey", "title": "BACKROOMS", "url": "https://soundcloud.com/bakeymusic/backrooms-1", "platform": "soundcloud"}, {"id": "circuitry--kiotiblur", "artist": "Circuitry", "title": "Kioti - Blur", "url": "https://soundcloud.com/circuitrycollective/blur", "platform": "soundcloud"}, {"id": "subtoll--simsimma", "artist": "subtoll", "title": "sim simma", "url": "https://soundcloud.com/subtollmusic/sim-simma", "platform": "soundcloud"}, {"id": "tiaro--369roquextiaro", "artist": "TIARO", "title": "3 - 6 - 9 (ROQUE x TIARO)", "url": "https://soundcloud.com/tiarowastaken/369girlswanna", "platform": "soundcloud"}, {"id": "thegradientperspective--cntraxsaturnawhaticandosavejremix", "artist": "The Gradient Perspective", "title": "CØNTRA x Saturna - What I Can Do (Savej Remix)", "url": "https://soundcloud.com/gradientperspective/contra-x-saturna-what-i-can-1", "platform": "soundcloud"}, {"id": "kyber--skreamxkyberidclip", "artist": "Kyber", "title": "Skream x Kyber - ID (Clip)", "url": "https://soundcloud.com/kyber_nz/skream-x-kyber-id-clip", "platform": "soundcloud"}, {"id": "kioti--astralwskrappy", "artist": "KIOTI", "title": "ASTRAL W/SKRAPPY", "url": "https://soundcloud.com/officialkioti/astral-wskrappy-2", "platform": "soundcloud"}, {"id": "cereale--cutecore01freedl", "artist": "Cereale", "title": "Cutecore01 [FREE DL]", "url": "https://soundcloud.com/itscereale/cutecore01", "platform": "soundcloud"}];
+var nsYT = null, nsYTApiReady = false, nsPendingYTBoot = null;
+function onYouTubeIframeAPIReady() { nsYTApiReady = true; if (nsPendingYTBoot) { var fn = nsPendingYTBoot; nsPendingYTBoot = null; fn(); } }
+function nsYouTubeId(u) {
+  var m = /(?:v=|youtu\.be\/|\/embed\/)([\w-]{6,})/.exec(u || '');
+  return m ? m[1] : '';
+}
 var ns = {i: 0, pos: 0, duration: 0, on: false, wantPlay: false, transitioning: false,
   platform: 'soundcloud', volume: 72, artwork: '', loadToken: 0};
 try { Object.assign(ns, JSON.parse(localStorage.getItem('ns_radio') || '{}')); } catch (e) {}
@@ -705,7 +858,7 @@ function nsSyncMedia(force) {
       navigator.mediaSession.metadata = new MediaMetadata({
         title: title,
         artist: artist,
-        album: 'NO SERVICE · continuous radio',
+        album: 'NO SERVICE · current rotation',
         artwork: [{src: art}]
       });
     } catch (e) {}
@@ -742,13 +895,17 @@ function nsApplyVolume() {
   var note = document.getElementById('ns-volume-note');
   if (slider) slider.value = String(ns.volume);
   var platform = ns.mixPlatform || ns.platform || 'soundcloud';
-  if (platform === 'spotify') {
+  if (platform === 'spotify' || platform === 'bandcamp') {
     if (slider) slider.disabled = true;
-    if (note) note.textContent = 'Spotify volume in app';
+    if (note) note.textContent = platform === 'spotify' ? 'Spotify volume in app' : 'Bandcamp volume in embed';
     return;
   }
   if (slider) slider.disabled = false;
   if (note) note.textContent = ns.volume + '%';
+  if (platform === 'youtube') {
+    if (nsYT && typeof nsYT.setVolume === 'function') { try { nsYT.setVolume(ns.volume); } catch (e) {} }
+    return;
+  }
   if (nsW && typeof nsW.setVolume === 'function') {
     try { nsW.setVolume(ns.volume); } catch (e) {}
   }
@@ -767,22 +924,74 @@ function nsSignal() {
 function nsUpdate() {
   var t = nsTrack();
   var platform = nsPlatform();
+  var handoff = platform === 'spotify' || platform === 'bandcamp';
   document.getElementById('ns-now-title').textContent = ns.mix
     ? (ns.mixLabel || 'NO SERVICE mix')
     : (t.artist || 'NO SERVICE') + ' — ' + (t.title || 'Radio');
-  document.getElementById('ns-now-sub').textContent = ns.mix
-    ? platform.toUpperCase() + ' · continuous radio'
-    : (ns.i + 1) + '/' + NS_QUEUE.length + ' · ' + platform.toUpperCase() + ' · continues automatically';
-  document.getElementById('ns-mode').textContent = platform === 'spotify' ? 'SPOTIFY HANDOFF' : 'CONTINUOUS';
-  document.getElementById('ns-play').textContent = platform === 'spotify' ? 'Spotify player' : (ns.on ? '⏸ Pause' : '▶ Play');
+  var subEl = document.getElementById('ns-now-sub');
+  if (!(subEl && subEl.dataset.override)) {
+    var dot = '<span class="src-dot src-' + (platform || 'source') + '" aria-hidden="true"></span>';
+    var subText = ns.transitioning ? 'Loading…' :
+      (handoff
+        ? platform.toUpperCase() + ' · use the source player below'
+        : (ns.mix
+            ? platform.toUpperCase() + ' · next track follows'
+            : (ns.i + 1) + ' of ' + NS_QUEUE.length + ' · ' + platform.toUpperCase() + ' · next track follows'));
+    subEl.innerHTML = dot + subText;
+  }
+  var playButton = document.getElementById('ns-play');
+  playButton.textContent = handoff ? 'Use player ↓' : (ns.on ? 'Pause' : '▶ Play');
+  playButton.disabled = handoff;
+  playButton.setAttribute('aria-label', handoff ? 'Use the source player below' : (ns.on ? 'Pause current track' : 'Play current track'));
   document.getElementById('ns-frame').style.display = (platform === 'soundcloud' && nsW) ? 'block' : 'none';
   document.getElementById('ns-spotify-frame').style.display = platform === 'spotify' ? 'block' : 'none';
+  document.getElementById('ns-yt-frame').style.display = platform === 'youtube' ? 'block' : 'none';
+  document.getElementById('ns-bandcamp-frame').style.display = platform === 'bandcamp' ? 'block' : 'none';
+  var art = document.getElementById('ns-art');
+  if (art) {
+    if (ns.artwork) { art.onerror = function() { art.classList.remove('show'); }; art.src = ns.artwork; art.classList.add('show'); }
+    else { art.classList.remove('show'); art.removeAttribute('src'); }
+  }
+  var pw = document.getElementById('ns-progress-wrap');
+  if (pw) pw.style.display = (platform === 'spotify' || platform === 'bandcamp') ? 'none' : 'flex';
+  nsRenderProgress();
   nsApplyVolume();
   nsSignal();
   nsSyncMedia();
   document.querySelectorAll('a[data-ns-idx]').forEach(function(a) {
     a.style.color = (!ns.mix && +a.dataset.nsIdx === ns.i) ? 'var(--accent)' : 'var(--ink)';
   });
+  var qp = document.getElementById('ns-queue-panel');
+  if (qp && qp.classList.contains('open')) nsQueueRender(true);
+}
+function nsQueueRender(keepScroll) {
+  var el = document.getElementById('ns-queue-panel');
+  if (!el) return;
+  var scrollTop = keepScroll ? el.scrollTop : 0;
+  if (!NS_QUEUE.length) { el.innerHTML = '<p class="count" style="padding:8px 4px">Queue is empty.</p>'; return; }
+  el.innerHTML = NS_QUEUE.map(function(t, i) {
+    var cur = (!ns.mix && i === ns.i) ? ' current' : '';
+    var a = (t.artist || '').replace(/</g, '&lt;');
+    var ti = (t.title || '').replace(/</g, '&lt;');
+    return '<div class="ns-q-row' + cur + '" data-i="' + i + '">' +
+      '<span>' + (i + 1) + '. ' + a + ' — ' + ti + '</span>' +
+      '<span class="ns-q-plat"><span class="src-dot src-' + (t.platform || 'source') + '" aria-hidden="true"></span>' + (t.platform || '') + '</span></div>';
+  }).join('');
+  el.querySelectorAll('.ns-q-row').forEach(function(r) {
+    r.onclick = function() { nsPlayAt(parseInt(r.dataset.i, 10)); };
+  });
+  el.scrollTop = scrollTop;
+}
+function nsQueueToggle() {
+  var el = document.getElementById('ns-queue-panel');
+  var btn = document.getElementById('ns-queue-btn');
+  var open = el.classList.toggle('open');
+  if (btn) { btn.setAttribute('aria-expanded', String(open)); btn.textContent = open ? 'Queue ▴' : 'Queue ▾'; }
+  if (open) {
+    nsQueueRender();
+    var cur = el.querySelector('.ns-q-row.current');
+    if (cur) cur.scrollIntoView({block: 'center'});
+  }
 }
 function nsSpotifySrc(url) {
   try { var u = new URL(url); return 'https://open.spotify.com/embed' + u.pathname; }
@@ -797,6 +1006,121 @@ function nsLoadSpotify(url, label) {
   var sp = document.getElementById('ns-spotify-frame');
   sp.src = src;
   nsSave(); nsUpdate(); nsSyncMedia(true);
+}
+function nsLoadBandcamp(url, label) {
+  if (!url) return;
+  if (nsW) try { nsW.pause(); } catch(e) {}
+  if (nsYT && typeof nsYT.pauseVideo === 'function') try { nsYT.pauseVideo(); } catch(e) {}
+  ns.platform = 'bandcamp'; ns.mixPlatform = 'bandcamp'; ns.mix = url; ns.mixLabel = label || 'Bandcamp';
+  ns.on = false; ns.wantPlay = false; ns.transitioning = false; ns.pos = 0; ns.duration = 0; ns.artwork = '';
+  document.getElementById('ns-spotify-frame').style.display = 'none';
+  document.getElementById('ns-yt-frame').style.display = 'none';
+  var bc = document.getElementById('ns-bandcamp-frame');
+  bc.src = url;
+  nsSave(); nsUpdate(); nsSyncMedia(true);
+}
+function nsGoYouTube(auto) {
+  var url = (ns.mixPlatform === 'youtube' && ns.mix) ? ns.mix : nsTrack().url;
+  var label = (ns.mixPlatform === 'youtube' && ns.mix) ? ns.mixLabel : ((nsTrack().artist || '') + ' — ' + (nsTrack().title || ''));
+  var vid = nsYouTubeId(url);
+  ns.platform = 'youtube';
+  if (auto) ns.wantPlay = true;
+  ns.on = false; ns.transitioning = true; ns.pos = 0; ns.duration = 0;
+  ns.artwork = vid ? ('https://img.youtube.com/vi/' + vid + '/mqdefault.jpg') : '';
+  ns.loadToken++;
+  document.getElementById('ns-spotify-frame').style.display = 'none';
+  document.getElementById('ns-bandcamp-frame').style.display = 'none';
+  document.getElementById('ns-yt-frame').style.display = 'block';
+  if (!vid) { ns.transitioning = false; nsAdvanceIndex(1, true); nsGo(auto); return; }
+  nsArmWatchdog();
+  var boot = function() {
+    if (nsYT) {
+      try {
+        if (ns.wantPlay) nsYT.loadVideoById(vid); else nsYT.cueVideoById(vid);
+      } catch (e) {}
+      nsApplyVolume(); ns.transitioning = false; nsSave(); nsUpdate();
+    } else {
+      nsYT = new YT.Player('ns-yt-frame', {
+        videoId: vid,
+        playerVars: { playsinline: 1, autoplay: ns.wantPlay ? 1 : 0 },
+        events: {
+          onReady: function() {
+            nsApplyVolume(); ns.transitioning = false; nsSave(); nsUpdate();
+            if (ns.wantPlay) { try { nsYT.playVideo(); } catch (e) {} }
+          },
+          onStateChange: nsYTStateChange,
+          onError: function() { nsYTError(); }
+        }
+      });
+    }
+  };
+  if (window.YT && YT.Player) boot(); else nsPendingYTBoot = boot;
+  nsUpdate();
+}
+function nsYTStateChange(e) {
+  if (!window.YT) return;
+  if (e.data === YT.PlayerState.PLAYING) {
+    ns.on = true; ns.wantPlay = true; ns.transitioning = false;
+    try { ns.duration = (nsYT.getDuration() || 0) * 1000; } catch (err) {}
+    nsSave(); nsUpdate();
+  } else if (e.data === YT.PlayerState.PAUSED) {
+    ns.on = false; nsSave(); nsUpdate();
+  } else if (e.data === YT.PlayerState.ENDED) {
+    if (window.nsMetric) nsMetric('player-complete', (nsTrack().id || nsPlatform()));
+    ns.on = false; ns.wantPlay = true; ns.transitioning = true;
+    if (ns.mix) { ns.mix = null; ns.mixLabel = ''; ns.mixPlatform = null; }
+    else { nsAdvanceIndex(1, true); }
+    ns.pos = 0; ns.duration = 0; ns.artwork = ''; nsGo(true);
+  }
+}
+setInterval(function() {
+  if (nsPlatform() === 'youtube' && ns.on && nsYT && typeof nsYT.getCurrentTime === 'function') {
+    try { ns.pos = (nsYT.getCurrentTime() || 0) * 1000; } catch (e) {}
+    nsSignal(); nsSyncMedia();
+  }
+  nsRenderProgress();
+}, 1000);
+function nsFmtTime(ms) {
+  if (!ms || ms < 0) return '0:00';
+  var s = Math.floor(ms / 1000);
+  var m = Math.floor(s / 60); s = s % 60;
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+function nsRenderProgress() {
+  var fill = document.getElementById('ns-progress-fill');
+  var label = document.getElementById('ns-progress-time');
+  var track = document.getElementById('ns-progress');
+  if (!fill) return;
+  var pct = (ns.duration > 0) ? Math.max(0, Math.min(100, (ns.pos / ns.duration) * 100)) : 0;
+  fill.style.width = pct + '%';
+  if (label) label.textContent = nsFmtTime(ns.pos) + ' / ' + nsFmtTime(ns.duration);
+  if (track) track.setAttribute('aria-valuenow', String(Math.round(pct)));
+}
+function nsSeekToMs(ms) {
+  var platform = nsPlatform();
+  if (platform !== 'soundcloud' && platform !== 'youtube') return;
+  ms = Math.max(0, Math.min(ns.duration || ms, ms));
+  if (platform === 'soundcloud' && nsW) { try { nsW.seekTo(ms); } catch (e) {} ns.pos = ms; }
+  else if (platform === 'youtube' && nsYT) { try { nsYT.seekTo(ms / 1000, true); } catch (e) {} ns.pos = ms; }
+  nsRenderProgress(); nsSyncMedia();
+}
+function nsSeekTo(clientX) {
+  var track = document.getElementById('ns-progress');
+  if (!track || !ns.duration) return;
+  var rect = track.getBoundingClientRect();
+  var pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  nsSeekToMs(pct * ns.duration);
+}
+function nsSeekKey(e) {
+  if (!ns.duration) return;
+  var step = 5000;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+    e.preventDefault(); e.stopPropagation();
+    nsSeekToMs((ns.pos || 0) + step);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+    e.preventDefault(); e.stopPropagation();
+    nsSeekToMs((ns.pos || 0) - step);
+  }
 }
 function nsRefreshSoundInfo() {
   if (!nsW || typeof nsW.getCurrentSound !== 'function') return;
@@ -828,20 +1152,24 @@ function nsAdvanceIndex(d, controllableOnly) {
     ns.i = (ns.i + d + NS_QUEUE.length) % NS_QUEUE.length;
     tries++;
   } while (controllableOnly && tries < NS_QUEUE.length &&
-    ((NS_QUEUE[ns.i] || {}).platform || '').toLowerCase() !== 'soundcloud');
+    ['soundcloud', 'youtube'].indexOf(((NS_QUEUE[ns.i] || {}).platform || '').toLowerCase()) === -1);
 }
 function nsBoot(auto) {
   if (!NS_QUEUE.length) return;
   var t = nsTrack();
   if ((t.platform || '').toLowerCase() === 'spotify') { nsLoadSpotify(t.url, (t.artist || '') + ' — ' + (t.title || '')); return; }
+  if ((t.platform || '').toLowerCase() === 'bandcamp') { nsLoadBandcamp(t.url, (t.artist || '') + ' — ' + (t.title || '')); return; }
+  if ((t.platform || '').toLowerCase() === 'youtube') { nsGoYouTube(auto); return; }
   ns.platform = 'soundcloud'; ns.mixPlatform = null;
   if (auto) ns.wantPlay = true;
   ns.transitioning = true; ns.loadToken++;
+  nsArmWatchdog();
   var f = document.getElementById('ns-frame');
   f.onload = function() {
     if (nsW) return;
     nsW = SC.Widget(f);
     nsW.bind(SC.Widget.Events.FINISH, function() {
+      if (window.nsMetric) nsMetric('player-complete', (nsTrack().id || nsPlatform()));
       ns.on = false; ns.wantPlay = true; ns.transitioning = true;
       if (ns.mix) { ns.mix = null; ns.mixLabel = ''; }
       else { nsAdvanceIndex(1, true); }
@@ -849,7 +1177,7 @@ function nsBoot(auto) {
     });
     nsW.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
       ns.pos = e.currentPosition || 0; ns.duration = e.duration || ns.duration || 0; ns.on = true;
-      nsSignal(); nsSave(); nsSyncMedia();
+      nsSignal(); nsSave(); nsSyncMedia(); nsRenderProgress();
     });
     nsW.bind(SC.Widget.Events.PAUSE, function() {
       if (ns.platform === 'spotify') return;
@@ -873,12 +1201,17 @@ function nsBoot(auto) {
   f.style.display = 'block';
 }
 function nsGo(auto) {
+  var t0 = nsTrack();
+  var tp0 = (t0.platform || '').toLowerCase();
+  if (tp0 === 'spotify') { nsLoadSpotify(t0.url, (t0.artist || '') + ' — ' + (t0.title || '')); return; }
+  if (tp0 === 'bandcamp') { nsLoadBandcamp(t0.url, (t0.artist || '') + ' — ' + (t0.title || '')); return; }
+  if (tp0 === 'youtube') { nsGoYouTube(auto); return; }
   if (!nsW) { nsBoot(auto); return; }
   var t = nsTrack();
-  if ((t.platform || '').toLowerCase() === 'spotify') { nsLoadSpotify(t.url, (t.artist || '') + ' — ' + (t.title || '')); return; }
   ns.platform = 'soundcloud'; ns.mixPlatform = null;
   if (auto) ns.wantPlay = true;
   ns.on = false; ns.transitioning = true; ns.pos = 0; ns.duration = 0; ns.artwork = ''; ns.loadToken++;
+  nsArmWatchdog();
   document.getElementById('ns-spotify-frame').style.display = 'none';
   nsW.load(t.url, { auto_play: !!ns.wantPlay, hide_related: true, show_comments: false, visual: false,
     callback: function() {
@@ -888,8 +1221,19 @@ function nsGo(auto) {
 }
 function nsRequestPlay() {
   var t = nsTrack();
+  if (window.nsMetricOnce) nsMetricOnce('player-start', (t.id || t.platform || 'unknown'));
   if ((ns.mixPlatform || t.platform) === 'spotify') {
     nsLoadSpotify(ns.mix || t.url, ns.mixLabel || ((t.artist || '') + ' — ' + (t.title || '')));
+    return;
+  }
+  if ((ns.mixPlatform || t.platform) === 'bandcamp') {
+    nsLoadBandcamp(ns.mix || t.url, ns.mixLabel || ((t.artist || '') + ' — ' + (t.title || '')));
+    return;
+  }
+  if ((ns.mixPlatform || t.platform) === 'youtube') {
+    ns.wantPlay = true; nsSave();
+    if (nsYT && typeof nsYT.playVideo === 'function') { try { nsYT.playVideo(); } catch (e) {} }
+    else { nsGoYouTube(true); }
     return;
   }
   ns.wantPlay = true; nsSave();
@@ -899,10 +1243,11 @@ function nsRequestPlay() {
 function nsRequestPause() {
   ns.wantPlay = false; ns.transitioning = false; ns.on = false;
   if (nsW) try { nsW.pause(); } catch (e) {}
+  if (nsYT && typeof nsYT.pauseVideo === 'function') try { nsYT.pauseVideo(); } catch (e) {}
   nsSave(); nsUpdate();
 }
 function nsToggle() {
-  if (nsPlatform() === 'spotify') { nsRequestPlay(); return; }
+  if (nsPlatform() === 'spotify' || nsPlatform() === 'bandcamp') { nsRequestPlay(); return; }
   if (ns.on || ns.wantPlay) nsRequestPause(); else nsRequestPlay();
 }
 function nsStep(d) {
@@ -911,14 +1256,24 @@ function nsStep(d) {
 function nsShuffle() {
   for (var i = NS_QUEUE.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = NS_QUEUE[i]; NS_QUEUE[i] = NS_QUEUE[j]; NS_QUEUE[j] = t; }
   ns.mix = null; ns.mixLabel = ''; ns.i = 0;
-  if (((nsTrack().platform || '').toLowerCase()) !== 'soundcloud') nsAdvanceIndex(1, true);
+  if (['soundcloud', 'youtube'].indexOf((nsTrack().platform || '').toLowerCase()) === -1) nsAdvanceIndex(1, true);
   ns.pos = 0; ns.wantPlay = true; nsGo(true); nsSave();
 }
 function nsPlayAt(n) {
   ns.mix = null; ns.mixLabel = ''; ns.i = n; ns.pos = 0; ns.wantPlay = true; nsGo(true); nsSave();
 }
 function nsPlayUrl(url, label) {
-  if ((url || '').toLowerCase().indexOf('open.spotify.com') > -1) { nsLoadSpotify(url, label); return; }
+  var low = (url || '').toLowerCase();
+  if (low.indexOf('open.spotify.com') > -1) { nsLoadSpotify(url, label); return; }
+  if (low.indexOf('bandcamp.com/embeddedplayer') > -1) { nsLoadBandcamp(url, label); return; }
+  if (low.indexOf('youtube.com') > -1 || low.indexOf('youtu.be') > -1) {
+    ns.mix = url; ns.mixLabel = label || 'Video'; ns.mixPlatform = 'youtube'; ns.platform = 'youtube';
+    ns.pos = 0; ns.duration = 0; ns.artwork = ''; ns.wantPlay = true; ns.on = false; ns.transitioning = true; ns.loadToken++;
+    document.getElementById('ns-spotify-frame').style.display = 'none';
+    document.getElementById('ns-bandcamp-frame').style.display = 'none';
+    nsGoYouTube(true);
+    return;
+  }
   ns.mix = url; ns.mixLabel = label || 'Mix'; ns.mixPlatform = 'soundcloud'; ns.platform = 'soundcloud';
   ns.pos = 0; ns.duration = 0; ns.artwork = ''; ns.wantPlay = true; ns.on = false; ns.transitioning = true; ns.loadToken++;
   document.getElementById('ns-spotify-frame').style.display = 'none';
@@ -937,6 +1292,43 @@ function nsPlayUrl(url, label) {
   }
   nsUpdate();
 }
+var nsLoadWatchdog = null;
+function nsShowStatus(msg) {
+  var sub = document.getElementById('ns-now-sub');
+  if (!sub) return;
+  sub.textContent = msg;
+  sub.dataset.override = '1';
+  setTimeout(function() { if (sub) delete sub.dataset.override; nsUpdate(); }, 2500);
+}
+function nsArmWatchdog() {
+  if (nsLoadWatchdog) clearTimeout(nsLoadWatchdog);
+  var token = ns.loadToken;
+  nsLoadWatchdog = setTimeout(function() {
+    if (token === ns.loadToken && ns.transitioning) {
+      ns.transitioning = false;
+      nsShowStatus('Could not load — skipping…');
+      if (ns.mix) { ns.mix = null; ns.mixLabel = ''; ns.mixPlatform = null; }
+      else { nsAdvanceIndex(1, true); }
+      ns.pos = 0; ns.duration = 0; ns.artwork = ''; nsGo(true);
+    }
+  }, 9000);
+}
+function nsYTError() {
+  ns.transitioning = false;
+  nsShowStatus('Video unavailable — skipping…');
+  ns.on = false; ns.wantPlay = true;
+  if (ns.mix) { ns.mix = null; ns.mixLabel = ''; ns.mixPlatform = null; }
+  else { nsAdvanceIndex(1, true); }
+  ns.pos = 0; ns.duration = 0; ns.artwork = ''; nsGo(true);
+}
+document.addEventListener('keydown', function(e) {
+  var tag = ((e.target && e.target.tagName) || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.code === 'Space') { e.preventDefault(); nsToggle(); }
+  else if (e.code === 'ArrowRight') { nsStep(1); }
+  else if (e.code === 'ArrowLeft') { nsStep(-1); }
+});
 nsBindMedia();
 nsUpdate();
 // --- lightweight No Service background visualizer ---
@@ -1053,9 +1445,82 @@ document.addEventListener('click', function(e) {
       if (s.src) { if (!document.querySelector('script[src=\'' + s.src + '\']')) { var n = document.createElement('script'); n.src = s.src; document.body.appendChild(n); } }
       else { try { var n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); } catch (err) {} }
     });
+    if (window.nsInitEngagement) nsInitEngagement();
     window.scrollTo(0, 0);
   }).catch(function() { location.href = a.href; });
 });
 window.addEventListener('popstate', function() { location.reload(); });
 </script>
+<script>
+window.nsMetricQueue = window.nsMetricQueue || [];
+function nsSafeMetricPart(value) {
+  return String(value || 'unknown').toLowerCase().replace(/[^a-z0-9/_-]+/g, '-').replace(/-+/g, '-').slice(0, 180);
+}
+function nsMetric(name, detail) {
+  if (!document.getElementById('ns-analytics')) return;
+  var item = {path: 'events/' + nsSafeMetricPart(name) + '/' + nsSafeMetricPart(detail), title: 'No Service interaction', event: true};
+  if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+    try { window.goatcounter.count(item); } catch (e) {}
+  } else if (window.nsMetricQueue.length < 40) {
+    window.nsMetricQueue.push(item);
+  }
+}
+function nsMetricOnce(name, detail) {
+  var key = 'ns_metric_' + nsSafeMetricPart(name) + '_' + nsSafeMetricPart(detail);
+  try { if (sessionStorage.getItem(key)) return; sessionStorage.setItem(key, '1'); } catch (e) {}
+  nsMetric(name, detail);
+}
+function nsFlushMetrics() {
+  if (!(window.goatcounter && typeof window.goatcounter.count === 'function')) return;
+  while (window.nsMetricQueue.length) {
+    try { window.goatcounter.count(window.nsMetricQueue.shift()); } catch (e) { break; }
+  }
+}
+function nsTasteState() {
+  try { return JSON.parse(localStorage.getItem('ns_curation_feedback_v1') || '{}'); } catch (e) { return {}; }
+}
+function nsRenderTasteVote(box, saved) {
+  if (!box) return;
+  var status = box.querySelector('.taste-status');
+  box.querySelectorAll('.taste-btn').forEach(function(button) {
+    var chosen = saved && button.dataset.reaction === saved;
+    button.classList.toggle('selected', !!chosen);
+    button.disabled = !!saved;
+    button.setAttribute('aria-pressed', chosen ? 'true' : 'false');
+  });
+  if (status) status.textContent = saved ? 'Saved privately. No public score.' : '';
+}
+function nsTasteVote(button) {
+  var box = button && button.closest('.taste-vote');
+  if (!box) return;
+  var state = nsTasteState();
+  var id = box.dataset.candidateId || '';
+  if (!id || state[id]) { nsRenderTasteVote(box, state[id]); return; }
+  var reaction = button.dataset.reaction || '';
+  if (['love', 'keep', 'pass'].indexOf(reaction) === -1) return;
+  state[id] = reaction;
+  try { localStorage.setItem('ns_curation_feedback_v1', JSON.stringify(state)); } catch (e) {}
+  nsRenderTasteVote(box, reaction);
+  nsMetric('curation-' + reaction, (box.dataset.lane || 'selection') + '/' + id);
+}
+function nsInitEngagement() {
+  var state = nsTasteState();
+  document.querySelectorAll('.taste-vote').forEach(function(box) {
+    nsRenderTasteVote(box, state[box.dataset.candidateId || '']);
+  });
+}
+if (!document.documentElement.dataset.nsEngagementBound) {
+  document.documentElement.dataset.nsEngagementBound = '1';
+  document.addEventListener('click', function(event) {
+    var link = event.target.closest('[data-ns-event]');
+    if (link) nsMetric(link.dataset.nsEvent, link.dataset.nsDetail || 'unknown');
+  });
+  document.addEventListener('submit', function(event) {
+    var form = event.target.closest('form[data-newsletter-source]');
+    if (form) nsMetricOnce('newsletter-submit', form.dataset.newsletterSource || 'website');
+  });
+}
+nsInitEngagement();
+</script>
+
 </body></html>
