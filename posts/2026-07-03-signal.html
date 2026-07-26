@@ -90,8 +90,9 @@ a { color: var(--accent); }
 .meta { color: var(--dim); font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; }
 .meta .signal-label { color: var(--accent); font-weight: 600; }
 .excerpt { color: #d8d5cd; font-size: 15px; margin-top: 8px; }
-.count { color: var(--dim); font-size: 13px; margin-top: 6px; }
-article.post p { color: #e6e3dc; font: 18px/1.8 Georgia, 'Times New Roman', serif; }
+.count { color: var(--dim); font-size: 13px; margin-top: 6px; max-width: 68ch; }
+article.post { max-width: 760px; }
+article.post p { color: #e6e3dc; font: 18px/1.74 Georgia, 'Times New Roman', serif; max-width: 66ch; }
 article.post h1 { font-size: 36px; }
 .track { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent);
          border-radius: 8px; padding: 14px 16px; margin: 14px 0; }
@@ -168,18 +169,20 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
 .acq-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
   border-top: 3px solid var(--accent); padding-top: 12px; margin-top: 24px; }
 .acq-head h2 { margin: 0; }
-.acq-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 14px 0; }
+.acq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 14px 0; }
 .acq-stat { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
 .acq-stat strong { display: block; font-size: 22px; line-height: 1.2; }
 .acq-stat span { color: var(--dim); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; }
-.acq-meter { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin: 7px 0 4px; }
-.acq-meter span { display: block; height: 100%; background: var(--accent); }
 .acq-choice { border-left: 3px solid var(--teal); }
 .acq-pool { list-style: none; padding: 0; margin: 8px 0 0; }
 .acq-pool li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .acq-pool li:last-child { border-bottom: 0; }
 .acq-source-line { color: var(--dim); font-size: 13px; }
-@media (max-width: 620px) { .hero-title { font-size: 32px; } }
+@media (max-width: 620px) {
+  .hero-title { font-size: 32px; }
+  article.post h1 { font-size: 30px; }
+  article.post p { font-size: 17px; line-height: 1.68; }
+}
 .tw-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 30px; }
 .tw-nav a { font-size: 12.5px; letter-spacing: .05em; text-transform: uppercase; text-decoration: none;
   color: var(--dim); border: 1px solid var(--line); border-radius: 99px; padding: 4px 12px; }
@@ -272,7 +275,8 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
 #ns-volume-note { color: var(--dim); font-size: 11px; }
 #ns-frame, #ns-spotify-frame, #ns-yt-frame, #ns-bandcamp-frame { width: 340px; height: 64px; border: 0; border-radius: 6px; display: none; }
 body.ns-radio-live #ns-bar { box-shadow: 0 -10px 28px rgba(255,77,0,.10); }
-#ns-spotify-frame, #ns-bandcamp-frame { height: 80px; }
+#ns-spotify-frame { height: 80px; }
+#ns-bandcamp-frame { height: 120px; }
 #ns-yt-frame { height: 64px; }
 @media (max-width: 700px) {
   #ns-bar { display: grid; grid-template-columns: repeat(4, minmax(0, auto)) 1fr;
@@ -364,7 +368,7 @@ body { padding-bottom: 148px; }
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
-var NS_QUEUE = [{"id": "calmfy--frogdecisionscalmfybootleg", "artist": "CALMFY", "title": "Frog Decisions (Calmfy Bootleg)", "url": "https://soundcloud.com/itscalmfy/frog-decisions-calmfy-bootleg", "platform": "soundcloud"}, {"id": "guns--taksim", "artist": "GUNS", "title": "Taksim", "url": "https://soundcloud.com/gunselsenol/taksim", "platform": "soundcloud"}, {"id": "joncass--got2go", "artist": "Jon Cass", "title": "GOT2GO", "url": "https://soundcloud.com/joncassss/g2g", "platform": "soundcloud"}, {"id": "mai--balance", "artist": "mai", "title": "balance.", "url": "https://soundcloud.com/maiyabi/balance", "platform": "soundcloud"}, {"id": "klo--selotape", "artist": "K.L.O", "title": "Selotape", "url": "https://soundcloud.com/kloofficial/selotape", "platform": "soundcloud"}, {"id": "astronomic--waterfalls", "artist": "Astronomic", "title": "Water falls", "url": "https://soundcloud.com/astronomics/water-falls_2", "platform": "soundcloud"}, {"id": "sl33py--tug", "artist": "SL33PY", "title": "TUG", "url": "https://soundcloud.com/shlumpedsleepy/tug-1", "platform": "soundcloud"}, {"id": "eternol--invasion", "artist": "Eternol", "title": "Invasion", "url": "https://soundcloud.com/eternol/eternol-invasion", "platform": "soundcloud"}, {"id": "cliqclaq--velocity", "artist": "CliqClaq", "title": "Velocity", "url": "https://soundcloud.com/cliqclaq/velocity", "platform": "soundcloud"}, {"id": "timewzrd--menyou", "artist": "TIME WZRD", "title": "Me N You", "url": "https://soundcloud.com/timewzrdmusic/menyou", "platform": "soundcloud"}, {"id": "dmtree--corruption", "artist": "Dmtree", "title": "Corruption", "url": "https://soundcloud.com/dmtreemusic/corruption", "platform": "soundcloud"}, {"id": "davinxi--elevia", "artist": "DAVINXI", "title": "Elevia", "url": "https://soundcloud.com/djdavinxi/elevia", "platform": "soundcloud"}, {"id": "insane--yourenotthere", "artist": "in:sane", "title": "You're Not There", "url": "https://soundcloud.com/insane_dnb/insane-youre-not-there", "platform": "soundcloud"}, {"id": "joncasey--hamdiyumjoncaseyedit", "artist": "Jon Casey", "title": "Hamdi - Yum (Jon Casey Edit)", "url": "https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit", "platform": "soundcloud"}, {"id": "tuzzle--whyyougotta", "artist": "Tuzzle", "title": "Why You Gotta", "url": "https://soundcloud.com/tuzzle/why-you-gotta", "platform": "soundcloud"}, {"id": "sillyuglyuk--musicsoundsbetterwithwubhawthornuglydubsvol22", "artist": "SILLYUGLYUK", "title": "MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)", "url": "https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22", "platform": "soundcloud"}, {"id": "bakey--welcometolondonflowdanbakeyedit", "artist": "Bakey", "title": "Welcome To London - Flowdan (Bakey Edit)", "url": "https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit", "platform": "soundcloud"}, {"id": "bakey--backrooms", "artist": "Bakey", "title": "BACKROOMS", "url": "https://soundcloud.com/bakeymusic/backrooms-1", "platform": "soundcloud"}, {"id": "circuitry--kiotiblur", "artist": "Circuitry", "title": "Kioti - Blur", "url": "https://soundcloud.com/circuitrycollective/blur", "platform": "soundcloud"}, {"id": "subtoll--simsimma", "artist": "subtoll", "title": "sim simma", "url": "https://soundcloud.com/subtollmusic/sim-simma", "platform": "soundcloud"}, {"id": "tiaro--369roquextiaro", "artist": "TIARO", "title": "3 - 6 - 9 (ROQUE x TIARO)", "url": "https://soundcloud.com/tiarowastaken/369girlswanna", "platform": "soundcloud"}, {"id": "thegradientperspective--cntraxsaturnawhaticandosavejremix", "artist": "The Gradient Perspective", "title": "CØNTRA x Saturna - What I Can Do (Savej Remix)", "url": "https://soundcloud.com/gradientperspective/contra-x-saturna-what-i-can-1", "platform": "soundcloud"}, {"id": "kyber--skreamxkyberidclip", "artist": "Kyber", "title": "Skream x Kyber - ID (Clip)", "url": "https://soundcloud.com/kyber_nz/skream-x-kyber-id-clip", "platform": "soundcloud"}, {"id": "kioti--astralwskrappy", "artist": "KIOTI", "title": "ASTRAL W/SKRAPPY", "url": "https://soundcloud.com/officialkioti/astral-wskrappy-2", "platform": "soundcloud"}, {"id": "cereale--cutecore01freedl", "artist": "Cereale", "title": "Cutecore01 [FREE DL]", "url": "https://soundcloud.com/itscereale/cutecore01", "platform": "soundcloud"}];
+var NS_QUEUE = [{"id": "coloursound--newworld", "artist": "Coloursound", "title": "New World", "url": "https://bandcamp.com/EmbeddedPlayer/album=821315680/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/", "source_url": "https://coloursoundfm.bandcamp.com/album/new-world", "platform": "bandcamp"}, {"id": "thebugdisfig--ladybug1", "artist": "The Bug, Dis Fig", "title": "Ladybug 1", "url": "https://bandcamp.com/EmbeddedPlayer/album=81155577/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/", "source_url": "https://thebugdisfig.bandcamp.com/album/ladybug-1", "platform": "bandcamp"}, {"id": "dubkillerbeatmasta--underdensedub", "artist": "DUB KILLER, BEATMASTA", "title": "UNDER DENSE DUB", "url": "https://bandcamp.com/EmbeddedPlayer/album=1617995165/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/", "source_url": "https://sublineaudio.bandcamp.com/album/under-dense-dub", "platform": "bandcamp"}, {"id": "blocklab--phoenixfeatyunis", "artist": "BLOCKLAB", "title": "Phoenix Feat. yunis", "url": "https://bandcamp.com/EmbeddedPlayer/album=191988809/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/", "source_url": "https://whitepeach.bandcamp.com/album/wpr091-phoenix", "platform": "bandcamp"}, {"id": "calmfy--frogdecisionscalmfybootleg", "artist": "CALMFY", "title": "Frog Decisions (Calmfy Bootleg)", "url": "https://soundcloud.com/itscalmfy/frog-decisions-calmfy-bootleg", "source_url": "https://soundcloud.com/itscalmfy/frog-decisions-calmfy-bootleg", "platform": "soundcloud"}, {"id": "guns--taksim", "artist": "GUNS", "title": "Taksim", "url": "https://soundcloud.com/gunselsenol/taksim", "source_url": "https://soundcloud.com/gunselsenol/taksim", "platform": "soundcloud"}, {"id": "hijinx--survivalloopep", "artist": "HIJINX", "title": "Survival Loop EP", "url": "https://bandcamp.com/EmbeddedPlayer/album=1661036085/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/", "source_url": "https://hijinxuk.bandcamp.com/album/survival-loop-ep", "platform": "bandcamp"}, {"id": "joncass--got2go", "artist": "Jon Cass", "title": "GOT2GO", "url": "https://soundcloud.com/joncassss/g2g", "source_url": "https://soundcloud.com/joncassss/g2g", "platform": "soundcloud"}, {"id": "mai--balance", "artist": "mai", "title": "balance.", "url": "https://soundcloud.com/maiyabi/balance", "source_url": "https://soundcloud.com/maiyabi/balance", "platform": "soundcloud"}, {"id": "klo--selotape", "artist": "K.L.O", "title": "Selotape", "url": "https://soundcloud.com/kloofficial/selotape", "source_url": "https://soundcloud.com/kloofficial/selotape", "platform": "soundcloud"}, {"id": "astronomic--waterfalls", "artist": "Astronomic", "title": "Water falls", "url": "https://soundcloud.com/astronomics/water-falls_2", "source_url": "https://soundcloud.com/astronomics/water-falls_2", "platform": "soundcloud"}, {"id": "sl33py--tug", "artist": "SL33PY", "title": "TUG", "url": "https://soundcloud.com/shlumpedsleepy/tug-1", "source_url": "https://soundcloud.com/shlumpedsleepy/tug-1", "platform": "soundcloud"}, {"id": "eternol--invasion", "artist": "Eternol", "title": "Invasion", "url": "https://soundcloud.com/eternol/eternol-invasion", "source_url": "https://soundcloud.com/eternol/eternol-invasion", "platform": "soundcloud"}, {"id": "cliqclaq--velocity", "artist": "CliqClaq", "title": "Velocity", "url": "https://soundcloud.com/cliqclaq/velocity", "source_url": "https://soundcloud.com/cliqclaq/velocity", "platform": "soundcloud"}, {"id": "timewzrd--menyou", "artist": "TIME WZRD", "title": "Me N You", "url": "https://soundcloud.com/timewzrdmusic/menyou", "source_url": "https://soundcloud.com/timewzrdmusic/menyou", "platform": "soundcloud"}, {"id": "dmtree--corruption", "artist": "Dmtree", "title": "Corruption", "url": "https://soundcloud.com/dmtreemusic/corruption", "source_url": "https://soundcloud.com/dmtreemusic/corruption", "platform": "soundcloud"}, {"id": "davinxi--elevia", "artist": "DAVINXI", "title": "Elevia", "url": "https://soundcloud.com/djdavinxi/elevia", "source_url": "https://soundcloud.com/djdavinxi/elevia", "platform": "soundcloud"}, {"id": "insane--yourenotthere", "artist": "in:sane", "title": "You're Not There", "url": "https://soundcloud.com/insane_dnb/insane-youre-not-there", "source_url": "https://soundcloud.com/insane_dnb/insane-youre-not-there", "platform": "soundcloud"}, {"id": "joncasey--hamdiyumjoncaseyedit", "artist": "Jon Casey", "title": "Hamdi - Yum (Jon Casey Edit)", "url": "https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit", "source_url": "https://soundcloud.com/joncasey/hamdi-yum-jon-casey-edit", "platform": "soundcloud"}, {"id": "tuzzle--whyyougotta", "artist": "Tuzzle", "title": "Why You Gotta", "url": "https://soundcloud.com/tuzzle/why-you-gotta", "source_url": "https://soundcloud.com/tuzzle/why-you-gotta", "platform": "soundcloud"}, {"id": "sillyuglyuk--musicsoundsbetterwithwubhawthornuglydubsvol22", "artist": "SILLYUGLYUK", "title": "MUSIC SOUNDS BETTER WITH WUB - Hawthorn (UGLY DUBS VOL.22)", "url": "https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22", "source_url": "https://soundcloud.com/sillyugly/music-sounds-better-with-wub-hawthorn-ugly-dubs-vol22", "platform": "soundcloud"}, {"id": "bakey--welcometolondonflowdanbakeyedit", "artist": "Bakey", "title": "Welcome To London - Flowdan (Bakey Edit)", "url": "https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit", "source_url": "https://soundcloud.com/bakeymusic/welcome-to-london-bakey-edit", "platform": "soundcloud"}, {"id": "bakey--backrooms", "artist": "Bakey", "title": "BACKROOMS", "url": "https://soundcloud.com/bakeymusic/backrooms-1", "source_url": "https://soundcloud.com/bakeymusic/backrooms-1", "platform": "soundcloud"}, {"id": "circuitry--kiotiblur", "artist": "Circuitry", "title": "Kioti - Blur", "url": "https://soundcloud.com/circuitrycollective/blur", "source_url": "https://soundcloud.com/circuitrycollective/blur", "platform": "soundcloud"}, {"id": "subtoll--simsimma", "artist": "subtoll", "title": "sim simma", "url": "https://soundcloud.com/subtollmusic/sim-simma", "source_url": "https://soundcloud.com/subtollmusic/sim-simma", "platform": "soundcloud"}];
 var nsYT = null, nsYTApiReady = false, nsPendingYTBoot = null;
 function onYouTubeIframeAPIReady() { nsYTApiReady = true; if (nsPendingYTBoot) { var fn = nsPendingYTBoot; nsPendingYTBoot = null; fn(); } }
 function nsYouTubeId(u) {
@@ -385,6 +389,9 @@ var nsMediaKey = '';
 function nsSave() { try { localStorage.setItem('ns_radio', JSON.stringify(ns)); } catch (e) {} }
 function nsTrack() { return NS_QUEUE[ns.i] || {}; }
 function nsPlatform() { return ns.mixPlatform || nsTrack().platform || ns.platform || 'soundcloud'; }
+function nsIsControllablePlatform(platform) {
+  return ['soundcloud', 'youtube'].indexOf((platform || '').toLowerCase()) > -1;
+}
 function nsArtworkUrl() {
   return ns.artwork || (location.origin && location.origin !== 'null'
     ? location.origin + '/og-card.png' : 'https://noservice.online/og-card.png');
@@ -696,7 +703,7 @@ function nsAdvanceIndex(d, controllableOnly) {
     ns.i = (ns.i + d + NS_QUEUE.length) % NS_QUEUE.length;
     tries++;
   } while (controllableOnly && tries < NS_QUEUE.length &&
-    ['soundcloud', 'youtube'].indexOf(((NS_QUEUE[ns.i] || {}).platform || '').toLowerCase()) === -1);
+    !nsIsControllablePlatform((NS_QUEUE[ns.i] || {}).platform));
 }
 function nsBoot(auto) {
   if (!NS_QUEUE.length) return;
@@ -765,6 +772,10 @@ function nsGo(auto) {
 }
 function nsRequestPlay() {
   var t = nsTrack();
+  if (!ns.mixPlatform && !nsIsControllablePlatform(t.platform)) {
+    nsAdvanceIndex(1, true);
+    t = nsTrack();
+  }
   if (window.nsMetricOnce) nsMetricOnce('player-start', (t.id || t.platform || 'unknown'));
   if ((ns.mixPlatform || t.platform) === 'spotify') {
     nsLoadSpotify(ns.mix || t.url, ns.mixLabel || ((t.artist || '') + ' — ' + (t.title || '')));
@@ -795,12 +806,12 @@ function nsToggle() {
   if (ns.on || ns.wantPlay) nsRequestPause(); else nsRequestPlay();
 }
 function nsStep(d) {
-  ns.mix = null; ns.mixLabel = ''; nsAdvanceIndex(d, true); ns.pos = 0; ns.wantPlay = true; nsGo(true); nsSave();
+  ns.mix = null; ns.mixLabel = ''; nsAdvanceIndex(d, false); ns.pos = 0; ns.wantPlay = true; nsGo(true); nsSave();
 }
 function nsShuffle() {
   for (var i = NS_QUEUE.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = NS_QUEUE[i]; NS_QUEUE[i] = NS_QUEUE[j]; NS_QUEUE[j] = t; }
   ns.mix = null; ns.mixLabel = ''; ns.i = 0;
-  if (['soundcloud', 'youtube'].indexOf((nsTrack().platform || '').toLowerCase()) === -1) nsAdvanceIndex(1, true);
+  if (!nsIsControllablePlatform(nsTrack().platform)) nsAdvanceIndex(1, true);
   ns.pos = 0; ns.wantPlay = true; nsGo(true); nsSave();
 }
 function nsPlayAt(n) {
