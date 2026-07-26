@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NO SERVICE">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' mailto: https://buttondown.com; img-src 'self' https: data:; media-src 'self' https: blob:; connect-src 'self' https://api.soundcloud.com https://w.soundcloud.com https://*.goatcounter.com; frame-src https://w.soundcloud.com https://open.spotify.com https://www.youtube.com https://www.mixcloud.com https://bandcamp.com https://*.bandcamp.com; script-src 'self' 'unsafe-inline' https://w.soundcloud.com https://gc.zgo.at; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' mailto:; img-src 'self' https: data:; media-src 'self' https: blob:; connect-src 'self' https://api.soundcloud.com https://w.soundcloud.com; frame-src https://w.soundcloud.com https://open.spotify.com https://www.youtube.com https://www.mixcloud.com https://bandcamp.com https://*.bandcamp.com; script-src 'self' 'unsafe-inline' https://w.soundcloud.com; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
 <title>Home — NO SERVICE</title>
 <meta name="description" content="Deep bass selections, the current rotation, and radio from Denver.">
 <meta name="robots" content="index, follow">
@@ -107,7 +107,8 @@ article.post h1 { font-size: 36px; }
 .player { margin-top: 10px; }
 .player iframe { border-radius: 6px; }
 .links { margin-top: 10px; }
-.btn { display: inline-block; font-size: 13px; text-decoration: none; color: var(--ink);
+.btn { appearance: none; -webkit-appearance: none; display: inline-block; font: inherit; font-size: 13px;
+       text-decoration: none; color: var(--ink); background: transparent; cursor: pointer;
        border: 1px solid var(--line); border-radius: 6px; padding: 5px 12px; margin-right: 8px; }
 .btn:hover { border-color: var(--accent); color: var(--accent); }
 .btn.dl { border-color: var(--accent); color: var(--accent); }
@@ -126,10 +127,11 @@ article.post h1 { font-size: 36px; }
 .newsletter-card { border-left: 3px solid var(--teal); }
 .newsletter-card h2 { margin-bottom: 8px; }
 .newsletter-form { display: flex; gap: 8px; align-items: stretch; margin-top: 15px; max-width: 620px; }
-.newsletter-form input[type="email"] { min-width: 0; flex: 1; background: #111114; color: var(--ink);
+.newsletter-form input[type="email"] { appearance: none; -webkit-appearance: none; min-width: 0; flex: 1; background: #111114; color: var(--ink);
   border: 1px solid var(--line); border-radius: 7px; padding: 9px 11px; font: inherit; font-size: 14px; }
 .newsletter-form button { cursor: pointer; background: var(--accent); color: #111114; border: 1px solid var(--accent);
   border-radius: 7px; padding: 9px 15px; font: 700 13px/1.2 inherit; }
+.newsletter-form input::placeholder, #crate-q::placeholder { color: #8f8a82; opacity: 1; }
 .newsletter-fine { color: var(--dim); font-size: 11.5px; margin-top: 8px; }
 @media (max-width: 520px) { .newsletter-form { flex-direction: column; } }
 table { border-collapse: collapse; width: 100%; font-size: 14px; }
@@ -203,14 +205,24 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
   padding: 10px 2px; border-bottom: 1px solid var(--line); }
 .crate-name { font-size: 15.5px; }
 .crate-meta { color: var(--dim); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
+.crate-source-mobile { display: none; margin-right: 6px; }
 @media (max-width: 620px) { .crate-meta { display: none; } }
 .crate-save { padding: 5px 10px; min-width: 30px; text-align: center; }
-.src-dot { display: inline-block; width: 7px; height: 7px; margin-right: 5px; vertical-align: middle; }
-.src-dot.src-soundcloud { border-radius: 50%; background: var(--accent); }
-.src-dot.src-youtube { border-radius: 50%; background: var(--violet); }
-.src-dot.src-spotify { background: var(--teal); }
-.src-dot.src-bandcamp, .src-dot.src-bandcamp-link { background: var(--dim); }
-.src-dot.src-source { background: var(--dim); opacity: .5; }
+.src-dot { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 16px;
+  padding: 0 4px; margin-right: 6px; vertical-align: middle; border: 1px solid currentColor; border-radius: 4px;
+  background: #111114; color: var(--dim); font: 700 9px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .03em; text-transform: uppercase; box-sizing: border-box; }
+.src-dot::after { content: "WEB"; }
+.src-dot.src-soundcloud { color: var(--accent); }
+.src-dot.src-soundcloud::after { content: "SC"; }
+.src-dot.src-youtube { color: var(--violet); }
+.src-dot.src-youtube::after { content: "YT"; }
+.src-dot.src-spotify { color: var(--teal); }
+.src-dot.src-spotify::after { content: "SP"; }
+.src-dot.src-bandcamp, .src-dot.src-bandcamp-link { color: #d8d5cd; }
+.src-dot.src-bandcamp::after, .src-dot.src-bandcamp-link::after { content: "BC"; }
+.src-dot.src-source { opacity: .75; }
+@media (max-width: 620px) { .crate-source-mobile { display: inline-flex; } }
 #my-queue-panel { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 0 0 18px; background: var(--card); }
 #my-queue-panel .crate-row { padding: 8px 0; }
 .mq-remove { padding: 4px 10px; font-size: 12px; }
@@ -313,36 +325,21 @@ body { padding-bottom: 148px; }
 </section>
 <section class="home-sec">
 <div class="sec-head"><h2>In rotation</h2><a class="sec-more" href="this-week.html">all of this week →</a></div>
-<div class="rot-row"><span class="rot-name"><span class="artist">DUB KILLER, BEATMASTA</span> — UNDER DENSE DUB</span><a class="btn" href="https://sublineaudio.bandcamp.com/album/under-dense-dub" target="_blank" rel="noopener" data-ns-event="release-open" data-ns-detail="dubkillerbeatmasta--underdensedub" aria-label="Open DUB KILLER, BEATMASTA — UNDER DENSE DUB at the original source">Open release</a></div>
-<div class="rot-row"><span class="rot-name"><span class="artist">Coloursound</span> — New World</span><a class="btn" href="https://coloursoundfm.bandcamp.com/album/new-world" target="_blank" rel="noopener" data-ns-event="release-open" data-ns-detail="coloursound--newworld" aria-label="Open Coloursound — New World at the original source">Open release</a></div>
-<div class="rot-row"><span class="rot-name"><span class="artist">The Bug, Dis Fig</span> — Ladybug 1</span><a class="btn" href="https://thebugdisfig.bandcamp.com/album/ladybug-1" target="_blank" rel="noopener" data-ns-event="release-open" data-ns-detail="thebugdisfig--ladybug1" aria-label="Open The Bug, Dis Fig — Ladybug 1 at the original source">Open release</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">DUB KILLER, BEATMASTA</span> — UNDER DENSE DUB</span><a class="btn" href="https://sublineaudio.bandcamp.com/album/under-dense-dub" target="_blank" rel="noopener" data-ns-event="release-open" data-ns-detail="dubkillerbeatmasta--underdensedub" aria-label="Open DUB KILLER, BEATMASTA — UNDER DENSE DUB at the original source">Go to source</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">HIJINX</span> — Survival Loop EP</span><a class="btn" href="https://hijinxuk.bandcamp.com/album/survival-loop-ep" target="_blank" rel="noopener" data-ns-event="release-open" data-ns-detail="hijinx--survivalloopep" aria-label="Open HIJINX — Survival Loop EP at the original source">Go to source</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">Coloursound</span> — New World</span><a class="btn" href="https://coloursoundfm.bandcamp.com/album/new-world" target="_blank" rel="noopener" data-ns-event="release-open" data-ns-detail="coloursound--newworld" aria-label="Open Coloursound — New World at the original source">Go to source</a></div>
+<div class="rot-row"><span class="rot-name"><span class="artist">The Bug, Dis Fig</span> — Ladybug 1</span><a class="btn" href="https://thebugdisfig.bandcamp.com/album/ladybug-1" target="_blank" rel="noopener" data-ns-event="release-open" data-ns-detail="thebugdisfig--ladybug1" aria-label="Open The Bug, Dis Fig — Ladybug 1 at the original source">Go to source</a></div>
 </section>
 <section class="home-sec">
 <div class="sec-head"><h2>Coming up</h2></div>
-<div class="rot-row"><span class="release-date">Aug 3</span><span class="rot-name"><span class="artist">VA</span> — DUPLOC LEGACY 2</span><a class="btn" href="https://duploc.bandcamp.com/album/duploc-legacy-2" target="_blank" rel="noopener" data-ns-event="release-open" data-ns-detail="va--duploclegacy2">Release page</a></div>
+<div class="rot-row"><span class="release-date">Aug 3</span><span class="rot-name"><span class="artist">VA</span> — DUPLOC LEGACY 2</span><a class="btn" href="https://duploc.bandcamp.com/album/duploc-legacy-2" target="_blank" rel="noopener" data-ns-event="release-open" data-ns-detail="va--duploclegacy2">Follow release</a></div>
 </section>
 <section class="home-sec">
 <div class="post-card invite">
 <h2><a href="submit.html">Sitting on finished music?</a></h2>
-<div class="excerpt">Send one finished record, one direct link, and the details that matter. No bundles and no guaranteed coverage—just a clear route to the music.</div>
+<div class="excerpt">Send one finished record, one direct link, and the details that matter. No bundles, no guaranteed coverage—just a clean route to a careful listen.</div>
 </div>
 </section>
-<section class="home-sec"><section class="post-card newsletter-card" aria-labelledby="newsletter-title">
-<div class="meta"><span class="signal-label">Email list</span></div>
-<h2 id="newsletter-title">No Service by email</h2>
-<div class="excerpt">A low-frequency note with records, new transmissions, and Denver signals when there is something worth sending.</div>
-<form class="newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/No-Service" method="post" data-newsletter-source="home">
-  <label class="sr-only" for="newsletter-email-home">Email address</label>
-  <input id="newsletter-email-home" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
-  <input type="hidden" name="embed" value="1">
-  <input type="hidden" name="tag" value="website">
-  <input type="hidden" name="utm_source" value="noservice.online">
-  <input type="hidden" name="utm_medium" value="website">
-  <input type="hidden" name="utm_campaign" value="home">
-  <button type="submit">Join the list</button>
-</form>
-<div class="newsletter-fine">Confirm by email. Unsubscribe whenever you want. The list is not sold or shared for advertising.</div>
-</section></section>
 <section class="home-sec">
 <div class="sec-head"><h2>Earlier dispatches</h2></div>
 <a class="arc-row" href="posts/2026-07-17-signal.html"><span class="arc-date">2026-07-17</span><span class="arc-title">One Dubplate, No Filler</span></a>
@@ -353,7 +350,7 @@ body { padding-bottom: 148px; }
 <a class="arc-row" href="posts/2026-06-23-signal.html"><span class="arc-date">2026-06-23</span><span class="arc-title">Convoys, Dubplates, and the Long Way Around</span></a>
 <a class="arc-row" href="posts/2026-06-22-signal.html"><span class="arc-date">2026-06-22</span><span class="arc-title">Three From the Deep End</span></a>
 </section>
-<footer>NO SERVICE · music selected by Xanzîbar · <a href="site-notes.html">site notes</a> · <a href="newsletter.html">email list</a></footer>
+<footer>NO SERVICE · music selected by Xanzîbar · <a href="site-notes.html">site notes</a></footer>
 </div>
 <canvas id="ns-visualizer" aria-hidden="true"></canvas>
 <div class="ns-sigil-field" aria-hidden="true">
@@ -1093,5 +1090,5 @@ if (!document.documentElement.dataset.nsEngagementBound) {
 }
 nsInitEngagement();
 </script>
-<script id="ns-analytics" data-goatcounter="https://no-service.goatcounter.com/count" async src="https://gc.zgo.at/count.js" onload="nsFlushMetrics()"></script>
+
 </body></html>
