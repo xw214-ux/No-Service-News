@@ -323,7 +323,7 @@ body { padding-bottom: 148px; }
 </nav>
 <h1>The Crate</h1>
 <p class='count'>The No Service shelf. Play what streams here; follow the rest to the source.</p>
-<div class="crate-bar"><button class="chip mchip on" data-month="all" aria-pressed="true">All time</button><button class="chip mchip" data-month="2026-08" aria-pressed="false">Aug 2026</button><button class="chip mchip" data-month="2026-07" aria-pressed="false">Jul 2026</button><button class="chip mchip" data-month="2026-06" aria-pressed="false">Jun 2026</button><button class="chip mchip" data-month="2026-05" aria-pressed="false">May 2026</button></div>
+<div class="crate-bar"><button class="chip mchip on" data-month="all" aria-pressed="true">All time</button><button class="chip mchip" data-month="2026-09" aria-pressed="false">Sep 2026</button><button class="chip mchip" data-month="2026-08" aria-pressed="false">Aug 2026</button><button class="chip mchip" data-month="2026-07" aria-pressed="false">Jul 2026</button><button class="chip mchip" data-month="2026-06" aria-pressed="false">Jun 2026</button><button class="chip mchip" data-month="2026-05" aria-pressed="false">May 2026</button></div>
 <div class="crate-bar"><button class="chip on" data-chip="all" aria-pressed="true">All</button><button class="chip" data-chip="Deep cuts" aria-pressed="false">Deep cuts</button><button class="chip" data-chip="Forward / experimental" aria-pressed="false">Forward / experimental</button><button class="chip" data-chip="Heaters" aria-pressed="false">Heaters</button><button class="chip" data-chip="In rotation" aria-pressed="false">In rotation</button><button class="chip" data-chip="In-between" aria-pressed="false">In-between</button><button class="chip" data-chip="Jungle / DnB" aria-pressed="false">Jungle / DnB</button><button class="chip" data-chip="playable" aria-pressed="false">Streams here</button></div>
 <div class="crate-bar"><button class="chip schip on" data-source="all" aria-pressed="true">All sources</button><button class="chip schip" data-source="bandcamp" aria-pressed="false"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Bandcamp</button><button class="chip schip" data-source="soundcloud" aria-pressed="false"><span class="src-dot src-soundcloud" aria-hidden="true"></span>SoundCloud</button><button class="chip schip" data-source="source" aria-pressed="false"><span class="src-dot src-source" aria-hidden="true"></span>Other</button></div>
 <div class="crate-bar">
@@ -336,7 +336,13 @@ body { padding-bottom: 148px; }
 <div id="my-queue-list"></div>
 <div class="crate-bar"><button class="btn" id="my-queue-play">Play saved</button><button class="btn" id="my-queue-clear">Clear saved</button></div>
 </div>
-<div id="crate-list"><div class="crate-row" data-month="2026-08" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="ef kia dark horse">
+<div id="crate-list"><div class="crate-row" data-month="2026-09" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="howman trap eastwood ep">
+<span class="crate-name"><span class="src-dot src-bandcamp crate-source-mobile" aria-hidden="true"></span><span class="artist">Howman</span> — Trap Eastwood EP</span>
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-09-07</span>
+<a class="btn" href="https://dnorecords.bandcamp.com/album/dno022-howman-trap-eastwood-ep" target="_blank" rel="noopener" aria-label="Open Howman — Trap Eastwood EP at the original source">Go to source ↗</a></div><div class="crate-row" data-month="2026-09" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="ljudas ambient / understand / dub fi dub / ambient remix (dubina 009)">
+<span class="crate-name"><span class="src-dot src-bandcamp crate-source-mobile" aria-hidden="true"></span><span class="artist">Ljudas</span> — Ambient / Understand / Dub Fi Dub / Ambient Remix (Dubina 009)</span>
+<span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-09-07</span>
+<a class="btn" href="https://bukvasound.bandcamp.com/album/ljudas-ambient-understand-dub-fi-dub-ambient-remix-dubina-009" target="_blank" rel="noopener" aria-label="Open Ljudas — Ambient / Understand / Dub Fi Dub / Ambient Remix (Dubina 009) at the original source">Go to source ↗</a></div><div class="crate-row" data-month="2026-08" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="ef kia dark horse">
 <span class="crate-name"><span class="src-dot src-bandcamp crate-source-mobile" aria-hidden="true"></span><span class="artist">Ef Kia</span> — Dark Horse</span>
 <span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-08-31</span>
 <a class="btn" href="https://backchatuk.bandcamp.com/album/dark-horse" target="_blank" rel="noopener" aria-label="Open Ef Kia — Dark Horse at the original source">Go to source ↗</a></div><div class="crate-row" data-month="2026-08" data-lane="Heaters" data-source="bandcamp" data-playable="0" data-text="smokestax/rsrch chmcls get down">
@@ -748,7 +754,7 @@ body { padding-bottom: 148px; }
 <span class="crate-name"><span class="src-dot src-bandcamp crate-source-mobile" aria-hidden="true"></span><span class="artist">Changer</span> — Damage</span>
 <span class="crate-meta"><span class="src-dot src-bandcamp" aria-hidden="true"></span>Heaters · Bandcamp · 2026-05-04</span>
 <a class="btn" href="https://duploc.bandcamp.com/album/duploc-008" target="_blank" rel="noopener" aria-label="Open Changer — Damage at the original source">Go to source ↗</a></div></div>
-<p class='count' id="crate-count">137 records and counting.</p>
+<p class='count' id="crate-count">139 records and counting.</p>
 <script>
 (function() {
   var lane = "all", month = "all", source = "all", playOnly = false;
